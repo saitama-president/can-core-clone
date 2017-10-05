@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -15,6 +16,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\Event' => [
             'App\Listeners\EventListener',
+            App\Listeners\UserEventListener::class
         ],
     ];
 

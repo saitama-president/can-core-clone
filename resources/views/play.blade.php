@@ -20,22 +20,26 @@
                     alert("aaa");
                     }
                 );                
-                $("#BUTTON_HOME").on("click", function () {
+                $("#BUTTON_TEAM").on("click", function () {
                     alert("aaa");
                     }
                 );                
-                $("#BUTTON_HOME").on("click", function () {
+                $("#BUTTON_CREATE").on("click", function () {
                     alert("aaa");
                     }
                 );                
-                $("#BUTTON_HOME").on("click", function () {
+                $("#BUTTON_REPAIR").on("click", function () {
                     alert("aaa");
                     }
                 );                
-                $("#BUTTON_HOME").on("click", function () {
+                $("#BUTTON_CHARGE").on("click", function () {
                     alert("aaa");
                     }
-                );                
+                );     
+                $("#BUTTON_UPGRADE").on("click", function () {
+                    alert("aaa");
+                    }
+                );
         
             });
 

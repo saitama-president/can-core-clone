@@ -31,7 +31,7 @@ class CreateAll extends Migration
             $class_name="$this->name_space\\$base_name";
             $table=new $class_name(); 
             $table_name=$table->table;
-            var_dump($table_name."作成");
+            var_dump("$base_name $table_name 作成");
             Schema::dropIfExists($table_name);
             Schema::create($table_name, function(Blueprint $b)
                     use($class_name,$table_name) {
