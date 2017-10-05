@@ -3,7 +3,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('play');
 });
 
 Route::get('play',function () {
