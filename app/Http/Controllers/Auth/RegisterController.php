@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Request;
 
 class RegisterController extends Controller
 {
@@ -67,5 +68,25 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    
+     /**
+     * ユーザが登録されたときに発火する
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        //
+        $ccc_user=new \App\CCC\data\user();
+        
+        $ccc_user->id=$user->id;
+        
+        $ccc_user->save();
+        
+        \Event::Fire(new \App\Events\UserRegistedEvent($ccc_user));
+        
     }
 }

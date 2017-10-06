@@ -21,7 +21,7 @@ class UserRegistedEvent
      */
     public function __construct(\App\CCC\data\user $u)
     {
-        \Log::Debug("ユーザ登録イベント");
+        \Log::Debug("ユーザ登録イベント!");
     }
 
     /**
