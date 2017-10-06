@@ -17,9 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:api')->get('/nullpo', function (Request $request) {
+    return ["OK"];
+});
 
 Route::get("status",function(){
-  
     
  return [
      "status"=>[     

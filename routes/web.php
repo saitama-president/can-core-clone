@@ -3,7 +3,7 @@
 
 
 Route::get('/', function () {
-    return view('play');
+    return view('index');
 });
 
 Route::get('play',function () {
@@ -16,4 +16,11 @@ Route::get('test',function () {
     \Event::Fire(new \App\Events\UserRegistedEvent($user));
     
     return ["OK"];
+});
+
+Auth::routes();
+
+Route::get('/home',function(){
+    
+   return view("play"); 
 });
