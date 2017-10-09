@@ -77,7 +77,8 @@ class RegisterController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
-    protected function registered(Request $request, $user)
+    protected function registered(use Illuminate\Support\Facades\Request;
+ $request, $user)
     {
         //
         $ccc_user=new \App\CCC\data\user();
