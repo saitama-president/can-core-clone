@@ -77,7 +77,7 @@ class RegisterController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
-    protected function registered(use Illuminate\Support\Facades\Request;
+    protected function registered(Illuminate\Support\Facades\Request 
  $request, $user)
     {
         //
