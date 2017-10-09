@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class master_assets extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
-    
+    public $table="master_assets";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');

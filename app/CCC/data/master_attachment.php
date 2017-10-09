@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class master_attachment extends Model implements \App\Common\CreateTable , \App\Common\MasterTable{
 
+  public $table="master_attachment";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');

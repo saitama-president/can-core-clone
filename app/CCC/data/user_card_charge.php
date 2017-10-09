@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class user_card_charge extends Model implements \App\Common\CreateTable {
 
+   public $table="user_card_charge";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');

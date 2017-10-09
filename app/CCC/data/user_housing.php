@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class user_housing extends Model implements \App\Common\CreateTable {
 
+    public $table="user_housing";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class user_team extends Model implements \App\Common\CreateTable {
 
+      public $table="user_team";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->integer('user_id');
