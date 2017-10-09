@@ -20,7 +20,8 @@ Route::get('test',function () {
 
 Auth::routes();
 
-Route::get('/home',function(){
-    
-   return view("play"); 
+
+Route::group(['middleware' => ['play']], function () {
+    Route::get('/home',"HomeController@index");
 });
+

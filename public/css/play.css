@@ -1,0 +1,96 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+#contents {
+  position: relative;
+  left: 1vmin;
+  top: 1vmin;
+  background-color: ivory;
+  min-width: 98vmin;
+  min-height: 98vmin;
+}
+
+#BUTTON_HOME {
+  position: absolute;
+  background-image: url("/image/button/home.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 20vmin;
+  top: 20vmin;
+  width: 15vmin;
+  height: 15vmin;
+}
+#BUTTON_UPGRADE {
+  position: absolute;
+  background-image: url("/image/button/upgrade.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 5vmin;
+  top: 30vmin;
+  width: 15vmin;
+  height: 15vmin;
+}
+
+#BUTTON_CHARGE {
+  position: absolute;
+  background-image: url("/image/button/charge.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 5vmin;
+  top: 45vmin;
+  width: 15vmin;
+  height: 15vmin;
+}
+
+#BUTTON_CREATE {
+  position: absolute;
+  background-image: url("/image/button/make.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 20vmin;
+  top: 50vmin;
+  width: 15vmin;
+  height: 15vmin;
+}
+
+#BUTTON_REPAIR {
+  position: absolute;
+  background-image: url("/image/button/repair.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 35vmin;
+  top: 45vmin;
+  width: 15vmin;
+  height: 15vmin;
+}
+
+#BUTTON_LAUNCH {
+  position: absolute;
+  background-image: url("/image/button/launch.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 35vmin;
+  top: 30vmin;
+  width: 15vmin;
+  height: 15vmin;
+}
+
+#BUTTON_TEAM {
+  position: absolute;
+  background-image: url("/image/button/team.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 20vmin;
+  top: 35vmin;
+  width: 15vmin;
+  height: 15vmin;
+}

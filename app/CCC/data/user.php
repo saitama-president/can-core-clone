@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class user extends Model implements \App\Common\CreateTable {
 
+    public $table="ccc_user";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
+        $b->string('name',20);
         $b->timestamps();
     }
 

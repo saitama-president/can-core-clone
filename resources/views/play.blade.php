@@ -1,104 +1,106 @@
+@extends('layouts.frame')
+
+@section('styles')
+<link rel="stylesheet" href="{{url('css/play.css')}}" >
+  
+@endsection
+
 {{--基本Json通信のみとするので表示系は扱わないが、画面サンプル--}}
+@section('scripts')
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+<script>
 
+$(document).ready(function () {
+$("#BUTTON_HOME").on("click", function () {
+alert("aaa");
+}
+);
+$("#BUTTON_LAUNCH").on("click", function () {
+alert("aaa");
+}
+);
+$("#BUTTON_TEAM").on("click", function () {
+alert("aaa");
+}
+);
+$("#BUTTON_CREATE").on("click", function () {
+alert("aaa");
+}
+);
+$("#BUTTON_REPAIR").on("click", function () {
+alert("aaa");
+}
+);
+$("#BUTTON_CHARGE").on("click", function () {
+alert("aaa");
+}
+);
+$("#BUTTON_UPGRADE").on("click", function () {
+alert("aaa");
+}
+);
 
+});
 
-<html>
-    <head>
-        <title>{{config("app.name")}}</title>
+setInterval(
+function () {
+  $.ajax({
+    url: "/api/status",
+    cache:false,
+    success: function (data) {
 
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+      var status = data.status;
 
-        <script>
-            
-            $(document).ready(function(){
-                $("#BUTTON_HOME").on("click", function () {
-                    alert("aaa");
-                    }
-                );                
-                $("#BUTTON_LAUNCH").on("click", function () {
-                    alert("aaa");
-                    }
-                );                
-                $("#BUTTON_TEAM").on("click", function () {
-                    alert("aaa");
-                    }
-                );                
-                $("#BUTTON_CREATE").on("click", function () {
-                    alert("aaa");
-                    }
-                );                
-                $("#BUTTON_REPAIR").on("click", function () {
-                    alert("aaa");
-                    }
-                );                
-                $("#BUTTON_CHARGE").on("click", function () {
-                    alert("aaa");
-                    }
-                );     
-                $("#BUTTON_UPGRADE").on("click", function () {
-                    alert("aaa");
-                    }
-                );
-        
-            });
+      $("#HUD .A .value").text(data.status.A);
+      $("#HUD .B .value").text(data.status.B);
+      $("#HUD .C .value").text(data.status.C);
+      $("#HUD .D .value").text(data.status.D);
 
-            setInterval(
-                    function () {
-                        $.ajax({
-                            url: "/api/status",
-                            success: function(data){
-                                
-                                var status=data.status;
-                                
-                                $("#HUD .A .value").text(data.status.A);
-                                $("#HUD .B .value").text(data.status.B);
-                                $("#HUD .C .value").text(data.status.C);
-                                $("#HUD .D .value").text(data.status.D);
-                                
-                            }
-                        });
-                        
-                        console.log("update");
-                    }
-            , 6000);
-        </script>
-    </head>
-    <body>
-        {{-- 基本メニュー --}}
-        <div id="MENU">
-            <button id="BUTTON_HOME">home</button>
+    }
+  });
 
-            <button id="BUTTON_LAUNCH">出撃</button>
-            <button id="BUTTON_TEAM">編成</button>
-            <button id="BUTTON_CREATE">製造</button>
-            <button id="BUTTON_REPAIR">修復</button>
-            <button id="BUTTON_CHARGE">補給</button>
-            <button id="BUTTON_UPGRADE">改造</button>
-        </div>
+  console.log("update");
+}
+, 6000);
+</script>
+@endsection
 
-        {{-- ホーム画面 --}}
-        <div id="HOME">
+@section('contents')
 
-        </div>
+<div id='contents'>
+  {{-- 基本メニュー --}}
+  <div id="MENU">
+    <div id="BUTTON_HOME">home</div>
+    <div id="BUTTON_LAUNCH">出撃</div>
+    <div id="BUTTON_TEAM">編成</div>
+    <div id="BUTTON_CREATE">製造</div>
+    <div id="BUTTON_REPAIR">修復</div>
+    <div id="BUTTON_CHARGE">補給</div>
+    <div id="BUTTON_UPGRADE">改造</div>
+  </div>
 
-        {{-- HUD --}}
-        <div id="HUD">
-            <label class="A" >燃<span class="value">0</span></label>
-            <label class="B">弾<span class="value">0</span></label>
-            <label class="C">石<span class="value">0</span></label>
-            <label class="D">鉄<span class="value">0</span></label>
-        </div>
+  {{-- ホーム画面 --}}
+  <div id="HOME">
 
-        {{--通知関連--}}
-        <div id="NOTIFY">
+  </div>
 
-        </div>
+  {{-- HUD --}}
+  <div id="HUD">
+    <label class="A" >燃<span class="value">0</span></label>
+    <label class="B">弾<span class="value">0</span></label>
+    <label class="C">石<span class="value">0</span></label>
+    <label class="D">鉄<span class="value">0</span></label>
+  </div>
 
-        {{--シーン描画--}}
-        <div id="SCENE">
+  {{--通知関連--}}
+  <div id="NOTIFY">
 
-        </div>
+  </div>
 
-    </body>
-</html>
+  {{--シーン描画--}}
+  <div id="SCENE">
+
+  </div>
+</div>
+@endsection

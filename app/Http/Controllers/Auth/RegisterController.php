@@ -74,16 +74,17 @@ class RegisterController extends Controller
      * ユーザが登録されたときに発火する
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
+     * @param  mixed  $user\
      * @return mixed
      */
-    protected function registered(Illuminate\Support\Facades\Request 
+    protected function registered(\Symfony\Component\HttpFoundation\Request 
  $request, $user)
     {
-        //
+        \Log::debug("ユーザが登録された");
         $ccc_user=new \App\CCC\data\user();
         
         $ccc_user->id=$user->id;
+        $ccc_user->name=$user->name;
         
         $ccc_user->save();
         

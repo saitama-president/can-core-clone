@@ -17,8 +17,12 @@ class PlayMiddleware
      */
     public function handle($request, Closure $next, $guard = null)
     {
-		//ユーザ情報をバインドする
-
+        //ユーザ情報をバインドする
+      
+        \Log::Debug("Play MiddleWare");
+        $user= \App\CCC\data\user::find(auth()->id());
+        $request->merge(['user' => $user]);
+        \Log::Debug("PM UID={$user->id}");
         return $next($request);
     }
 }
