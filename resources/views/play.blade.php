@@ -62,7 +62,7 @@ function () {
 
   console.log("update");
 }
-, 6000);
+, 30000);
 </script>
 @endsection
 

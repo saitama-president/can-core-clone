@@ -24,27 +24,29 @@ class user extends Model implements \App\Common\CreateTable {
 
     public function repair() {
 
-        return $this->hasOne("App\CCC\data\user_card_repair");
+        return $this->hasMany("App\CCC\data\user_card_repair");
     }
 
     public function upgrade() {
-        return $this->hasOne("App\CCC\data\user_card_upgrade");
+        return $this->hasMany("App\CCC\data\user_card_upgrade");
     }
 
     public function charge() {
-        return $this->hasOne("App\CCC\data\user_card_charge");
+        return $this->hasMany("App\CCC\data\user_card_charge");
     }
     
     public function creates() {
-        return $this->hasOne("App\CCC\data\user_create");
+        return $this->hasMany("App\CCC\data\user_create");
     }
     
     public function launches() {
-        return $this->hasOne("App\CCC\data\user_launch");
+        return $this->hasMany("App\CCC\data\user_launch");
     }
     
     public function housings(){
         return $this->hasOne("App\CCC\data\user_housing");
     }
+    
+    
 
 }
