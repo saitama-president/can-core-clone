@@ -4,7 +4,7 @@ namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
 
-class sesion extends Model{
+class session extends Model implements \App\Common\CreateTable{
 
     public $table="battle_session";
     

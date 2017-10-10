@@ -3,6 +3,11 @@ body{
   padding: 0;
 }
 
+.image{
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 #contents {
   position: relative;
   left: 1vmin;
@@ -93,4 +98,73 @@ body{
   top: 35vmin;
   width: 15vmin;
   height: 15vmin;
+}
+
+#SCENE .CHAR{
+  position: absolute;
+  width: 45vmin;
+  height: 90vmin;
+  background-image: url("/image/char/kids_chuunibyou_girl.png");    
+  left: 50vmin;
+  bottom: 0vmin;
+  background-position: bottom center;
+  
+}
+
+#SCENE .CHAR .serif{
+  background-color: aquamarine;
+  position: absolute;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 4vmin;
+  top: 4vmin;
+  left: -10vmin;
+}
+#SCENE .CHAR .serif:before{
+  
+}
+
+.fade-in{
+  animation-duration: 3s;
+  animation-name: fade-in;
+}
+
+.fade-out{
+  animation-duration: 3s;
+  animation-name: fade-out;
+}
+
+.off{
+  display: none;
+}
+
+@keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+  70% {
+
+    display: block;
+    opacity: 0.8;
+  }
+  100% {
+    display: none;
+  }
 }

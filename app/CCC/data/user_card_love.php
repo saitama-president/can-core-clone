@@ -16,8 +16,11 @@ class user_card_love extends Model implements \App\Common\CreateTable {
         
         $b->increments('id');
         $b->integer("user_id");
+        $b->integer("card_id");
+        $b->unique(["user_id","card_id"],"uniq_user_card_love");
+        
         $b->timestamps();
-        $b->index(["user_id"],"idx_user_card");
+        $b->index(["user_id"],"idx_user_card_love");
     }
 
     public function user() {

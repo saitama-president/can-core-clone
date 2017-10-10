@@ -92,6 +92,5 @@ class RegisterController extends Controller
 
         
         \Event::Fire(new \App\Events\UserRegistedEvent($ccc_user));
-        
-    }
+  }
 }

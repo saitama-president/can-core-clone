@@ -30,3 +30,7 @@ Route::group(['middleware' => ['play']], function () {
     
     
 });
+
+if(config("app.debug")){
+  Route::get("/debug/login","DebugController@login");
+}
