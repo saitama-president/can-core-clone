@@ -48,6 +48,11 @@ function () {
   $.ajax({
     url: "/api/status",
     cache:false,
+    crossDomain:true,
+    xhrFields: {
+    withCredentials: true
+    
+    },
     success: function (data) {
 
       var status = data.status;

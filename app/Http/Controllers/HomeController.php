@@ -29,4 +29,10 @@ class HomeController extends Controller
             "user"=> request()->user
         ]);
     }
+    
+    public function status(){
+        $user=request()->user;
+        
+        return $user->status();
+    }
 }

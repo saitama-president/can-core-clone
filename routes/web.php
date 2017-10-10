@@ -23,5 +23,6 @@ Auth::routes();
 
 Route::group(['middleware' => ['play']], function () {
     Route::get('/home',"HomeController@index");
+    Route::get("/api/status","HomeController@status");
+    
 });
-

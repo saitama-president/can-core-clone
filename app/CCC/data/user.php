@@ -17,6 +17,20 @@ class user extends Model implements \App\Common\CreateTable {
     public function cards() {
         return $this->hasMany("App\CCC\data\user_card");
     }
+    
+    public function status(){
+        
+        $results=[];        
+        foreach($this->assets()->get() as $asset){            
+            $results[$asset->key()]=$asset->value();
+        }
+        \Log::Debug(var_export($results,true));
+        return $results;
+    }
+    
+    public function assets(){
+        return $this->hasMany("App\CCC\data\user_asset");
+    }
 
     public function teams() {
         return $this->hasMany("App\CCC\data\user_team");

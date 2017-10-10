@@ -36,7 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 		'play'=>[
-      \App\Http\Middleware\PlayMiddleware::class
+            \App\Http\Middleware\PlayMiddleware::class
 		]
 		,
         'api' => [

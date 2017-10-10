@@ -83,10 +83,13 @@ class RegisterController extends Controller
         \Log::debug("ユーザが登録された");
         $ccc_user=new \App\CCC\data\user();
         
-        $ccc_user->id=$user->id;
-        $ccc_user->name=$user->name;
         
+        
+        $ccc_user->id=$user->id;
+        $ccc_user->name=$user->name;        
         $ccc_user->save();
+        
+
         
         \Event::Fire(new \App\Events\UserRegistedEvent($ccc_user));
         

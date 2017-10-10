@@ -22,6 +22,17 @@ class UserRegistedEvent
     public function __construct(\App\CCC\data\user $u)
     {
         \Log::Debug("ユーザ登録イベント!");
+        \Log::debug("パラメータマスタ登録");
+        $assets= \App\CCC\data\master_assets::all();
+        
+        foreach($assets as $asset){
+            \App\CCC\data\user_asset::insert(
+                [
+                    "user_id"=>$u->id,
+                    "asset_id"=>$asset->id,
+                ]);
+        }
+        \Log::debug("パラメータマスタ登録完了");
     }
 
     /**
