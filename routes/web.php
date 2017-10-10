@@ -20,9 +20,13 @@ Route::get('test',function () {
 
 Auth::routes();
 
-
 Route::group(['middleware' => ['play']], function () {
     Route::get('/home',"HomeController@index");
     Route::get("/api/status","HomeController@status");
+    
+    /*製造関連*/
+    Route::get("/api/create","CreateController@create");
+    
+    
     
 });

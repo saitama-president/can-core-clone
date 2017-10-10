@@ -42,9 +42,27 @@ class user_asset extends Model implements \App\Common\CreateTable {
     }
     
     public function key(){
-        return $this->master()->first()->name;
+        return $this->master()->first()->key;
     }
         
+    public function spend($value){
+        
+        if($this->value()-$value < 0){
+            
+            return false;
+        }
+        
+        $old_value= $this->last_value;
+        $next_value=$this->value()-$value;
+        
+        $this->last_value=$next_value;
+        $this->last_update= \Carbon\Carbon::now();
+        $this->save();
+        
+        \Log::Debug("資源更新{$this->id}={$old_value}->{$next_value}");
+        
+        return true;
+    }
 
 
     public function master(){
