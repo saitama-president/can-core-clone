@@ -57,6 +57,11 @@ class user extends Model implements \App\Common\CreateTable {
         
     }
     
+    public function add_create($line_index,$card,$complete_time = 120){
+        
+        
+    }
+    
     
     //資材とか
     public function assets(){

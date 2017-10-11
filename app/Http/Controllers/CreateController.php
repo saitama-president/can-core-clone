@@ -30,10 +30,7 @@ class CreateController extends Controller
             "C"=>request("C"),
             "D"=>request("D"),
         ];
-        
-        
-        
-        
+
         /*減らす*/
         $user=request()->user;
         
@@ -52,22 +49,22 @@ class CreateController extends Controller
                 
                 
                 
-                //結果を追加
+                //結果を追加（製造リストに追加）
                 
-                 
+                 //$user->addCard();
                 
             }
         );
         }
         catch (\Exception $e){
-            
             return "NG";
         }
         \Log::debug("CREATEする");
         
         
+        
         /*そして増やす*/
-        return ["OK"];
+        return "OK";
     }
     
     public function status(){

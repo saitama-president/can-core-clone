@@ -47,8 +47,8 @@ class user_asset extends Model implements \App\Common\CreateTable {
         
     public function spend($value){
         
+        \Log::Debug("資源更新{$this->id}={$old_value}->{$next_value}");
         if($this->value()-$value < 0){
-            
             return false;
         }
         

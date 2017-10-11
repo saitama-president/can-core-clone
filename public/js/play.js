@@ -31,8 +31,11 @@ $(document).ready(function () {
             "D":rand(3,20)
         },
         success: function (data) {
-            alert('成功');
+            alert('成功'+data);
             refresh();
+        },
+        error:function(){
+            alert("通信に失敗しました");
         }
       });
     }

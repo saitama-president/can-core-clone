@@ -21,18 +21,31 @@ class LaunchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-		
-      
-        return view('play',[
-            "user"=> request()->user
-        ]);
+
+    /**
+     * 出撃を行う。
+     * @return type
+     */
+    public function launch(){
+        
+        
+        $team_id = request("team_id");
+        $launch_id = request("launch_id");
+        
+        
+        
+        //出撃結果を取得する
+        return [
+            "OK"            
+        ];
     }
     
+    /**
+     * 状況を取得する
+     */
     public function status(){
-        $user=request()->user;
         
-        return $user->status();
+        
+        return $this->user->launches()->toJson();
     }
 }
