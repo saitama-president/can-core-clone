@@ -13,8 +13,12 @@ class user extends Model implements \App\Common\CreateTable {
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
         $b->string('name',20);
+        
         $b->timestamps();
     }
+
+    use \App\CCC\data_trait\user\payment;
+
     
     //プレゼント
     public function presents(){

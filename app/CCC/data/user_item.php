@@ -4,9 +4,12 @@ namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 個数管理される系のアイテム
+ */
 class user_item extends Model implements \App\Common\CreateTable {
 
-  public $table="user_card";
+  public $table="user_item";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
