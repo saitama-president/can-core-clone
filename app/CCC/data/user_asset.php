@@ -24,7 +24,7 @@ class user_asset extends Model implements \App\Common\CreateTable {
      */
     public function value(){
         $now= \Carbon\Carbon::now();
-        $master=$this->master()->first();
+        $master=$this->master();
         
         $base_value=$this->last_value;
         $max_value=$this->max_value;
@@ -42,12 +42,12 @@ class user_asset extends Model implements \App\Common\CreateTable {
     }
     
     public function key(){
-        return $this->master()->first()->key;
+        return $this->master()->key;
     }
         
     public function spend($value){
         
-        \Log::Debug("資源更新{$this->id}={$old_value}->{$next_value}");
+        \Log::Debug("資源更新{$this->id}= {$this->value()} - $value");
         if($this->value()-$value < 0){
             return false;
         }
@@ -66,7 +66,7 @@ class user_asset extends Model implements \App\Common\CreateTable {
 
 
     public function master(){
-        return $this->hasOne("App\CCC\data\master_assets","id","asset_id");
+        return $this->hasOne("App\CCC\data\master_assets","id","asset_id")->first();
     }
 
 

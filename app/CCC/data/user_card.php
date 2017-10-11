@@ -21,7 +21,8 @@ class user_card extends Model implements \App\Common\CreateTable {
     }
     
     public function master(){
-        return $this->hasOne("App\CCC\data\master_card","id","master_card_id");  
+        return $this->hasOne("App\CCC\data\master_card","id","master_card_id")
+            ->first();  
     }
 
 }

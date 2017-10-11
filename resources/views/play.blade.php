@@ -29,13 +29,13 @@
 <div id='contents'>
   {{-- 基本メニュー --}}
   <div id="MENU">
-    <div id="BUTTON_HOME">home</div>
-    <div id="BUTTON_LAUNCH">出撃</div>
-    <div id="BUTTON_TEAM">編成</div>
-    <div id="BUTTON_CREATE">製造</div>
-    <div id="BUTTON_REPAIR">修復</div>
-    <div id="BUTTON_CHARGE">補給</div>
-    <div id="BUTTON_UPGRADE">改造</div>
+    <div id="BUTTON_HOME"></div>
+    <div id="BUTTON_LAUNCH"></div>
+    <div id="BUTTON_TEAM"></div>
+    <div id="BUTTON_CREATE"></div>
+    <div id="BUTTON_REPAIR"></div>
+    <div id="BUTTON_CHARGE"></div>
+    <div id="BUTTON_UPGRADE"></div>
   </div>
 
   {{-- ホーム画面 --}}

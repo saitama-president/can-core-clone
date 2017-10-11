@@ -22,7 +22,8 @@ extends Model implements \App\Common\CreateTable {
     
 
     public function master(){
-        return $this->hasOne("App\CCC\data\master_story","id","story_id");
+        return $this->hasOne("App\CCC\data\master_story","id","story_id")
+            ->first();
     }
 
 

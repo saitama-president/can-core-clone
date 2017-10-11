@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CreateController extends Controller
-{
+class CreateController extends Controller {
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -22,54 +21,66 @@ class CreateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {        
-        $items=[
-            "A"=>request("A"),
-            "B"=>request("B"),
-            "C"=>request("C"),
-            "D"=>request("D"),
-        ];
+    public function create() {
 
-        /*減らす*/
-        $user=request()->user;
+        $items = [
+            "A" => request("A"),
+            "B" => request("B"),
+            "C" => request("C"),
+            "D" => request("D"),
+        ];
         
-        try{
-        DB::transaction(
-            function()
-            use($items,$user)
-            {
+        $line=1;
+        
+
+
+        $user = request()->user;
+
+        try {
+            /* 減らす */
+            DB::transaction(
+                function()
+                use($items, $user) {
                 //資材を消費
-                foreach($items as $k=>$v){
-                   if(!$user->spend($k,$v)){
-                       throw new \Exception("素材足りひん[{$k}]");
-                   }
+                foreach ($items as $k => $v) {
+                    if (!$user->spend($k, $v)) {
+                        throw new \Exception("素材足りひん[{$k}]");
+                    }
                 }
                 //素材を消費
-                
-                
-                
                 //結果を追加（製造リストに追加）
-                
-                 //$user->addCard();
-                
+                //$user->addCard();
+                $result_id= $user->add_create(
+                    1,
+                    1,
+                    60
+                );
+                \Log::Debug("CREATE_ID={$result_id}");
             }
-        );
-        }
-        catch (\Exception $e){
+            );
+        } catch (\Exception $e) {
+            \Log::Debug("例外でとるで");
+            \Log::Debug($e->getMessage());
+            \Log::Debug($e->getTraceAsString());
             return "NG";
         }
         \Log::debug("CREATEする");
+        \Log::debug(get_class($user));
         
+        $creates= DB::Select("SELECT * FROM user_create ");
         
-        
-        /*そして増やす*/
+        foreach($creates as $create){
+            \Log::debug("$create->user_id ");
+        }
+
+        /* そして増やす */
         return "OK";
     }
-    
-    public function status(){
-        $user=request()->user;
-        
+
+    public function status() {
+        $user = request()->user;
+
         return $user->status();
     }
+
 }

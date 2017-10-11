@@ -21,7 +21,8 @@ extends Model implements \App\Common\CreateTable {
     
 
     public function master(){
-        return $this->hasOne("App\CCC\data\master_assets","id","asset_id");
+        return $this->hasOne("App\CCC\data\master_assets","id","asset_id")
+            ->first();
     }
 
 

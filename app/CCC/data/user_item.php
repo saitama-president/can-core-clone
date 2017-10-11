@@ -23,7 +23,8 @@ class user_item extends Model implements \App\Common\CreateTable {
     }
     
     public function master(){
-        return $this->hasOne("App\CCC\data\master_item","id","item_id");
+        return $this->hasOne("App\CCC\data\master_item","id","item_id")
+            ->first();
     }
 
     public function spend($value=1){
