@@ -14,8 +14,8 @@ extends Model implements \App\Common\CreateTable {
         $b->integer('user_id');
         $b->integer('story_id');
         $b->unique(["user_id","story_id"],"uniq_user_story");
-        //解放状態とか
         
+        $b->tinyInteger('status')->default(0);//0=見えない 1=未開放（見える） 2=解放（入れる) 3=クリア済み
         $b->timestamp('last_update')->default(\Carbon\Carbon::now());
         $b->timestamps();
     }
