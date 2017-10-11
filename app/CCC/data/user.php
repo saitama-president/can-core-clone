@@ -22,45 +22,14 @@ class user extends Model implements \App\Common\CreateTable {
     use \App\CCC\data_trait\user\card;
     use \App\CCC\data_trait\user\create;
     use \App\CCC\data_trait\user\asset;
+    use \App\CCC\data_trait\user\charge;
+    use \App\CCC\data_trait\user\house;
+    use \App\CCC\data_trait\user\launch;
+    use \App\CCC\data_trait\user\payment;
+    use \App\CCC\data_trait\user\repair;
+    use \App\CCC\data_trait\user\team;
+    use \App\CCC\data_trait\user\upgrade;
 
-    
 
-    
-
-
-    //編成とか
-    public function teams() {
-        return $this->hasMany("App\CCC\data\user_team")->get();
-    }
-
-    //入渠とか
-    public function repair() {
-
-        return $this->hasMany("App\CCC\data\user_card_repair")->get();
-    }
-    
-    //改造とか
-    public function upgrade() {
-        return $this->hasMany("App\CCC\data\user_card_upgrade")->get();
-    }
-
-    //補給とか
-    public function charge() {
-        return $this->hasMany("App\CCC\data\user_card_charge")->get();
-    }
-    
-
-    
-    //出撃とか
-    public function launches() {
-        return $this->hasMany("App\CCC\data\user_launch")->get();
-    }
-    
-    //お部屋とか
-    public function housings(){
-        return $this->hasOne("App\CCC\data\user_housing")->get();
-    }
-    
-    
 
 }
