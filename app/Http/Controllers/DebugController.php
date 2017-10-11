@@ -53,8 +53,8 @@ class DebugController extends Controller
             //課金もぶっこむ
             $payment=new \App\CCC\data\user_payment();
             $payment->user_id = $user->id;
-                
-            
+            $payment->created_at = \Carbon\Carbon::now(); 
+            $payment->save();
             
             \Event::Fire(new \App\Events\UserRegistedEvent($ccc_user));
             

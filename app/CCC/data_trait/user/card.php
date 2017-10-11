@@ -8,10 +8,14 @@
 
 namespace App\CCC\data_trait\user;
 
-trait present{
-    
-    //プレゼント
-    public function presents(){
-        return $this->hasMany("App\CCC\data\user_present");
+/**
+ * Description of card
+ *
+ * @author s-yoshihara
+ */
+trait card {
+        //持ってる艦娘
+    public function cards() {
+        return $this->hasMany("App\CCC\data\user_card");
     }
 }

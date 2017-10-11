@@ -15,7 +15,7 @@
 <div id="DEBUG_CREATES">
     <h3>製造中</h4>
         <ul>
-            @foreach($user->creates()->get() as $create)
+            @foreach($user->creates() as $create)
             <li>
                 <p>
                     ID:{{$create->id}}<br>

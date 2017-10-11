@@ -22,7 +22,7 @@ class user_payment extends Model implements \App\Common\CreateTable {
         $b->text('descript')->default('');//備考
         
         $b->boolean('enable')->default(1);
-        $b->timestamps();
+        
         $b->timestamps();
         $b->index("user_id","idx_user_payment");
         //$b->unique(["user_id","item_type"],"uniq_user_payment");
