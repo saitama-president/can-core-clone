@@ -159,7 +159,7 @@ function show_window(){
 /*web audio関連*/
 
 function audio_play(){
-  getAudioBuffer('/vendor/Menu_Titles 01.wav', function(buffer) {
+  getAudioBuffer('/vendor/bgm.mp3', function(buffer) {
     $(document).on("click",function(){
         
         playSound(buffer);
@@ -204,7 +204,15 @@ function playSound(buffer) {
   source.buffer = buffer;
   source.loop =true;
   // context に connect
-  source.connect(context.destination);
+  
+  
+  var gainNode = context.createGain();
+  // Connect the source to the gain node.
+  source.connect(gainNode);
+  // Connect the gain node to the destination.
+  gainNode.connect(context.destination);
+  gainNode.gain.value = 0.25;
+  
   // 再生
   source.start(0);
 };
