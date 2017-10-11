@@ -21,6 +21,9 @@
                     ID:{{$create->id}}<br>
                     master_id:{{$create->master_card_id}}<br>
                     complete:{{$create->complete_at}}<br>
+                    @if($create->complete_at< \Carbon\Carbon::Now())
+                      回収
+                    @endif
                 </p>
             </li>
             @endforeach

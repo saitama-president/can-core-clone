@@ -1,26 +1,58 @@
 $(document).ready(function () {
   
-    $("#SCENE .CHAR").on("click",function(){
+
+    setInterval(function(){
+      var now=new Date();
+      $("#TIME").text(
+              (
+                now.getHours() < 10
+                ?("0"+now.getHours())
+                :now.getHours()
+              )
+              +":"+
+              (
+                now.getMinutes() < 10
+                ?("0"+now.getMinutes())
+                :now.getMinutes()
+              )
+              );
+      $("#TODAY").text(
+              (
+                (now.getMonth()+1) < 10
+                  ?("0"+(now.getMonth()+1))
+                  :((now.getMonth()+1))
+              )
+              +"/"+(
+                now.getDate()<10
+                ?("0"+now.getDate())
+                :(now.getDate())
+              )                       
+      );
       
+    },1000);
+    
+
+  
+    $("#SCENE .CHAR").on("click",function(){      
         //セリフを出現させる
         $("#SCENE .CHAR .serif").toggleClass("off");
-        $("#SCENE .CHAR .serif").toggleClass("fade-out");
     });
     $("#BUTTON_HOME").on("click", function () {
-    alert("aaa");
+      notify("ホームボタンを押した");
     }
     );
     $("#BUTTON_LAUNCH").on("click", function () {
-    alert("aaa");
+      notify("出撃ボタンを押した");
     }
     );
     $("#BUTTON_TEAM").on("click", function () {
-    alert("aaa");
+      notify("チーム編成ボタンを押した");
     }
     );
     
     $("#BUTTON_CREATE").on("click", function () {
-      alert('製造');  
+      
+      
       $.ajax({
         url: "/api/create",
         cache:false,
@@ -31,32 +63,64 @@ $(document).ready(function () {
             "D":rand(3,20)
         },
         success: function (data) {
-            alert('成功'+data);
+            notify("製造しました。結果"+data);
+            
             refresh();
         },
         error:function(){
-            alert("通信に失敗しました");
+            alert("通信に失敗しました。画面をリロードしてください");
         }
       });
     }
     );
     $("#BUTTON_REPAIR").on("click", function () {
-    alert("aaa");
+      notify("修理ボタンを押した");
     }
     );
     $("#BUTTON_CHARGE").on("click", function () {
-    alert("aaa");
+      notify("補給ボタンを押した");
     }
     );
     $("#BUTTON_UPGRADE").on("click", function () {
-    alert("aaa");
+      notify("改造ボタンを押した");
     }
     );
+    
+    $("#BUTTON_MISSION").on("click", function () {
+      notify("任務ボタンを押した");
+    }
+    );
+    
+    $(".button").on("click",function(){
+        var $t=$(this);
+        $t.toggleClass("pressed");
+        
+        setTimeout(function($t){
+          $t.toggleClass("pressed");
+        },300,$t);
+        
+    });
     refresh();
 });
 
-setInterval(
-function () {refresh();}, 10000);
+$(".notify").ready(function(){
+  //alert($(this).text());
+  
+});
+
+setInterval(function () {refresh();}, 10000);
+
+function notify($message){
+  
+  $li=$("<li>",{"class":"fade-in"}).text($message);
+  $("#NOTIFY > ul").append($li);
+  
+  //クリックしても削除
+  $li.on("click",function(){$(this).remove();});
+  //30秒後に削除
+  setTimeout(function($li){ $li.remove();},15000,$li);
+  
+}
 
 function refresh(){
   $.ajax({

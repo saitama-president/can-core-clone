@@ -8,6 +8,19 @@ body{
   background-size: contain;
 }
 
+.hide{
+  display: none;
+}
+
+
+.background{
+  filter: brightness(70%);
+}
+
+.pressed{
+ filter: invert(100%);
+}
+
 #contents {
   position: relative;
   left: 1vmin;
@@ -15,8 +28,98 @@ body{
   background-color: ivory;
   min-width: 98vmin;
   min-height: 98vmin;
+  
 }
 
+#NOTIFY{
+  position: absolute;  
+  top: 8vmin;
+  left: 3vmin;
+  color: white;
+  
+  font-style: italic;
+  font-size: 3.5vmin;
+}
+
+
+
+#HUD{
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: white;
+  width: 99vmin;
+  height: 8vmin;
+  background-color: rgba(20,20,20,0.5);
+  
+}
+
+#HUD #USER_ITEM{
+  position: absolute;
+  right: 2vmin;
+}
+
+#HUD #USER_INFO{
+  position: absolute;
+  left: 2vmin;
+  font-size: 5vmin;
+}
+
+
+#HUD .icon{
+  display: inline-block;
+  min-width: 5vmin;
+  min-height: 5vmin;
+  vertical-align: middle;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+
+#HUD .A .icon{
+  background-image:url("/image/icon/drum_can.png");
+}
+#HUD .B .icon{
+  background-image:url("/image/icon/gin_dangan_silver_bullet.png");
+}
+#HUD .C .icon{
+  background-image:url("/image/icon/tekkotsu_red.png");
+}
+#HUD .D .icon{
+  background-image:url("/image/icon/wood_maruta.png");
+}
+
+
+#HUD .text-box{
+  position: relative;
+  font-size: 4vmin;  
+}
+
+
+
+#MENU{
+  z-index: 50;
+}
+
+#HOME{
+  position: relative;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  background-image: url("/image/bg/room_yuka_flooring.png");
+  min-width: 98vmin;
+  min-height: 98vmin;
+  left: 1vmin;
+  top: 1vmin;
+  z-index: 0;
+}
+
+
+
+
+/*
 #BUTTON_HOME {
   position: absolute;
   background-image: url("/image/button/home.png");
@@ -28,17 +131,31 @@ body{
   width: 15vmin;
   height: 15vmin;
 }
+*/
 #BUTTON_UPGRADE {
   position: absolute;
   background-image: url("/image/button/upgrade.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  left: 5vmin;
+  left: 35vmin;
   top: 30vmin;
   width: 15vmin;
   height: 15vmin;
 }
+
+#BUTTON_MISSION {
+  position: absolute;
+  background-image: url("/image/button/quest.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 20vmin;
+  top: 50vmin;
+  width: 15vmin;
+  height: 15vmin;
+}
+
 
 #BUTTON_CHARGE {
   position: absolute;
@@ -47,7 +164,7 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   left: 5vmin;
-  top: 45vmin;
+  top: 30vmin;
   width: 15vmin;
   height: 15vmin;
 }
@@ -58,8 +175,8 @@ body{
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  left: 20vmin;
-  top: 50vmin;
+  left: 35vmin;
+  top: 45vmin;
   width: 15vmin;
   height: 15vmin;
 }
@@ -70,7 +187,7 @@ body{
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  left: 35vmin;
+  left: 5vmin;
   top: 45vmin;
   width: 15vmin;
   height: 15vmin;
@@ -82,8 +199,8 @@ body{
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  left: 35vmin;
-  top: 30vmin;
+  left: 20vmin;
+  top: 35vmin;
   width: 15vmin;
   height: 15vmin;
 }
@@ -95,7 +212,7 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   left: 20vmin;
-  top: 35vmin;
+  top: 20vmin;
   width: 15vmin;
   height: 15vmin;
 }
@@ -108,7 +225,7 @@ body{
   left: 50vmin;
   bottom: 0vmin;
   background-position: bottom center;
-  
+  z-index: 100;
 }
 
 #SCENE .CHAR .serif{
@@ -118,11 +235,27 @@ body{
   padding: 0.5em;
   text-align: center;
   font-size: 4vmin;
-  top: 4vmin;
-  left: -10vmin;
+  top: 60vmin;
+  left: -35vmin;
 }
 #SCENE .CHAR .serif:before{
   
+}
+
+#DATE{
+  position: absolute;
+  color: white;
+  line-height:6vmin;
+  left: 5vmin;
+  bottom: 10vmin;
+}
+
+#TODAY{
+  font-size: 7vmin;
+}
+#TIME{
+ 
+  font-size: 10vmin;
 }
 
 .fade-in{

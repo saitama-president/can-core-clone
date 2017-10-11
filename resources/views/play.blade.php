@@ -26,34 +26,58 @@
 @endif
 
 
-<div id='contents'>
+<div id='contents' >
+  
+    {{-- ホーム画面 --}}
+  <div id="HOME" class="background">
+
+  </div>
+  
   {{-- 基本メニュー --}}
   <div id="MENU">
-    <div id="BUTTON_HOME"></div>
-    <div id="BUTTON_LAUNCH"></div>
-    <div id="BUTTON_TEAM"></div>
-    <div id="BUTTON_CREATE"></div>
-    <div id="BUTTON_REPAIR"></div>
-    <div id="BUTTON_CHARGE"></div>
-    <div id="BUTTON_UPGRADE"></div>
+    <div id="BUTTON_HOME" class="button"></div>
+    <div id="BUTTON_MISSION" class="button"></div>
+    <div id="BUTTON_LAUNCH" class="button"></div>
+    <div id="BUTTON_TEAM" class="button"></div>
+    <div id="BUTTON_CREATE" class="button"></div>
+    <div id="BUTTON_REPAIR" class="button"></div>
+    <div id="BUTTON_CHARGE" class="button"></div>
+    
+    
+    <div id="BUTTON_UPGRADE" class="button"></div>
   </div>
 
-  {{-- ホーム画面 --}}
-  <div id="HOME">
 
-  </div>
 
   {{-- HUD --}}
   <div id="HUD">
-    <label class="A">燃<span class="value">0</span></label>
-    <label class="B">弾<span class="value">0</span></label>
-    <label class="C">石<span class="value">0</span></label>
-    <label class="D">鉄<span class="value">0</span></label>
+    <div id="USER_INFO">
+      <span>{{$user->name}}</span>
+    </div>
+    <div id="USER_ITEM">
+    <label class="A text-box">
+      <div class="icon">&nbsp;</div>
+      <span class="value">0</span>
+    </label>
+    <label class="B text-box">
+      <div class="icon">&nbsp;</div>
+      <span class="value">0</span>
+    </label>
+    <label class="C text-box">
+      <div class="icon">&nbsp;</div>
+      <span class="value">0</span>
+    </label>
+    <label class="D text-box">
+      <div class="icon">&nbsp;</div>
+      <span class="value">0</span>
+    </label>
+    </div>
   </div>
 
   {{--通知関連--}}
   <div id="NOTIFY">
-
+    <ul>
+    </ul>
   </div>
 
   {{--シーン描画--}}
@@ -64,5 +88,17 @@
       </div>
     </div>
   </div>
+  
+  {{--時計--}}
+  <div id="DATE">
+    <div id="TODAY"></div>      
+    <div id="TIME"></div>
+  </div>
+  
+  
+  <div id="WINDOW" class="hide">
+    
+  </div>
+
 </div>
 @endsection

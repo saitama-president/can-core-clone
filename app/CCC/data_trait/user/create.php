@@ -7,7 +7,7 @@
  */
 
 namespace App\CCC\data_trait\user;
-
+use App\CCC\data\user_create;
 /**
  * Description of create
  *

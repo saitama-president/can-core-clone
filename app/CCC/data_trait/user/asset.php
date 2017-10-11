@@ -8,6 +8,8 @@
 
 namespace App\CCC\data_trait\user;
 
+use App\CCC\data\user_asset;
+use App\CCC\data\master_assets;
 /**
  * Description of asset
  *
