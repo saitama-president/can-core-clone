@@ -28,6 +28,8 @@ body{
   background-color: ivory;
   min-width: 98vmin;
   min-height: 98vmin;
+  color: white;
+  font-size: 4vmin;
   
 }
 
@@ -40,6 +42,26 @@ body{
   font-style: italic;
   font-size: 3.5vmin;
 }
+
+#WINDOW{
+  position: absolute;
+  top: 10vmin;
+  z-index: 150;
+  left: 5vmin;
+  width: 90vmin;
+  height: 75vmin;
+  border-radius: 3vmin;
+  background-color: ivory;
+  color: maroon;
+}
+
+#WINDOW .close{
+  position: absolute;
+  right: 3vmin;
+  top: -3vmin;
+  font-size: 20vmin;
+}
+
 
 
 

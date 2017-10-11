@@ -1,5 +1,6 @@
 $(document).ready(function () {
   
+    audio_play();
 
     setInterval(function(){
       var now=new Date();
@@ -31,7 +32,9 @@ $(document).ready(function () {
       
     },1000);
     
-
+    $("#WINDOW .close").on("click",function(){
+      $("#WINDOW").toggleClass("hide");
+    });
   
     $("#SCENE .CHAR").on("click",function(){      
         //セリフを出現させる
@@ -51,7 +54,7 @@ $(document).ready(function () {
     );
     
     $("#BUTTON_CREATE").on("click", function () {
-      
+      show_window();
       
       $.ajax({
         url: "/api/create",
@@ -148,3 +151,61 @@ function refresh(){
 function rand(min, max) {
   return Math.floor( Math.random() * (max - min + 1) ) + min;
 }
+
+function show_window(){
+  $("#WINDOW").removeClass("hide");
+}
+
+/*web audio関連*/
+
+function audio_play(){
+  getAudioBuffer('/vendor/Menu_Titles 01.wav', function(buffer) {
+    $(document).on("click",function(){
+        
+        playSound(buffer);
+        $(document).off("click");
+    });
+    
+  });
+}
+window.AudioContext = window.AudioContext || window.webkitAudioContext;  
+
+var context = new AudioContext();
+//グローバルのBGM再生フラグ
+var BGMPlayed=false;
+
+// Audio 用の buffer を読み込む
+var getAudioBuffer = function(url, fn) {  
+  var req = new XMLHttpRequest();
+  // array buffer を指定
+  req.responseType = 'arraybuffer';
+
+  req.onreadystatechange = function() {
+    if (req.readyState === 4) {
+      if (req.status === 0 || req.status === 200) {
+        // array buffer を audio buffer に変換
+        context.decodeAudioData(req.response, function(buffer) {
+          // コールバックを実行
+          fn(buffer);
+        });
+      }
+    }
+  };
+
+  req.open('GET', url, true);
+  req.send('');
+};
+
+// サウンドを再生
+function playSound(buffer) {  
+  // source を作成
+  var source = context.createBufferSource();
+  // buffer をセット
+  source.buffer = buffer;
+  source.loop =true;
+  // context に connect
+  source.connect(context.destination);
+  // 再生
+  source.start(0);
+};
+

@@ -97,7 +97,9 @@
   
   
   <div id="WINDOW" class="hide">
-    
+    <h4>項目名</h4>
+    <div class="close">×</div>
+    <div></div>
   </div>
 
 </div>
