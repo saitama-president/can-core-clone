@@ -20,19 +20,20 @@ Route::get('test',function () {
 
 Auth::routes();
 
-Route::group(['middleware' => ['play']], function () {
-    Route::get('/index',"HomeController@index");
-    
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home',"HomeController@home");
+}
+
+
+
+Route::group(['middleware' => ['play']], function () {
+
     //出撃結果（レンダリングのみ）
+    Route::get('/index',"HomeController@index");
     Route::get('/launch',"LaunchController@result");
     Route::get("/api/launch","LaunchController@launch");
-    Route::get("/api/status","HomeController@status");
-    
-    /*製造関連*/
+    Route::get("/api/status","HomeController@status");    
     Route::get("/api/create","CreateController@create");
-    
-    
     
 });
 
