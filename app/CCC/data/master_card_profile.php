@@ -8,7 +8,34 @@ class master_card_profile extends Model implements \App\Common\CreateTable, \App
 
     public $table = "master_card_profile";
 
-    //
+    /**
+     * 通称
+     * 名前フルネーム
+     * カナ
+     * かな
+     * アルファベット
+     * 
+     * 年齢
+     * 性別
+     * 所属
+     * 種族
+     * 出身地
+     * 
+     * 身長
+     * 体重
+     * 
+     * 趣味
+     * 性格
+     * 
+     * 好き
+     * 嫌い
+     * 
+     * 得意
+     * 不得意
+     * 
+     * 
+     * @param \Illuminate\Database\Schema\Blueprint $b
+     */
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
         $b->integer('master_card_id');        

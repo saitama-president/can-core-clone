@@ -45,7 +45,29 @@ $(document).ready(function () {
     }
     );
     $("#BUTTON_LAUNCH").on("click", function () {
-      notify("出撃ボタンを押した");
+        notify("出撃ボタンを押した");
+        //とりあえず三秒後に実行
+        
+        $.ajax({
+        url: "/api/launch",
+        cache:false,        
+        data:{
+            "team_id":1,
+            "launch_id":1
+        },
+        success: function (data) {
+            
+            notify("間もなく出撃します。少々お待ちください…");
+            
+            setTimeout(function(){
+                window.location.href = '/launch';
+            }, 3000);
+        },
+        error:function(){
+            alert("出撃の通信に失敗しました。画面をリロードしてください");
+        }
+        });
+      
     }
     );
     $("#BUTTON_TEAM").on("click", function () {
