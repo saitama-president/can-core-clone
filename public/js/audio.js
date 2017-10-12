@@ -1,5 +1,8 @@
 /*web audio関連*/
-var context = new AudioContext();
+window.AudioContext = window.AudioContext || window.webkitAudioContext;  
+context = new AudioContext();
+
+
 
 function bgm_play($url){
   prepare_sound($url, function($buff) {
@@ -10,7 +13,6 @@ function bgm_play($url){
     
   });
 }
-window.AudioContext = window.AudioContext || window.webkitAudioContext;  
 
 
 // Audio 用の buffer を読み込む

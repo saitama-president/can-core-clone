@@ -24,7 +24,8 @@ class game_controll extends Model implements \App\Common\CreateTable {
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
         $b->integer("time_key");
-        $b->integer("time_key");
+        $b->integer("max_regist_user")->default(10);
+        $b->integer("left_regist_user")->default(10);
         $b->timestamps();
     }
 

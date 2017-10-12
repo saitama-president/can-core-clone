@@ -15,7 +15,7 @@ class user_launch_result extends Model implements \App\Common\CreateTable {
         $b->boolean("checked")->default(0);
         $b->timestamp("checked_at")->nullable();
         $b->timestamps();        
-        $b->index(["user_id"],"idx_user_card");
+        $b->index(["user_id"],"idx_user_launch_result");
     }
 
     public function user() {

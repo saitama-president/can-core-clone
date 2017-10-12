@@ -1,6 +1,6 @@
 $(document).ready(function () {  
     
-    bgm_play('/vendor/bgm.mp3');
+    bgm_play('/vendor/awnw.m4a');
     setInterval(function(){
       var now=new Date();
       $("#TIME").text(

@@ -1,4 +1,4 @@
-@extends('layouts.frame')
+@extends('layouts.inner_frame')
 
 @section('styles')
 <link rel="stylesheet" href="{{url('css/play.css')}}" >
