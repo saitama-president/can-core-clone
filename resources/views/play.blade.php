@@ -22,13 +22,6 @@
 
 @section('contents')
 
-@if(config("app.debug"))
-<div>
-    <h3>デバッグメニュ</h3>
-    @include("debug/play_menu");
-</div>
-@endif
-
 
 <div id='contents' >
   
