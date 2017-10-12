@@ -17,12 +17,6 @@
 
 @section('contents')
 
-@if(config("app.debug"))
-<div>
-    <h3>デバッグメニュ</h3>
-    @include("debug/play_menu");
-</div>
-@endif
 
 
 <iframe id="frame" src="{{url('/index')}}"></iframe>
