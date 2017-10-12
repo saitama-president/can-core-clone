@@ -40,6 +40,11 @@ class LaunchController extends Controller
         ];
     }
     
+    public function result(){
+        
+        return view("launch/result");
+    }
+    
     /**
      * 状況を取得する
      */
