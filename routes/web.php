@@ -23,7 +23,7 @@ Auth::routes();
 Route::group(['middleware' => ['play']], function () {
     Route::get('/index',"HomeController@index");
     
-    Route::get('/home',"HomeController@frame");
+    Route::get('/home',"HomeController@home");
     //出撃結果（レンダリングのみ）
     Route::get('/launch',"LaunchController@result");
     Route::get("/api/launch","LaunchController@launch");
