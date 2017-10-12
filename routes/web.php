@@ -24,10 +24,9 @@ Route::group(['middleware' => ['play']], function () {
     Route::get('/home',"HomeController@index");
     //出撃結果（レンダリングのみ）
     Route::get('/launch',"LaunchController@result");
-    
-    
     Route::get("/api/launch","LaunchController@launch");
-    Route::get("/api/status","LaunchController@result");
+    Route::get("/api/status","HomeController@status");
+    
     /*製造関連*/
     Route::get("/api/create","CreateController@create");
     
