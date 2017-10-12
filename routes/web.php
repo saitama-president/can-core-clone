@@ -21,7 +21,9 @@ Route::get('test',function () {
 Auth::routes();
 
 Route::group(['middleware' => ['play']], function () {
-    Route::get('/home',"HomeController@index");
+    Route::get('/index',"HomeController@index");
+    
+    Route::get('/home',"HomeController@frame");
     //出撃結果（レンダリングのみ）
     Route::get('/launch',"LaunchController@result");
     Route::get("/api/launch","LaunchController@launch");

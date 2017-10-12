@@ -15,6 +15,13 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
+    
+    public function home()
+    {
+        return view('frame',[
+            "user"=> request()->user
+        ]);
+    }
 
     /**
      * Show the application dashboard.
@@ -25,7 +32,7 @@ class HomeController extends Controller
     {
 		
       
-        return view('play',[
+        return view('home',[
             "user"=> request()->user
         ]);
     }

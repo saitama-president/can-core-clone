@@ -24,10 +24,7 @@
 </div>
 @endif
 
-
-
 <div id="frame">
-    
-    <iframe id="IFRAME" src="{{url('/home')}}"></iframe>
+    <iframe id="IFRAME" src="{{url('/index')}}"></iframe>
 </div>
 @endsection
