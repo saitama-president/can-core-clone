@@ -42,9 +42,8 @@ class LaunchController extends Controller
     /**/
     public function result(){
         
-        return view("launch/result",[
-            
-            "user"=>$this->user
+        return view("launch/result",[            
+            "user"=>request()->user
         ]);
     }
     
