@@ -39,10 +39,13 @@ class LaunchController extends Controller
             "OK"            
         ];
     }
-    
+    /**/
     public function result(){
         
-        return view("launch/result");
+        return view("launch/result",[
+            
+            "user"=>$this->user
+        ]);
     }
     
     /**
