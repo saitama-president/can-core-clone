@@ -43,6 +43,7 @@ class DebugController extends Controller
             $ccc_user->id=$user->id;
             $ccc_user->name=$user->name;        
             $ccc_user->save();
+            $hash= \App\CCC\data\session_token::RegUniqueToken($user->id);
             
             //プレゼントをぶっこむ
             
@@ -56,11 +57,18 @@ class DebugController extends Controller
             $payment->created_at = \Carbon\Carbon::now(); 
             $payment->save();
             
+            
+            
             \Event::Fire(new \App\Events\UserRegistedEvent($ccc_user));
             
             
         });
-        return redirect("/home");
+        
+        $hash=\App\CCC\data\session_token::where("user_id",auth()->id())
+            ->first()
+            ->token;
+        
+        return redirect("/home/$hash");
     }  
 
 }

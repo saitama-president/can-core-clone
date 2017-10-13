@@ -16,6 +16,13 @@ class user extends Model implements \App\Common\CreateTable {
         
         $b->timestamps();
     }
+    
+    public static function FromToken($token){        
+         return session_token::where("token",$token)
+             ->first()
+             ->user()
+             ->first();
+    }
 
     use \App\CCC\data_trait\user\payment;
     use \App\CCC\data_trait\user\present;

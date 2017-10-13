@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -22,6 +23,20 @@ class HomeController extends Controller
         ]);
     }
 
+    
+    public function home_from_session($token){
+        
+       $user=\App\CCC\data\user::FromToken($token);
+       
+       if(empty(auth()->id())){
+           
+           auth()->loginUsingId($user->id);
+       }
+        return view('frame',[
+            "user"=> $user
+        ]);
+       
+    }
     /**
      * Show the application dashboard.
      *
@@ -31,7 +46,7 @@ class HomeController extends Controller
     {
 		
       
-        return view(' play',[
+        return view('play',[
             "user"=> request()->user
         ]);
     }

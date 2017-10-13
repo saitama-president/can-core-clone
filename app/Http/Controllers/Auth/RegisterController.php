@@ -10,16 +10,6 @@ use Illuminate\Support\Facades\Request;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
@@ -89,8 +79,13 @@ class RegisterController extends Controller
         $ccc_user->name=$user->name;        
         $ccc_user->save();
         
-
         
+        $hash= \App\CCC\data\session_token::RegUniqueToken($user->id);        
         \Event::Fire(new \App\Events\UserRegistedEvent($ccc_user));
+        
+        //リダイレクト先にsession_token_idを付ける
+        
+        
+        $this->redirectTo.="/{$hash}";
   }
 }

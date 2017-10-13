@@ -29,9 +29,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home',"HomeController@home");
 });
 
+//session_tokenで認証する
+Route::get('/home/{session_id}',"HomeController@home_from_session");
+
+
 
 
 Route::group(['middleware' => ['play']], function () {
+    
+    //Route::get('/home',"HomeController@home");
 
     //出撃結果（レンダリングのみ）
     Route::get('/index',"HomeController@index");
