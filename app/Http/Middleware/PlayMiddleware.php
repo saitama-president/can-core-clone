@@ -23,6 +23,7 @@ class PlayMiddleware
         $uid=auth()->id();
         if(empty($uid)){
             \Log::Debug("UID={$uid} 取得できない");
+            
             return $next($request);
         }
         

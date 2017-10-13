@@ -1,6 +1,4 @@
-$(document).ready(function () {  
-    
-
+$(document).ready(function () {
     setInterval(function(){
       var now=new Date();
       $("#TIME").text(
@@ -28,7 +26,6 @@ $(document).ready(function () {
                 :(now.getDate())
               )                       
       );
-      
     },1000);
     
     $("#WINDOW .close").on("click",function(){
@@ -39,38 +36,21 @@ $(document).ready(function () {
         //セリフを出現させる
         $("#SCENE .CHAR .serif").toggleClass("off");
     });
-    $("#BUTTON_HOME").on("click", function () {
-      notify("ホームボタンを押した");
-    }
-    );
+
     $("#BUTTON_LAUNCH").on("click", function () {
         notify("出撃ボタンを押した");
         //とりあえず三秒後に実行
         
-        $.ajax({
-        url: "/api/launch",
-        cache:false,        
-        data:{
-            "team_id":1,
-            "launch_id":1
-        },
-        success: function (data) {
-            
-            notify("間もなく出撃します。少々お待ちください…");
-            
-            setTimeout(function(){
-                window.location.href = '/launch';
-            }, 3000);
-        },
-        error:function(){
-            alert("出撃の通信に失敗しました。画面をリロードしてください");
-        }
-        });
+        setTimeout(function(){
+            window.location.href = '/play/launch';
+        }, 3000);
       
     }
     );
     $("#BUTTON_TEAM").on("click", function () {
-      notify("チーム編成ボタンを押した");
+        setTimeout(function(){
+            window.location.href = '/play/team';
+        }, 3000);
     }
     );
     

@@ -42,6 +42,16 @@ Route::group(['middleware' => ['play']], function () {
     Route::get("/api/status","HomeController@status");    
     Route::get("/api/create","CreateController@create");
     
+    /*各機能画面*/
+    Route::get("/play/create","CreateController@index");
+    Route::get("/play/launch","LaunchController@index");
+    Route::get("/play/repair","RepairController@index");
+    Route::get("/play/team","TeamController@index");
+    Route::get("/play/charge","ChargeController@index");
+    Route::get("/play/upgrade","UpgradeController@index");
+    Route::get("/play/mission","MissionController@index");
+    Route::get("/play/home","HomeController@index");
+    
 });
 
 if(config("app.debug")){
