@@ -9,13 +9,18 @@ Route::get('/', function () {
 Route::get('play',function () {
     return view('play');
 });
-
+/*
 Route::get('test',function () {
     
     $user=new App\CCC\data\user();
     \Event::Fire(new \App\Events\UserRegistedEvent($user));
     
     return ["OK"];
+});*/
+Route::get('test',function () {
+    
+    
+    return view("test/test_child");
 });
 
 Auth::routes();

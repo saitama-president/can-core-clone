@@ -11,7 +11,15 @@
     <link rel="apple-touch-icon" href="favicon.ico">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">    
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    {{-- BGM --}}
+    <script src="{{url('/js/audio.js')}}" ></script>
+    <script>
+        bgm_play('@yield('bgm')');
+    </script>
+        
+    
     @yield('styles')
     @yield('scripts')
   </head>

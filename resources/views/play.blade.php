@@ -1,23 +1,20 @@
 @extends('layouts.inner_frame')
 
+{{--フレーム内の画面定義　--}}
+
 @section('styles')
 <link rel="stylesheet" href="{{url('css/play.css')}}" >
-  
 @endsection
 
-{{--基本Json通信のみとするので表示系は扱わないが、画面サンプル--}}
+
+
+{{-- 基本的にBGMを流す --}}
+@section('bgm','/vendor/bgm.mp3')
+
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
-
-<script src="{{url('/js/audio.js')}}" ></script>
-
 <script src="{{url('/js/play.js')}}" ></script>
-
-<script>
-
-
-</script>
 @endsection
 
 @section('contents')
