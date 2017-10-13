@@ -1,7 +1,5 @@
 <?php
 
-
-
 Route::get('/', function () {
     return view('index');
 });
@@ -17,11 +15,6 @@ Route::get('test',function () {
     
     return ["OK"];
 });*/
-Route::get('test',function () {
-    
-    
-    return view("test/test_child");
-});
 
 Auth::routes();
 
@@ -29,9 +22,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home',"HomeController@home");
 });
 
-//session_tokenで認証する
+//session_tokenで認証する→必要はなくね？
 Route::get('/home/{session_id}',"HomeController@home_from_session");
+//手動
+Route::POST('/api/login',"Auth\LoginController@manual_login");
 
+Route::get('/home',"HomeController@home");
 
 
 

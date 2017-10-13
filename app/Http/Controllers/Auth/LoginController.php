@@ -27,6 +27,20 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+    //手動でemail/passをもらって認証
+    public function manual_login(){
+        if(!empty(auth()->id()))return "OK";
+        
+        if(auth()->attempt([
+            "email"=>"",
+            "password"=>""
+        ],true)){
+            return "OK";
+        }
+        
+        
+        return abort(403);
+    }
     /**
      * Create a new controller instance.
      *
