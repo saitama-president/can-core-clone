@@ -4,15 +4,24 @@ var context = new AudioContext();
 
 
 
-function bgm_play($url){
+function bgm_play($url,$require_click=true){
   prepare_sound($url, function($buff) {
      
-    $(document).on("click",function(){        
-        play_loop($buff);
-        $(document).off("click");
-    });
-    
+    if($require_click){
+      $(document).on("click",function(){          
+          play_loop($buff);
+          $(document).off("click");
+      });      
+    } else{
+      play_loop($buff);
+    }    
   });
+}
+
+function se_play($url){
+  prepare_sound($url, function($buff) {
+    play_oneshot($buff);
+  });  
 }
 
 
@@ -48,6 +57,7 @@ function play_loop($b){
 }
 
 function play_oneshot($buff){
+  
   var $src = context.createBufferSource();
   $src.buffer = $buff;
   var $gain = context.createGain();

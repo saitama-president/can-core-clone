@@ -8,8 +8,14 @@
 
 
 
+
 {{-- 基本的にBGMを流す --}}
-@section('bgm','/vendor/bgm.mp3')
+@section('bgm')
+  <script>
+      bgm_play('/vendor/bgm.mp3',false);
+  </script>
+
+@endsection
 
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
