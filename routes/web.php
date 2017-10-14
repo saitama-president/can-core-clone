@@ -7,28 +7,17 @@ Route::get('/', function () {
 Route::get('play',function () {
     return view('play');
 });
-/*
-Route::get('test',function () {
-    
-    $user=new App\CCC\data\user();
-    \Event::Fire(new \App\Events\UserRegistedEvent($user));
-    
-    return ["OK"];
-});*/
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home',"HomeController@home");
-});
 
 //session_tokenで認証する→必要はなくね？
-Route::get('/home/{session_id}',"HomeController@home_from_session");
 //手動
 Route::POST('/api/login',"Auth\LoginController@manual_login");
 
-Route::get('/home',"HomeController@home");
 
+Route::get('/home',"HomeController@home");
+Route::get('/api/is_login',"Auth\LoginController@is_login");
 
 
 Route::group(['middleware' => ['play']], function () {

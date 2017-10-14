@@ -26,6 +26,15 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+    
+    public function is_login(){
+      
+      if(empty(auth()->id())){
+        return abort(403,"require login");
+      }
+      
+      return "OK";
+    }
 
     //手動でemail/passをもらって認証
     public function manual_login(){

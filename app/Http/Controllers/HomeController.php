@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function home()
     {
         return view('frame',[
-            "user"=> request()->user
+           // "user"=> request()->user
         ]);
     }
 

@@ -14,21 +14,27 @@
 
 {{-- ログイン状況を調べて表示する --}}
 
-<script>
-    $(document).on("load",function(){
+<script type="text/javascript">
+  
+    $(document).ready(function(){
         check_login();
     });
     
     function check_login(){
+        console.log("ログインチェック...");
         $.ajax({
-           url:"",
-           
-           success:function(){               
-               $("#frame").attr({"src":"/index"});
+           url:"/api/is_login",
+           cache:false,
+           success:function(){ 
+              
+               setTimeout(function(){
+                 $("#frame").attr({"src":"/index"});
+               },2000);
+               
            },
            error:function(){
-               alert("");
-               
+               alert("自動ログインに失敗しました");
+               $("#LOGIN").removeClass("hide");
                
                //エンドレス実行
                
@@ -41,7 +47,8 @@
         $.ajax({
            url:"",
            
-           success:function(){               
+           success:function(){           
+               $("#LOGIN").addClass("hide");
                $("#frame").attr({"src":"/index"});
            },
            error:function(){
@@ -54,9 +61,6 @@
             
         });        
     }
-    
-    
-    
 </script>
 
 @endsection
@@ -65,12 +69,21 @@
 
 <style>
     #LOGIN{
-        display: none;
+        
     }
+    
+    .hide{
+      display: none;
+    }
+    
 </style>
 
-<div id="LOGIN">
-    
+<div id="LOGIN" class="hide">
+  <form>
+    <input type="text" name="mail" placeholder="メールアドレスを入力"/>
+    <input type="password" name="password" placeholder="パスワードを入力"/>
+    <button onclick="alert('ログイン');return false;">ログイン</button>
+  </form>
 </div>
 
 

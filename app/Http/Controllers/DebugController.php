@@ -68,7 +68,7 @@ class DebugController extends Controller
             ->first()
             ->token;
         
-        return redirect("/home/$hash");
+        return redirect("/home");
     }  
 
 }
