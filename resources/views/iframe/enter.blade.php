@@ -26,7 +26,6 @@
    $(document).ready(
     function(){
       $(document).on("click",function(){
-          alert("SE_再生準備");
           se_play("/vendor/herewego.mp3");
           $(document).off("click");
       });    
