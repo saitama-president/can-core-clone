@@ -1,14 +1,14 @@
 /*web audio関連*/
 window.AudioContext = window.AudioContext || window.webkitAudioContext;  
-context = new AudioContext();
+var context = new AudioContext();
 
 
 
 function bgm_play($url){
   prepare_sound($url, function($buff) {
-     play_loop($buff);
+     
     $(document).on("click",function(){        
-       
+        play_loop($buff);
         $(document).off("click");
     });
     

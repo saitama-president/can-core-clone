@@ -23,6 +23,7 @@ Route::get('/api/is_login',"Auth\LoginController@is_login");
 Route::group(['middleware' => ['play']], function () {
     
     //Route::get('/home',"HomeController@home");
+    Route::get('/enter',function(){return view("iframe.enter");});
 
     //出撃結果（レンダリングのみ）
     Route::get('/index',"HomeController@index");

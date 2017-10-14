@@ -28,8 +28,8 @@
            success:function(){ 
               
                setTimeout(function(){
-                 $("#frame").attr({"src":"/index"});
-               },2000);
+                 $("#frame").attr({"src":"/enter"});
+               },500);
                
            },
            error:function(){
