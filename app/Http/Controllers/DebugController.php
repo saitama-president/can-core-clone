@@ -29,7 +29,7 @@ class DebugController extends Controller
             
             $user=\App\User::create([
                 'name' => "admin",
-                'email' => rand(0,999999)."@email.com",
+                'email' => "test@test.com",
                 'password' => bcrypt("xxxxxx"),
             ]);
             auth()->loginUsingId($user->id);

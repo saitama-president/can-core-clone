@@ -36,7 +36,7 @@
            },
            error:function(){
                alert("自動ログインに失敗しました");
-               $("#LOGIN").removeClass("hide");
+               //$("#LOGIN").removeClass("hide");
                
                //エンドレス実行
                
@@ -46,22 +46,31 @@
     }
     
     function try_login(){
+        alert("ログインテスト");
         $.ajax({
-           url:"",
-           
+           url:"/api/login",
+           method:"POST",
+           data:{
+             "email":$("#email").val(),
+             "password":$("#password").val(),
+             "_token":'{{csrf_token()}}'
+           },
+           cache:false,
            success:function(){           
-               $("#LOGIN").addClass("hide");
+               //$("#LOGIN").addClass("hide");
+               alert("ログイン成功");
                $("#frame").attr({"src":"/index"});
            },
            error:function(){
-               alert("");
+               alert("失敗");
                
                
                //エンドレス実行
                
            }
-            
-        });        
+        });   
+        
+        return false;
     }
 </script>
 
@@ -80,11 +89,12 @@
     
 </style>
 
-<div id="LOGIN" class="hide">
+<div id="LOGIN" >
+  <div onclick="return try_login();">ログイン</div>
   <form>
-    <input type="text" name="mail" placeholder="メールアドレスを入力"/>
-    <input type="password" name="password" placeholder="パスワードを入力"/>
-    <button onclick="alert('ログイン');return false;">ログイン</button>
+    <input type="text" id="email" name="mail" placeholder="メールアドレスを入力"/>
+    <input type="password" id="password" name="password" placeholder="パスワードを入力"/>
+    
   </form>
 </div>
 

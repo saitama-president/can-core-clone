@@ -14,8 +14,6 @@
     <script src="{{url('/js/audio.js')}}" ></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
-
-    
     @yield('bgm')
     
     @yield('styles')

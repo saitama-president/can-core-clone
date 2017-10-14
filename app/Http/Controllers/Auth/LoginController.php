@@ -38,11 +38,17 @@ class LoginController extends Controller
 
     //手動でemail/passをもらって認証
     public function manual_login(){
-        if(!empty(auth()->id()))return "OK";
+        \Log::debug("手動ログイン");
+        if(!empty(auth()->id())){
+          return "OK";
+        }
+        
+        $email= request("email");
+        $password= request("password");
         
         if(auth()->attempt([
-            "email"=>"",
-            "password"=>""
+            "email"=>$email,
+            "password"=>$password
         ],true)){
             return "OK";
         }
