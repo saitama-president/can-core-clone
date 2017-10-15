@@ -34,6 +34,8 @@ $(document).ready(function () {
   
     $("#SCENE .CHAR").on("click",function(){      
         //セリフを出現させる
+        
+        se_play("/vendor/herewego.mp3");
         $("#SCENE .CHAR .serif").toggleClass("off");
     });
 
