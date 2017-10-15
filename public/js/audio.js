@@ -1,7 +1,12 @@
-/*web audio関連*/
-window.AudioContext = window.AudioContext || window.webkitAudioContext;  
-var context = new AudioContext();
+var context;
 
+
+$(document).ready(function(){
+  // Fix up prefixing
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  context = new AudioContext();
+
+});
 
 
 function bgm_play($url,$require_click=true){
@@ -14,8 +19,13 @@ function bgm_play($url,$require_click=true){
       });      
     } else{
       play_loop($buff);
-    }    
+    }
   });
+}
+
+function play(){
+  
+  
 }
 
 function se_play($url){
@@ -23,7 +33,7 @@ function se_play($url){
     play_oneshot($buff);
   });  
 }
-
+  
 
 // Audio 用の buffer を読み込む
 function prepare_sound(url, fn) {  

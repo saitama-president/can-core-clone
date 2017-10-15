@@ -25,10 +25,7 @@
    
    $(document).ready(
     function(){
-      $(document).on("click",function(){
-          se_play("/vendor/herewego.mp3");
-          $(document).off("click");
-      });    
+      bgm_play("/vendor/herewego.mp3");
     }
   );
    
