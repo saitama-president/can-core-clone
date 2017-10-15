@@ -28,7 +28,7 @@
        success:function(data){
          
          
-         $('body').append(data);
+         $("#contents").html(data);
        }
        
      });
