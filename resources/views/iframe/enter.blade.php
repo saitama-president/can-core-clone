@@ -25,7 +25,7 @@
    
    $(document).ready(
     function(){
-      bgm_play("/vendor/herewego.mp3");
+      se_play("/vendor/herewego.mp3");
     }
   );
    

@@ -1,10 +1,13 @@
 var context;
 
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+if(context ==null){
+  context= new AudioContext();
+}
+
 
 $(document).ready(function(){
   // Fix up prefixing
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
-  context = new AudioContext();
 
 });
 
@@ -28,9 +31,17 @@ function play(){
   
 }
 
-function se_play($url){
+function se_play($url,$require_click=true){
   prepare_sound($url, function($buff) {
-    play_oneshot($buff);
+     if($require_click){
+      $(document).on("click",function(){          
+          play_oneshot($buff);
+          $(document).off("click");
+      });      
+    } else{
+      play_oneshot($buff);
+    }
+    
   });  
 }
   

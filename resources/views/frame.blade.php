@@ -11,7 +11,7 @@
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
-
+<script src="{{url('js/audio.js')}}" ></script>
 
 {{-- ログイン状況を調べて表示する --}}
 
@@ -27,8 +27,10 @@
            url:"/api/is_login",
            cache:false,
            success:function(){ 
-              
+               
                setTimeout(function(){
+                 se_play("/vendor/herewego.mp3",true);
+                 
                  $("#frame").attr({"src":"/enter"});
                },500);
                
