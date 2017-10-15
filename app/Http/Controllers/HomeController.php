@@ -20,6 +20,10 @@ class HomeController extends Controller
            // "user"=> request()->user
         ]);
     }
+    
+    public function js_home(){
+      return view("js.home");
+    }
 
     
     /**

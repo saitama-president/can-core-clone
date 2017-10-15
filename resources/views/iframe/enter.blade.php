@@ -9,6 +9,10 @@
  
  @endsection
  
+@section('styles')
+<link rel="stylesheet" href="{{url('css/play.css')}}" >
+@endsection
+ 
  
  
  @section('contents')
@@ -17,15 +21,32 @@
    
    function start(){
      
+     
+     
+     $.ajax({
+       url:"/js/home",
+       success:function(data){
+         
+         
+         $('body').append(data);
+       }
+       
+     });
+     //$('body').append('<script>alert("アラート");<\/script>');
+     
      setTimeout(function(){       
-       document.location.href="/index";
+       //document.location.href="/index";
+       //
+       
      },3000);
      
    }
    
    $(document).ready(
     function(){
+      
       se_play("/vendor/herewego.mp3");
+      
     }
   );
    
@@ -36,10 +57,16 @@
      position: absolute;
      left: 50%;
      top: 50%;
+     text-align: center;
+     color: black;
+     background-color: white;
+       
    }
    
  </style>
  
+ <div id="contents">
+   <div id="START" onclick="start();">開始</div>
+ </div>
  
- <div id="START" onclick="start();">開始</div>
  @endsection
