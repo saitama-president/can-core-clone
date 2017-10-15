@@ -90,11 +90,11 @@
 </style>
 
 <div id="LOGIN" >
-  <div onclick="return try_login();">ログイン</div>
+  
   <form>
     <input type="text" id="email" name="mail" placeholder="メールアドレスを入力"/>
     <input type="password" id="password" name="password" placeholder="パスワードを入力"/>
-    
+    <button onclick="return try_login();">ログイン</button>
   </form>
 </div>
 

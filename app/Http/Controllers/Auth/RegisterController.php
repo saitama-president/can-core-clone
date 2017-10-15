@@ -86,6 +86,6 @@ class RegisterController extends Controller
         //リダイレクト先にsession_token_idを付ける
         
         
-        $this->redirectTo.="/{$hash}";
+        //$this->redirectTo.="/{$hash}";
   }
 }
