@@ -167,7 +167,8 @@ function scene_change($next_scene){
             $("#contents").addClass("black-out");
             setTimeout(function(){
                 $("#contents").addClass("black-in");
-                $("#contents").removeClass("black-in");
+                $("#contents").removeClass("black-out");
+                
                 $("#contents").html(data);
             },3000);
             
