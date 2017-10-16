@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 class DebugController extends Controller
 {
@@ -26,13 +27,25 @@ class DebugController extends Controller
     {      
         DB::transaction(function(){
             
+            $user=User::where("email","test@test.com")->first();
+                
+                ;
+            if(!empty($user)){
+                auth()->loginUsingId($user->id);
+                
+                return redirect("home");
+            }
             
-            $user=\App\User::create([
-                'name' => "admin",
-                'email' => "test@test.com",
-                'password' => bcrypt("xxxxxx"),
-            ]);
+            
+            $user=User::create([
+                    'name' => "admin",
+                    'email' => "test@test.com",
+                    'password' => bcrypt("xxxxxx"),
+                ]);
+
             auth()->loginUsingId($user->id);
+            
+            
 
             \Log::Debug("強制ユーザ作成");
 

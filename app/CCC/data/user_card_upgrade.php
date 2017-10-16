@@ -19,5 +19,12 @@ class user_card_upgrade extends Model implements \App\Common\CreateTable {
     {
         return $this->belongsTo('App\CCC\data\user');
     }
+    
+    /*持つ機能は
+     * 
+     * ・近代化改修
+     * 
+     */
+    
 
 }
