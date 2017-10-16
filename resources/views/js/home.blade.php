@@ -11,27 +11,27 @@
     $("#HOME").ready(
       function(){
 
-        bgm_play("/vendor/bgm.mp3");        
+        bgm_play("/vendor/bgm/tol1.wav");        
        // alert('音！');
       }
     );
     
     
 </script>
-<script src="js/play.js" ></script>
+<script src="js/scene/home.js" ></script>
 
 @endsection
 
 @section('dom')
   
     {{-- ホーム画面 --}}
-  <div id="HOME" class="background">
+  <div id="HOME" class="background home">
 
   </div>
   
   {{-- 基本メニュー --}}
   <div id="MENU">
-    <div id="BUTTON_HOME" class="button"></div>
+    <div id="BUTTON_HOME" class="hide button"></div>
     <div id="BUTTON_MISSION" class="button"></div>
     <div id="BUTTON_LAUNCH" class="button"></div>
     <div id="BUTTON_TEAM" class="button"></div>
@@ -77,7 +77,7 @@
   <div id="SCENE">
     <div class="CHAR image">
       <div class="serif off">
-        <p>今日も元気に頑張ろう</p>
+        <p>今日も元気に頑張りましょう</p>
       </div>
     </div>
   </div>

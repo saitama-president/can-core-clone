@@ -30,6 +30,10 @@ class TeamController extends Controller
         ]);
     }
     
+    public function js_scene(){
+      return view("js/team");
+    }
+    
     public function status(){
         $user=request()->user;
         

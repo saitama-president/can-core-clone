@@ -1,3 +1,5 @@
+
+/*各共通画面遷移ボタン処理（あとで切り出す）*/
 $(document).ready(function () {
     setInterval(function(){
       var now=new Date();
@@ -28,57 +30,25 @@ $(document).ready(function () {
       );
     },1000);
     
-    $("#WINDOW .close").on("click",function(){
-      $("#WINDOW").toggleClass("hide");
-    });
-  
-    $("#SCENE .CHAR").on("click",function(){      
-        //セリフを出現させる
-        
-        se_play("/vendor/herewego.mp3");
-        $("#SCENE .CHAR .serif").toggleClass("off");
-    });
+
 
     $("#BUTTON_LAUNCH").on("click", function () {
         notify("出撃ボタンを押した");
-        //とりあえず三秒後に実行
-        
-        setTimeout(function(){
-            window.location.href = '/play/launch';
-        }, 3000);
-      
+        scene_change("/js/launch");
     }
     );
     $("#BUTTON_TEAM").on("click", function () {
-        setTimeout(function(){
-            window.location.href = '/play/team';
-        }, 3000);
+      notify("編成ボタンを押した");
+      scene_change("js/team");
     }
     );
+    $("#BUTTON_HOME").on("click", function () {
+        notify("家に帰るボタンを押した");
+        scene_change("js/home");
+    });
     
     $("#BUTTON_CREATE").on("click", function () {
-      show_window();
-      
-      $.ajax({
-        url: "/api/create",
-        cache:false,
-        data:{
-            "A":rand(3,20),
-            "B":rand(3,20),
-            "C":rand(3,20),
-            "D":rand(3,20)
-        },
-        success: function (data) {
-            notify("製造しました。結果"+data);
-            
-            refresh();
-        },
-        error:function(){
-            alert("通信に失敗しました。画面をリロードしてください");
-        }
-      });
-    }
-    );
+    });
     $("#BUTTON_REPAIR").on("click", function () {
       notify("修理ボタンを押した");
     }
@@ -98,6 +68,8 @@ $(document).ready(function () {
     );
     
     $(".button").on("click",function(){
+        se_play("/vendor/se/Click_Mechanical_01.mp3");
+      
         var $t=$(this);
         $t.toggleClass("pressed");
         
@@ -105,6 +77,17 @@ $(document).ready(function () {
           $t.toggleClass("pressed");
         },300,$t);
         
+    });
+    
+    $("#WINDOW .close").on("click",function(){
+      $("#WINDOW").toggleClass("hide");
+    });
+  
+    $("#SCENE .CHAR").on("click",function(){      
+        //セリフを出現させる
+        
+        se_play("/vendor/voice/kyoumoichiniti.mp3");
+        $("#SCENE .CHAR .serif").toggleClass("off");
     });
     refresh();
 });
@@ -169,7 +152,12 @@ function scene_change($next_scene){
                 $("#contents").addClass("black-in");
                 $("#contents").removeClass("black-out");
                 
+                bgm_stop();
                 $("#contents").html(data);
+                
+                setTimeout(function(){
+                  $("#contents").removeClass("black-in");
+                },3000);
             },3000);
             
             

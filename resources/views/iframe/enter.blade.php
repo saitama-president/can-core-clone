@@ -5,14 +5,18 @@
 
 <script>
     $(document).ready(function(){
-      se_play("/vendor/herewego.mp3",true);
+      se_play("/vendor/se/Signal09.wav",true);
       $("#START").on("click",function(){
            $.ajax({
             url: "/js/home",
             success: function (data) {
                 $("#contents").html(data);
                 
+            },
+            error:function(){
+                alert("通信に失敗しました。画面をリロードしてください");
             }
+            
         });
         
       });

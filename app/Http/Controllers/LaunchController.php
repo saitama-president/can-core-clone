@@ -46,6 +46,11 @@ class LaunchController extends Controller
         ]);
     }
     
+    public function js_scene(){
+      return view("js/create");
+    }
+    
+    
     /**
      * 状況を取得する
      */

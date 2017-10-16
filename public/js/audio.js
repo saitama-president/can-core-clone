@@ -1,5 +1,6 @@
 var context;
 var bufferLoader;
+var current_bgm;
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 
@@ -20,8 +21,11 @@ $(document).ready(function () {
             $.each($list,function($i,$val){
               var source = context.createBufferSource();
               
+              console.log(source);
               source.buffer = $val;
               source.connect(context.destination);
+              
+              
               source.start(0);
               
             });
@@ -31,23 +35,21 @@ $(document).ready(function () {
 });
 
 
-function bgm_play($url, $require_click = false) {
+function bgm_play($url) {
   prepare_sound($url, function ($buff) {
-
-    if ($require_click) {
-      $(document).on("click", function () {
-        play_loop($buff);
-        $(document).off("click");
-      });
-    } else {
+     
       play_loop($buff);
-    }
+
   });
 }
 
 function voice_play($url) {
 
 
+}
+
+function bgm_stop(){
+  current_bgm.stop();
 }
 
 function se_play($url, $require_click = false) {
@@ -91,6 +93,7 @@ function play_loop($b) {
   $src.buffer = $b;
   $src.loop = true;
   var $gain = context.createGain();
+  current_bgm=$src;
   $src.connect($gain);
   $gain.connect(context.destination);
   $gain.gain.value = 0.25;

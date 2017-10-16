@@ -42,13 +42,13 @@ Route::group(['middleware' => ['play']], function () {
     Route::get("/play/mission","MissionController@index");
     Route::get("/play/home","HomeController@index");
     
-    Route::get("/scene/create","CreateController@index");
-    Route::get("/play/launch","LaunchController@index");
-    Route::get("/play/repair","RepairController@index");
-    Route::get("/play/team","TeamController@index");
-    Route::get("/play/charge","ChargeController@index");
-    Route::get("/play/upgrade","UpgradeController@index");
-    Route::get("/play/mission","MissionController@index");
+    Route::get("/js/create","CreateController@index");
+    Route::get("/js/launch","LaunchController@js_scene");
+    Route::get("/js/repair","RepairController@index");
+    Route::get("/js/team","TeamController@js_scene");
+    Route::get("/js/charge","ChargeController@index");
+    Route::get("/js/upgrade","UpgradeController@index");
+    Route::get("/js/mission","MissionController@index");
     Route::get("/js/home","HomeController@js_home");
     
 });

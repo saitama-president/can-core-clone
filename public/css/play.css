@@ -130,7 +130,7 @@ body{
 
 
 
-/*
+
 #BUTTON_HOME {
   position: absolute;
   background-image: url("/image/button/home.png");
@@ -142,7 +142,7 @@ body{
   width: 15vmin;
   height: 15vmin;
 }
-*/
+
 #BUTTON_UPGRADE {
   position: absolute;
   background-image: url("/image/button/upgrade.png");

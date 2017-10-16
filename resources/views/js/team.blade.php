@@ -8,48 +8,30 @@
 
 @section('script')
 <script>
-    alert('出撃を表示した！');
-    bgm_play("/vendor/bgm.mp3");
+    $("#HOME").ready(
+      function(){
+
+        bgm_play("/vendor/bgm/tol3.wav");        
+       // alert('音！');
+      }
+    );
+    
+    
 </script>
-<script src="js/play.js" ></script>
+<script src="js/scene/home.js" ></script>
 
 @endsection
 
 @section('dom')
   
     {{-- ホーム画面 --}}
-  <div id="LAUNCH" class="background">
-
+  <div id="HOME" class="background team">
+    生産画面
   </div>
   
-  {{-- 出撃リスト --}}
-  <div id="LAUNCH_LIST">
-      <h3>カテゴリ選択</h3>
-      <ul>
-          <li></li>
-      </ul>
-
-      
-      <div class="STORY">
-        <h4>海域選択</h4>
-        <ul>
-            <li></li>
-        </ul>
-      </div>
-      <div class="PVP">
-        <h4>対戦相手選択</h4>
-        <ul>
-            <li></li>
-        </ul>
-      </div>
-      <div class="STORY">
-        <h4>海域選択</h4>
-        <ul>
-            <li></li>
-        </ul>
-      </div>
-      
-      
+  {{-- 基本メニュー --}}
+  <div id="MENU">
+    <div id="BUTTON_HOME" class="button">戻る</div>
   </div>
 
 
@@ -78,13 +60,10 @@
     </div>
   </div>
 
-  {{--シーン描画--}}
-  <div id="SCENE">
-    <div class="CHAR image">
-      <div class="serif off">
-        <p>今日も元気に頑張ろう</p>
-      </div>
-    </div>
+  {{--通知関連--}}
+  <div id="NOTIFY">
+    <ul>
+    </ul>
   </div>
   
   {{--時計--}}
@@ -93,4 +72,11 @@
     <div id="TIME"></div>
   </div>
   
+  
+  <div id="WINDOW" class="hide">
+    <h4>項目名</h4>
+    <div class="close">×</div>
+    <div></div>
+  </div>
+
 @endsection
