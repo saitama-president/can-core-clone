@@ -11,7 +11,7 @@
     $("#HOME").ready(
       function(){
         bgm_play("/vendor/bgm.mp3");        
-        alert('音！');
+       // alert('音！');
       }
     );
     

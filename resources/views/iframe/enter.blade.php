@@ -3,16 +3,6 @@
 
 @section('scripts')
 
-
-
-@endsection
-
-@section('styles')
-
-@endsection
-
-@section('contents')
-
 <script>
 
     function start() {
@@ -20,14 +10,10 @@
             url: "/js/home",
             success: function (data) {
                 $("#contents").html(data);
+                
             }
         });
         //$('body').append('<script>alert("アラート");<\/script>');
-
-        setTimeout(function () {
-            //document.location.href="/index";
-            //
-        }, 3000);
     }
     $(document).ready(
             function () {
@@ -37,6 +23,16 @@
 
 
 </script>
+
+@endsection
+
+@section('styles')
+
+@endsection
+
+@section('contents')
+
+
 <style>
     #START{
         position: absolute;
