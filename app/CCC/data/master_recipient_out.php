@@ -14,7 +14,7 @@ class master_recipient_out extends Model implements \App\Common\CreateTable, \Ap
         $b->integer('master_recipient_id');
         $b->integer('master_card_id');
         $b->unique(["master_recipient_id","master_card_id"],"uniq_recipient_out");
-        $b->integer('rate')->default();
+        $b->integer('rate')->default(10);
         
         $b->timestamps();
     }
