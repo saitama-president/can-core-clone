@@ -31,7 +31,7 @@
     }
     $(document).ready(
             function () {
-                se_play("/vendor/herewego.mp3");
+                se_play("/vendor/herewego.mp3",true);
             }
     );
 
