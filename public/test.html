@@ -24,19 +24,20 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <div>テスト中</div>
-        <iframe id="IFRAME" src="/loading.html"></iframe>
+        <link rel="stylesheet" href="css/iframe.css" >
+        <div id="TEST" class="black-out" style="background-color: red; color: white;">
+            テスト中
+        </div>
         
         <script>
-            function change(){
+            $(document).on("click",function(){
+                $("#TEST").toggleClass("black-out");
+                $("#TEST").toggleClass("black-in");
                 
-                $("#IFRAME").attr({"src":"test2.html"});
-                
-            }
+            });
             
         </script>
         
-        <a href="javascript:change();">aaaaaa</a>
         
     </body>
 </html>

@@ -15,3 +15,36 @@
 
   font-size: 4vmin;  
 }
+
+
+
+
+.black-out{
+  animation-duration: 3s;
+  animation-name: fade-out;
+  animation-fill-mode:forwards;
+}
+
+.black-in{
+  animation-duration: 3s;
+  animation-name: fade-in;    
+  animation-fill-mode:forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    filter:brightness(100%);
+  }
+  100% {
+    filter:brightness(0%);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    filter:brightness(0%);
+  }
+  100% {
+    filter:brightness(100%);
+  }
+}

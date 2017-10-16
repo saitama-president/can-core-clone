@@ -110,12 +110,19 @@ $(document).ready(function () {
 });
 
 $(".notify").ready(function(){
-  //alert($(this).text());
   
 });
 
+/**
+ * 10秒おきに更新
+ * @return {undefined}
+ */
 setInterval(function () {refresh();}, 10000);
-
+/*
+ * 通知を表示
+ * @param {type} $message
+ * @return {undefined}
+ */
 function notify($message){
   
   $li=$("<li>",{"class":"fade-in"}).text($message);
@@ -125,7 +132,6 @@ function notify($message){
   $li.on("click",function(){$(this).remove();});
   //30秒後に削除
   setTimeout(function($li){ $li.remove();},15000,$li);
-  
 }
 
 function refresh(){
@@ -151,6 +157,25 @@ function refresh(){
   console.log("update");
     
 }
+
+function scene_change($next_scene){
+    $.ajax({
+        url: $next_scene,
+        success: function (data) {
+            //トランジション設定をする
+            
+            $("#contents").addClass("black-out");
+            setTimeout(function(){
+                $("#contents").addClass("black-in");
+                $("#contents").removeClass("black-in");
+                $("#contents").html(data);
+            },3000);
+            
+            
+        }
+    });
+}
+
 function rand(min, max) {
   return Math.floor( Math.random() * (max - min + 1) ) + min;
 }

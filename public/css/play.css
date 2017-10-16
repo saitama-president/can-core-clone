@@ -120,10 +120,10 @@ body{
   background-repeat: no-repeat;
   
   background-image: url("/image/bg/room_yuka_flooring.png");
-  min-width: 98vmin;
-  min-height: 98vmin;
-  left: 1vmin;
-  top: 1vmin;
+  min-width: 100vmin;
+  min-height: 100vmin;
+  left: 0vmin;
+  top: 0vmin;
   z-index: 0;
 }
 
