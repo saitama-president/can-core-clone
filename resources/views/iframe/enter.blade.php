@@ -4,16 +4,24 @@
 @section('scripts')
 
 <script>
-
-    function start() {
-        se_play("/vendor/herewego.mp3");
-        $.ajax({
+    $(document).ready(function(){
+      se_play("/vendor/herewego.mp3",true);
+      $("#START").on("click",function(){
+           $.ajax({
             url: "/js/home",
             success: function (data) {
                 $("#contents").html(data);
                 
             }
         });
+        
+      });
+      
+    });
+
+    function start() {
+        
+
         //$('body').append('<script>alert("アラート");<\/script>');
     }
 </script>
@@ -41,7 +49,7 @@
 </style>
 
 
-<div id="START" onclick="start();">開始</div>
+<div id="START" >開始</div>
 
 
 @endsection

@@ -3,7 +3,6 @@ var bufferLoader;
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 
-
 $(document).ready(function () {
   // Fix up prefixing
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
