@@ -8,8 +8,9 @@
 
 @section('script')
 <script>
-    alert('ホーム画面を表示した！');
+    
     bgm_play("/vendor/bgm.mp3");
+    alert('音！');
 </script>
 <script src="js/play.js" ></script>
 
