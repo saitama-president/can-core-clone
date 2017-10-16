@@ -2,9 +2,8 @@
 
 {{--フレーム内の画面定義　--}}
 
-@section('styles')
-    <link rel="stylesheet" href="{{url('css/play.css')}}" >
-    
+@section('css')
+    <link rel="stylesheet" href="{{url('css/play.css')}}">    
 @endsection
 
 @section('script')
