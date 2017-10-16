@@ -26,7 +26,7 @@ function bgm_play($url,$require_click=true){
   });
 }
 
-function play(){
+function voice_play($url){
   
   
 }

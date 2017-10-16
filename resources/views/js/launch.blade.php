@@ -8,7 +8,7 @@
 
 @section('script')
 <script>
-    alert('ホーム画面を表示した！');
+    alert('出撃を表示した！');
     bgm_play("/vendor/bgm.mp3");
 </script>
 <script src="js/play.js" ></script>
@@ -17,22 +17,53 @@
 
 @section('dom')
   
-    {{-- ホーム画面 --}}
-  <div id="HOME" class="background">
+  {{-- ホーム画面 --}}
+  <div id="LAUNCH" class="background">
 
   </div>
   
-  {{-- 基本メニュー --}}
-  <div id="MENU">
-    <div id="BUTTON_HOME" class="button"></div>
-    <div id="BUTTON_MISSION" class="button"></div>
-    <div id="BUTTON_LAUNCH" class="button"></div>
-    <div id="BUTTON_TEAM" class="button"></div>
-    <div id="BUTTON_CREATE" class="button"></div>
-    <div id="BUTTON_REPAIR" class="button"></div>
-    <div id="BUTTON_CHARGE" class="button"></div>
-    <div id="BUTTON_UPGRADE" class="button"></div>
+  {{-- 出撃リスト --}}
+  <div id="LAUNCH_LIST">
+      <h3>カテゴリ選択</h3>
+      <ul>
+          <li>攻略</li>
+          <li>対戦</li>
+          <li>遠征</li>
+      </ul>
+
+      
+      <div class="STORY">
+        <h4>海域選択</h4>
+        <ul>
+            <li></li>
+        </ul>
+      </div>
+      <div class="PVP">
+        <h4>対戦相手選択</h4>
+        <ul>
+            <li></li>
+        </ul>
+      </div>
+      <div class="STORY">
+        <h4>海域選択</h4>
+        <ul>
+            <li></li>
+        </ul>
+      </div>
+      
+      
+      {{-- 出撃ボタン --}}
+      <div class="BUTTON">
+          
+          <label>
+              1<input type=radio name="" value="1" />
+          </label>
+          
+          <button>出撃！</button>
+      </div>
   </div>
+  
+  
 
 
   {{-- HUD --}}
@@ -60,12 +91,6 @@
     </div>
   </div>
 
-  {{--通知関連--}}
-  <div id="NOTIFY">
-    <ul>
-    </ul>
-  </div>
-
   {{--シーン描画--}}
   <div id="SCENE">
     <div class="CHAR image">
@@ -81,11 +106,4 @@
     <div id="TIME"></div>
   </div>
   
-  
-  <div id="WINDOW" class="hide">
-    <h4>項目名</h4>
-    <div class="close">×</div>
-    <div></div>
-  </div>
-
 @endsection
