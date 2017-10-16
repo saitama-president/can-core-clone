@@ -10,6 +10,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
+    <link href="{{ asset('css/iframe.css') }}" rel="stylesheet">
+    
     {{-- BGM --}}
     
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -23,6 +25,9 @@
     @yield('scripts')
   </head>
   <body>    
-    @yield('contents')
+      
+    <div id="contents">
+        @yield('contents')
+    </div>
   </body>
 </html>

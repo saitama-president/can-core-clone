@@ -2,13 +2,15 @@
 
 {{--フレーム内の画面定義　--}}
 
-@section('css')
-<link rel="stylesheet" href="{{url('css/play.css')}}" >
+@section('styles')
+    <link rel="stylesheet" href="{{url('css/play.css')}}" >
+    
 @endsection
 
 @section('script')
 <script>
     alert('ホーム画面を表示した！');
+    bgm_play("/vendor/bgm.mp3");
 </script>
 @endsection
 

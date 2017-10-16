@@ -21,17 +21,6 @@ body{
  filter: invert(100%);
 }
 
-#contents {
-  position: relative;
-  left: 1vmin;
-  top: 1vmin;
-  background-color: ivory;
-  min-width: 98vmin;
-  min-height: 98vmin;
-  color: white;
-  font-size: 4vmin;
-  
-}
 
 #NOTIFY{
   position: absolute;  
