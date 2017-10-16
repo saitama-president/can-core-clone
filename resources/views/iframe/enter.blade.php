@@ -6,6 +6,7 @@
 <script>
 
     function start() {
+        se_play("/vendor/herewego.mp3");
         $.ajax({
             url: "/js/home",
             success: function (data) {
@@ -15,13 +16,6 @@
         });
         //$('body').append('<script>alert("アラート");<\/script>');
     }
-    $(document).ready(
-            function () {
-                se_play("/vendor/herewego.mp3",true);
-            }
-    );
-
-
 </script>
 
 @endsection
