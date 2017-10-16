@@ -10,6 +10,7 @@
 <script>
     $("#HOME").ready(
       function(){
+        se_play("/vendor/herewego.mp3");
         bgm_play("/vendor/bgm.mp3");        
        // alert('音！');
       }
