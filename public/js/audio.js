@@ -31,7 +31,7 @@ function voice_play($url){
   
 }
 
-function se_play($url,$require_click=true){
+function se_play($url,$require_click=false){
   prepare_sound($url, function($buff) {
      if($require_click){
       $(document).on("click",function(){          
