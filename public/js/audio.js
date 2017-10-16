@@ -12,7 +12,7 @@ $(document).ready(function(){
 });
 
 
-function bgm_play($url,$require_click=true){
+function bgm_play($url,$require_click=false){
   prepare_sound($url, function($buff) {
      
     if($require_click){
