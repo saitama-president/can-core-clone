@@ -8,9 +8,14 @@
 
 @section('script')
 <script>
+    $("#HOME").ready(
+      function(){
+        bgm_play("/vendor/bgm.mp3");        
+        alert('音！');
+      }
+    );
     
-    bgm_play("/vendor/bgm.mp3");
-    alert('音！');
+    
 </script>
 <script src="js/play.js" ></script>
 
