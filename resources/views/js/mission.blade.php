@@ -11,7 +11,7 @@
     alert('出撃を表示した！');
     bgm_play("/vendor/bgm.mp3");
 </script>
-<script src="js/play.js" ></script>
+<script src="js/scene/home.js" ></script>
 
 @endsection
 

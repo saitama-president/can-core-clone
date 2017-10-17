@@ -29,41 +29,37 @@ $(document).ready(function () {
               )                       
       );
     },1000);
-    
-
 
     $("#BUTTON_LAUNCH").on("click", function () {
-        notify("出撃ボタンを押した");
         scene_change("/js/launch");
     }
     );
     $("#BUTTON_TEAM").on("click", function () {
-      notify("編成ボタンを押した");
       scene_change("js/team");
     }
     );
     $("#BUTTON_HOME").on("click", function () {
-        notify("家に帰るボタンを押した");
         scene_change("js/home");
     });
     
     $("#BUTTON_CREATE").on("click", function () {
+        scene_change("/js/create");
     });
     $("#BUTTON_REPAIR").on("click", function () {
-      notify("修理ボタンを押した");
+      scene_change("/js/repair");
     }
     );
     $("#BUTTON_CHARGE").on("click", function () {
-      notify("補給ボタンを押した");
+      scene_change("/js/charge");
     }
     );
     $("#BUTTON_UPGRADE").on("click", function () {
-      notify("改造ボタンを押した");
+      scene_change("/js/upgrade");
     }
     );
     
     $("#BUTTON_MISSION").on("click", function () {
-      notify("任務ボタンを押した");
+      scene_change("/js/mission");
     }
     );
     
@@ -98,6 +94,7 @@ $(".notify").ready(function(){
 
 /**
  * 10秒おきに更新
+ * →ここに定義するのは違う？
  * @return {undefined}
  */
 setInterval(function () {refresh();}, 10000);
