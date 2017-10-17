@@ -4,13 +4,15 @@ body{
 }
 
 /*タイトル*/
-h2 .title{
+h2.title {
     position: absolute;
-    top: 10vmin;
+    top: 15vmin;
     left: 2vmin;
     font-weight: 200;
     font-size: 8vmin;
 }
+
+
 
 .image{
   background-repeat: no-repeat;

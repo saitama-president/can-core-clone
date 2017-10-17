@@ -28,36 +28,14 @@
   <div id="HOME" class="background charge">
   </div>
   
-  {{-- 基本メニュー --}}
+  {{--戻るメニュー --}}
   <div id="MENU">
     <div id="BUTTON_HOME" class="button">戻る</div>
   </div>
 
 
   {{-- HUD --}}
-  <div id="HUD">
-    <div id="USER_INFO">
-      <span>ユーザ名</span>
-    </div>
-    <div id="USER_ITEM">
-    <label class="A text-box">
-      <div class="icon">&nbsp;</div>
-      <span class="value">0</span>
-    </label>
-    <label class="B text-box">
-      <div class="icon">&nbsp;</div>
-      <span class="value">0</span>
-    </label>
-    <label class="C text-box">
-      <div class="icon">&nbsp;</div>
-      <span class="value">0</span>
-    </label>
-    <label class="D text-box">
-      <div class="icon">&nbsp;</div>
-      <span class="value">0</span>
-    </label>
-    </div>
-  </div>
+  @include('js.parts.hud')
 
   {{--通知関連--}}
   <div id="NOTIFY">
@@ -75,10 +53,7 @@
   </div>
   
   {{--時計--}}
-  <div id="DATE">
-    <div id="TODAY"></div>      
-    <div id="TIME"></div>
-  </div>
+@include('js.parts.clock')
   
   
   <div id="WINDOW" class="hide">

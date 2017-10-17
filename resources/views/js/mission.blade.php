@@ -8,7 +8,6 @@
 
 @section('script')
 <script>
-    alert('出撃を表示した！');
     bgm_play("/vendor/bgm.mp3");
 </script>
 <script src="js/scene/home.js" ></script>
@@ -57,29 +56,7 @@
 
 
   {{-- HUD --}}
-  <div id="HUD">
-    <div id="USER_INFO">
-      <span>ユーザ名</span>
-    </div>
-    <div id="USER_ITEM">
-    <label class="A text-box">
-      <div class="icon">&nbsp;</div>
-      <span class="value">0</span>
-    </label>
-    <label class="B text-box">
-      <div class="icon">&nbsp;</div>
-      <span class="value">0</span>
-    </label>
-    <label class="C text-box">
-      <div class="icon">&nbsp;</div>
-      <span class="value">0</span>
-    </label>
-    <label class="D text-box">
-      <div class="icon">&nbsp;</div>
-      <span class="value">0</span>
-    </label>
-    </div>
-  </div>
+  @include('js.parts.hud')
 
   {{--シーン描画--}}
   <div id="SCENE">
@@ -91,9 +68,6 @@
   </div>
   
   {{--時計--}}
-  <div id="DATE">
-    <div id="TODAY"></div>      
-    <div id="TIME"></div>
-  </div>
+@include('js.parts.clock')
   
 @endsection

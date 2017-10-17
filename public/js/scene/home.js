@@ -156,8 +156,6 @@ function scene_change($next_scene){
                   $("#contents").removeClass("black-in");
                 },3000);
             },3000);
-            
-            
         }
     });
 }
