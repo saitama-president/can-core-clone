@@ -133,33 +133,33 @@ h2 .title{
   z-index: 0;
 }
 
-#HOME .home{
+.home#HOME{
     background-image: url("/image/bg/room_yuka_flooring.png");
 }
-#HOME .launch{
+.launch#HOME{
     background-image: url("/image/bg/schoo_room_shichoukakushitsu.png");
 }
-#HOME .mission{
+.mission#HOME{
     background-image: url("/image/bg/room_syosai.png");
 }
 
-#HOME .repair{
+.repair#HOME{
     background-image: url("/image/bg/bg_hospital_chiryou.png");
 }
 
-#HOME .team{
+.team#HOME{
     background-image: url("/image/bg/schoo_room_shichoukakushitsu.png");
 }
 
-#HOME .upgrade{
+.upgrade#HOME{
     background-image: url("/image/bg/room_kitchenroom_kitchen.png");
 }
 
-#HOME .charge{
+.charge#HOME{
     background-image: url("/image/bg/room_kitchenroom_kitchen.png");
 }
 
-#HOME .create{
+.create#HOME{
     background-image: url("/image/bg/bg_room_science_rikashitsu.png");
 }
 
