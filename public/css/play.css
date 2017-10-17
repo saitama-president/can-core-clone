@@ -3,6 +3,15 @@ body{
   padding: 0;
 }
 
+/*タイトル*/
+h2 .title{
+    position: absolute;
+    top: 10vmin;
+    left: 2vmin;
+    font-weight: 200;
+    font-size: 8vmin;
+}
+
 .image{
   background-repeat: no-repeat;
   background-size: contain;
@@ -12,13 +21,12 @@ body{
   display: none;
 }
 
-
 .background{
   filter: brightness(70%);
 }
 
 .pressed{
- filter: invert(100%);
+ filter: invert(75%);
 }
 
 
@@ -51,18 +59,16 @@ body{
   font-size: 20vmin;
 }
 
-
-
+/*HUD関連　ここから*/
 
 #HUD{
   position: absolute;
   left: 0;
   top: 0;
   color: white;
-  width: 99vmin;
+  width: 100vmin;
   height: 8vmin;
-  background-color: rgba(20,20,20,0.5);
-  
+  background-color: rgba(20,20,20,0.5);  
 }
 
 #HUD #USER_ITEM{
@@ -101,25 +107,25 @@ body{
   background-image:url("/image/icon/wood_maruta.png");
 }
 
-
 #HUD .text-box{
   position: relative;
   font-size: 4vmin;  
 }
 
+/*HUD関連　ここまで*/
 
 
 #MENU{
   z-index: 50;
 }
 
+/*各画面の背景定義*/
+
 #HOME{
   position: relative;
   background-size: contain;
   background-position: center;
-  background-repeat: no-repeat;
-  
-  background-image: url("/image/bg/room_yuka_flooring.png");
+  background-repeat: no-repeat;    
   min-width: 100vmin;
   min-height: 100vmin;
   left: 0vmin;
@@ -127,106 +133,101 @@ body{
   z-index: 0;
 }
 
+#HOME .home{
+    background-image: url("/image/bg/room_yuka_flooring.png");
+}
+#HOME .launch{
+    background-image: url("/image/bg/schoo_room_shichoukakushitsu.png");
+}
+#HOME .mission{
+    background-image: url("/image/bg/room_syosai.png");
+}
+
+#HOME .repair{
+    background-image: url("/image/bg/bg_hospital_chiryou.png");
+}
+
+#HOME .team{
+    background-image: url("/image/bg/schoo_room_shichoukakushitsu.png");
+}
+
+#HOME .upgrade{
+    background-image: url("/image/bg/room_kitchenroom_kitchen.png");
+}
+
+#HOME .charge{
+    background-image: url("/image/bg/room_kitchenroom_kitchen.png");
+}
+
+#HOME .create{
+    background-image: url("/image/bg/bg_room_science_rikashitsu.png");
+}
 
 
+/*画面の背景定義　ここまで*/
+
+
+/*ボタン定義　ここから*/
+
+#MENU .button{
+  width: 15vmin;
+  height: 15vmin;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+}
 
 
 #BUTTON_HOME {
-  position: absolute;
   background-image: url("/image/button/home.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  left: 20vmin;
-  top: 20vmin;
-  width: 15vmin;
-  height: 15vmin;
+  left: 8vmin;
+  top: 8vmin;
 }
-
 #BUTTON_UPGRADE {
-  position: absolute;
   background-image: url("/image/button/upgrade.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   left: 35vmin;
   top: 30vmin;
-  width: 15vmin;
-  height: 15vmin;
 }
-
 #BUTTON_MISSION {
-  position: absolute;
   background-image: url("/image/button/quest.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   left: 20vmin;
   top: 50vmin;
-  width: 15vmin;
-  height: 15vmin;
 }
 
-
 #BUTTON_CHARGE {
-  position: absolute;
   background-image: url("/image/button/charge.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   left: 5vmin;
   top: 30vmin;
-  width: 15vmin;
-  height: 15vmin;
 }
 
 #BUTTON_CREATE {
-  position: absolute;
   background-image: url("/image/button/make.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   left: 35vmin;
   top: 45vmin;
-  width: 15vmin;
-  height: 15vmin;
 }
 
 #BUTTON_REPAIR {
-  position: absolute;
   background-image: url("/image/button/repair.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   left: 5vmin;
   top: 45vmin;
-  width: 15vmin;
-  height: 15vmin;
 }
 
 #BUTTON_LAUNCH {
-  position: absolute;
   background-image: url("/image/button/launch.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   left: 20vmin;
   top: 35vmin;
-  width: 15vmin;
-  height: 15vmin;
 }
 
 #BUTTON_TEAM {
-  position: absolute;
   background-image: url("/image/button/team.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   left: 20vmin;
   top: 20vmin;
-  width: 15vmin;
-  height: 15vmin;
 }
+
+/*メニューボタン定義　ここまで*/
+
+
 
 #SCENE .CHAR{
   position: absolute;
@@ -253,6 +254,10 @@ body{
   
 }
 
+
+/*
+    日付、時刻表示　ここから
+*/
 #DATE{
   position: absolute;
   color: white;
@@ -269,46 +274,11 @@ body{
   font-size: 10vmin;
 }
 
-.fade-in{
-  animation-duration: 3s;
-  animation-name: fade-in;
-}
-
-.fade-out{
-  animation-duration: 3s;
-  animation-name: fade-out;
-}
+/**
+    日付・時刻表示　ここまで
+*/
 
 .off{
   display: none;
 }
 
-@keyframes fade-in {
-  0% {
-    display: none;
-    opacity: 0;
-  }
-  1% {
-    display: block;
-    opacity: 0;
-  }
-  100% {
-    display: block;
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    display: block;
-    opacity: 1;
-  }
-  70% {
-
-    display: block;
-    opacity: 0.8;
-  }
-  100% {
-    display: none;
-  }
-}

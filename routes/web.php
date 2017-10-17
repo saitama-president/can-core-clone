@@ -22,7 +22,7 @@ Route::get('/api/is_login',"Auth\LoginController@is_login");
 
 Route::group(['middleware' => ['play']], function () {
     
-    //Route::get('/home',"HomeController@home");
+    //iFrameの一番最初に表示するもの
     Route::get('/enter',function(){return view("iframe.enter");});
 
     //出撃結果（レンダリングのみ）
@@ -42,14 +42,19 @@ Route::group(['middleware' => ['play']], function () {
     Route::get("/play/mission","MissionController@index");
     Route::get("/play/home","HomeController@index");
     
-    Route::get("/js/create","CreateController@index");
+    
+    /*    
+     *DOM出力だけするやつ
+     * →値を入れないので認証は必要ない
+     */
+    Route::get("/js/create","CreateController@js_scene");
     Route::get("/js/launch","LaunchController@js_scene");
-    Route::get("/js/repair","RepairController@index");
+    Route::get("/js/repair","RepairController@js_scene");
     Route::get("/js/team","TeamController@js_scene");
-    Route::get("/js/charge","ChargeController@index");
-    Route::get("/js/upgrade","UpgradeController@index");
-    Route::get("/js/mission","MissionController@index");
-    Route::get("/js/home","HomeController@js_home");
+    Route::get("/js/charge","ChargeController@js_scene");
+    Route::get("/js/upgrade","UpgradeController@js_scene");
+    Route::get("/js/mission","MissionController@js_scene");
+    Route::get("/js/home","HomeController@js_scene");
     
 });
 

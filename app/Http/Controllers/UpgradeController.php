@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class UpgradeController extends Controller
 {
+    public $scene_name="upgrade";
+    use Traits\JsSceneTrait;
     /**
      * Create a new controller instance.
      *

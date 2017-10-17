@@ -15,7 +15,8 @@
        // alert('音！');
       }
     );
-
+    
+    
 </script>
 <script src="js/scene/home.js" ></script>
 

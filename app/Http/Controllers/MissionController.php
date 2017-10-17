@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LaunchResultController extends Controller
+class MissionController extends Controller
 {
-    public $scene_name="launch_result";
+    public $scene_name="mission";
     use Traits\JsSceneTrait;
     /**
      * Create a new controller instance.

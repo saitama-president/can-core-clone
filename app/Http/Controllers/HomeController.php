@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public $scene_name="home";
+    use Traits\JsSceneTrait;
     /**
      * Create a new controller instance.
      *
@@ -20,12 +22,7 @@ class HomeController extends Controller
            // "user"=> request()->user
         ]);
     }
-    
-    public function js_home(){
-      return view("js.home");
-    }
-
-    
+        
     /**
      * Show the application dashboard.
      *
@@ -33,8 +30,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-		
-      
         return view('iframe.home',[
             "user"=> request()->user
         ]);

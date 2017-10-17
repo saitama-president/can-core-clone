@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class ChargeController extends Controller
 {
+    public $scene_name="team";
+    use Traits\JsSceneTrait;
     /**
      * Create a new controller instance.
      *

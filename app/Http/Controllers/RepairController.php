@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class RepairController extends Controller
 {
+    public $scene_name="repair";
+    use Traits\JsSceneTrait;
     /**
      * Create a new controller instance.
      *

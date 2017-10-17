@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class CreateController extends Controller {
 
+    public $scene_name="create";
+    use Traits\JsSceneTrait;
     /**
      * Create a new controller instance.
      *

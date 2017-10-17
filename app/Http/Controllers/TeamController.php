@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+    public $scene_name="team";
+    use Traits\JsSceneTrait;
+    
+    
+    
     /**
      * Create a new controller instance.
      *
@@ -23,20 +28,14 @@ class TeamController extends Controller
      */
     public function index()
     {
-		
-      
         return view('play',[
             "user"=> request()->user
         ]);
     }
     
-    public function js_scene(){
-      return view("js/team");
-    }
     
     public function status(){
-        $user=request()->user;
-        
+        $user=request()->user;        
         return $user->status();
     }
 }

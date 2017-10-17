@@ -37,8 +37,7 @@ class Kernel extends HttpKernel
         ],
 		'play'=>[
             \App\Http\Middleware\PlayMiddleware::class
-		]
-		,
+		],
         'api' => [
             'throttle:60,1',
             'bindings',
