@@ -35,7 +35,7 @@ $(document).ready(function () {
     }
     );
     $("#BUTTON_TEAM").on("click", function () {
-      scene_change("js/team");
+        scene_change("js/team");
     }
     );
     $("#BUTTON_HOME").on("click", function () {

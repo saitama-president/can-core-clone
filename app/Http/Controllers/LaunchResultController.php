@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LaunchController extends Controller
+class LaunchResultController extends Controller
 {
-    public $scene_name="launch";
+    public $scene_name="launch_result";
     use Traits\JsSceneTrait;
     /**
      * Create a new controller instance.
@@ -24,17 +24,14 @@ class LaunchController extends Controller
      */
 
     /**
-     * 出撃を行う。
+     * 選択を行う
      * @return type
      */
-    public function launch(){
+    public function select(){
         
         
-        $team_id = request("team_id");
-        $launch_id = request("launch_id");
-        
-        
-        
+        $opt_id = request("opt_id");
+
         //出撃結果を取得する
         return [
             "OK"            
