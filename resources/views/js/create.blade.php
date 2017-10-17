@@ -23,10 +23,10 @@
 @endsection
 
 @section('dom')
+  <h2 class="title">製造</h2>
   
     {{-- ホーム画面 --}}
   <div id="HOME" class="background create">
-    生産画面
   </div>
   
   {{-- 基本メニュー --}}

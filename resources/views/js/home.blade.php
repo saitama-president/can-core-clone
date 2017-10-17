@@ -26,7 +26,6 @@
   
     {{-- ホーム画面 --}}
   <div id="HOME" class="background home">
-
   </div>
   
   {{-- 基本メニュー --}}

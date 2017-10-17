@@ -11,22 +11,21 @@
     $("#HOME").ready(
       function(){
 
-        bgm_play("/vendor/bgm/tol3.wav");        
+        bgm_play("/vendor/bgm/tol2.wav");        
        // alert('音！');
       }
     );
-
+    
+    
 </script>
 <script src="js/scene/home.js" ></script>
 
 @endsection
 
 @section('dom')
-
-  <h2 class="title">編成</h2>
-  
+   <h2 class="title">補給</h2>
     {{-- ホーム画面 --}}
-  <div id="HOME" class="background team">
+  <div id="HOME" class="background charge">
   </div>
   
   {{-- 基本メニュー --}}
@@ -64,6 +63,15 @@
   <div id="NOTIFY">
     <ul>
     </ul>
+  </div>
+
+  {{--シーン描画--}}
+  <div id="SCENE">
+    <div class="CHAR image">
+      <div class="serif off">
+        <p>今日も元気に頑張りましょう</p>
+      </div>
+    </div>
   </div>
   
   {{--時計--}}

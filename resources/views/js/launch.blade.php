@@ -16,10 +16,12 @@
 @endsection
 
 @section('dom')
-  
+   <h2 class="title">出撃</h2>
+
+  <div id="HOME" class="background launch">
+  </div>
   {{-- ホーム画面 --}}
   <div id="LAUNCH" class="background">
-
   </div>
   
   {{-- 出撃リスト --}}

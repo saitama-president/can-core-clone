@@ -9,10 +9,39 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <style>
+            
+            .huge{
+                font-size: 15vmin;        
+            }
+
+            .swing{
+                animation-duration: 2s;
+                animation-name: swinging;                    
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+                animation-timing-function: ease-in-out;
+                transform-origin:center center;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+
+            @keyframes swinging {
+                0% {
+                    transform: rotate(-45deg);
+                }
+                50% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(45deg);
+                }
+            }            
+        </style>
     </head>
     <body>
       読み込み中…
-        
+      <div class="huge swing">⚓</div>
     </body>
 </html>

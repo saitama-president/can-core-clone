@@ -24,11 +24,10 @@
 
 @section('dom')
 
-  <h2 class="title">編成</h2>
+  <h2 class="title">修理</h2>
   
     {{-- ホーム画面 --}}
-  <div id="HOME" class="background team">
-    
+  <div id="HOME" class="background repair">
   </div>
   
   {{-- 基本メニュー --}}
