@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class user_create extends Model implements \App\Common\CreateTable {
 
     public $table="user_create";
+    public $fillable=[
+        "line_id",
+        "master_card_id",
+        "complete_at",
+    ];
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');

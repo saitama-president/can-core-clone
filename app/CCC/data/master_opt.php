@@ -4,21 +4,22 @@ namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
 
-class master_battle_opt extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
+class master_opt extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
-    public $table="master_battle_opt";
+    public $table="master_opt";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
         $b->integer('opt_type');
-        $b->string('opt_key',20);        
+        $b->string('opt_key',20);
+        $b->integer('opt_order')->default(1);
         $b->string('label',20);
         $b->string("description");
-        $b->unique(['opt_type','opt_key'],'uniq_master_battle_opt');
+        $b->unique(['opt_type','opt_key'],'uniq_master_opt');
     }
 
   public static function InitTable() {
-    master_battle_opt::insert([
+      master_opt::insert([
         ["opt_type"=>1,
             "label"=>"追撃する",
             "opt_key"=>"YES",

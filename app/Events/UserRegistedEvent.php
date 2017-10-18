@@ -25,13 +25,20 @@ class UserRegistedEvent
         \Log::debug("パラメータマスタ登録");
         $assets= \App\CCC\data\master_assets::all();
         
+        
+        //資材関連の登録
         foreach($assets as $asset){
-            \App\CCC\data\user_asset::insert(
-                [
-                    "user_id"=>$u->id,
-                    "asset_id"=>$asset->id,
-                ]);
+            
+            $u->assets()->save(
+               new \App\CCC\data\user_asset(["asset_id"=>$asset->id])
+            );
+
         }
+        
+        //
+        
+        
+        
         \Log::debug("パラメータマスタ登録完了");
     }
 

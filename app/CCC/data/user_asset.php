@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class user_asset extends Model implements \App\Common\CreateTable {
 
     public $table="user_asset";
+    
+    public $fillable=[
+        "asset_id"
+    ];
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');

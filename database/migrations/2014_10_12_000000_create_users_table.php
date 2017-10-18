@@ -12,6 +12,7 @@ class CreateUsersTable extends Migration {
      * @return void
      */
     public function up() {
+        Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -23,14 +24,10 @@ class CreateUsersTable extends Migration {
 
         //その後にテストデータを入れる
         \Log::Debug("テストデータを入れる");
-
-        \Illuminate\Foundation\Auth\User::insert(
-            [
-                'name' => "admin",
-                'email' => "test@test.com",
-                'password' => bcrypt("test"),
-            ]
-        );
+        
+        $debug=new App\CCC\service\DebugService();
+        $debug->user_add();
+ 
     }
 
     /**
