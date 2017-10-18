@@ -23,7 +23,7 @@ class master_assets extends Model implements \App\Common\CreateTable, \App\Commo
                 ["name"=>"燃料","key"=>"A"],
                 ["name"=>"弾薬","key"=>"B"],
                 ["name"=>"鉄","key"=>"C"],
-                ["name"=>"銅","key"=>"D"],
+                ["name"=>"金","key"=>"D"],
             ]
             );
   }
