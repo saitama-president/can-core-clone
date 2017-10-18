@@ -19,7 +19,7 @@ trait asset {
 
     //資材とか
     public function assets() {
-        return $this->hasMany("App\CCC\data\user_asset")->get();
+        return $this->hasMany("App\CCC\data\user_asset");
     }
 
     /**
@@ -42,7 +42,7 @@ trait asset {
     public function status() {
 
         $results = [];
-        foreach ($this->assets() as $asset) {
+        foreach ($this->assets()->get() as $asset) {
             $results[$asset->key()] = $asset->value();
         }
         \Log::Debug(var_export($results, true));

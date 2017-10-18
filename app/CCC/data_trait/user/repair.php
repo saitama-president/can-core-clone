@@ -16,7 +16,7 @@ namespace App\CCC\data_trait\user;
 trait repair {
     //入渠とか
     public function repaires() {
-        return $this->hasMany("App\CCC\data\user_card_repair")->get();
+        return $this->hasMany("App\CCC\data\user_card_repair");
     }
     
     public function add_repair(){

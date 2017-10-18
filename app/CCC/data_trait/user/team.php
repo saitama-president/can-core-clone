@@ -16,6 +16,6 @@ namespace App\CCC\data_trait\user;
 trait team {
     //編成とか
     public function teams() {
-        return $this->hasMany("App\CCC\data\user_team")->get();
+        return $this->hasMany("App\CCC\data\user_team");
     }
 }

@@ -46,6 +46,7 @@ class CreateAll extends Migration {
         $class_name::InitTable();
       }
     }
+    
   }
 
   /**

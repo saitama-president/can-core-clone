@@ -16,6 +16,6 @@ namespace App\CCC\data_trait\user;
 trait upgrade {
     //改造とか
     public function upgrades() {
-        return $this->hasMany("App\CCC\data\user_card_upgrade")->get();
+        return $this->hasMany("App\CCC\data\user_card_upgrade");
     }
 }

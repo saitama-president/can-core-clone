@@ -15,7 +15,15 @@ class DebugController extends Controller
      */
     public function __construct()
     {
+    }
 
+    public function status(){
+        
+        $user=request()->user;
+
+        return view("debug.status",[
+            "user"=>$user
+        ]);
     }
 
     /**

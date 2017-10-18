@@ -16,6 +16,6 @@ namespace App\CCC\data_trait\user;
 trait house {
      //お部屋とか
     public function housings(){
-        return $this->hasOne("App\CCC\data\user_housing")->get();
+        return $this->hasOne("App\CCC\data\user_housing");
     }
 }

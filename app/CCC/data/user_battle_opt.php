@@ -4,16 +4,17 @@ namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
 
-class user_battle extends Model implements \App\Common\CreateTable {
+class user_battle_opt extends Model implements \App\Common\CreateTable {
 
-  public $table="user_battle";
+  public $table="user_battle_opt";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
         $b->integer("user_id");
-        $b->integer("master_card_id");
+        $b->integer("opt_id");
+        $b->integer("select_id");
         $b->timestamps();
-        $b->index(["user_id"],"idx_user_card");
+        $b->index(["user_id"],"idx_user_battle_opt");
     }
 
     public function user() {

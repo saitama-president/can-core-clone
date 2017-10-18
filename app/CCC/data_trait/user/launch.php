@@ -16,6 +16,6 @@ namespace App\CCC\data_trait\user;
 trait launch {
     //出撃とか
     public function launches() {
-        return $this->hasMany("App\CCC\data\user_launch")->get();
+        return $this->hasMany("App\CCC\data\user_launch");
     }
 }

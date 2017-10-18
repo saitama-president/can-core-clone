@@ -16,6 +16,6 @@ namespace App\CCC\data_trait\user;
 trait charge {
     //補給とか
     public function charges() {
-        return $this->hasMany("App\CCC\data\user_card_charge")->get();
+        return $this->hasMany("App\CCC\data\user_card_charge");
     }
 }

@@ -16,3 +16,15 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+
+Artisan::command("status",function(){
+    
+    $user= App\User::all();
+    
+    foreach ($user as $user){
+        $this->info($use->name);
+    }
+    
+    
+});

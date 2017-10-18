@@ -56,8 +56,11 @@ Route::group(['middleware' => ['play']], function () {
     Route::get("/js/mission","MissionController@js_scene");
     Route::get("/js/home","HomeController@js_scene");
     
+    if(config("app.debug")){        
+        Route::get("/debug/status","DebugController@status");
+        Route::get("/debug/login","DebugController@login");
+    }
+    
+    
 });
 
-if(config("app.debug")){
-  Route::get("/debug/login","DebugController@login");
-}
