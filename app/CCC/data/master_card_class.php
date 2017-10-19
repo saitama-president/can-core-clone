@@ -4,37 +4,34 @@ namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
 
-class master_card extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
+class master_card_class extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
-    public $table = "master_card";
+    public $table = "master_card_class";
+    
+    public $fillable=["id","name","weight_order"];
 
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
-        $b->string('name',50);
-        
+        $b->string('name', 50);
+        $b->integer('weight_order')->default(100)->nullable(); //
         $b->timestamps();
     }
 
     public static function InitTable() {
-        master_card::insert([
-            ["name"=>"綾波"],
-            ["name"=>"磯波"],
-            ["name"=>"浮波"],
-            ["name"=>"江波"],
-            ["name"=>"大波"],
-        ]);
-        
         
     }
-    
-    public function spec(){
-        return $this->hasOne("App\CCC\data\master_card_spec");        
+
+    public static function RegistMasterRow(array $data = array()) {
+
+        if (!empty($data["id"])) {
+            master_card_class::UpdateOrCreate(
+                    ["id" => $data["id"]], [
+                    "name" => $data["名前"],
+                    "weight_order" => $data["weight_order"],
+                    ]
+            );            
+        }
     }
-    
-    public function profile(){
-        return $this->hasOne("App\CCC\data\master_card_spec");        
-    }
-    
 
 }

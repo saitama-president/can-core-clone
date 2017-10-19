@@ -27,4 +27,8 @@ class master_opt_type extends Model implements \App\Common\CreateTable, \App\Com
       return master_assets::where("key",$key)->first()->id;
   }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

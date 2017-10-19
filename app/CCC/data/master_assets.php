@@ -32,4 +32,8 @@ class master_assets extends Model implements \App\Common\CreateTable, \App\Commo
       return master_assets::where("key",$key)->first()->id;
   }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

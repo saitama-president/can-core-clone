@@ -25,4 +25,8 @@ class master_launch extends Model implements \App\Common\CreateTable, \App\Commo
     public static function InitTable() {
     }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

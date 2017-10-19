@@ -30,4 +30,8 @@ class master_item extends Model implements \App\Common\CreateTable, \App\Common\
         ]);
     }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

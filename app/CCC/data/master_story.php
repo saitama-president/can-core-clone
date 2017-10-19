@@ -24,4 +24,8 @@ class master_story extends Model implements \App\Common\CreateTable, \App\Common
     public static function InitTable() {
     }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

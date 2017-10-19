@@ -22,7 +22,9 @@ class master_recipient_out extends Model implements \App\Common\CreateTable, \Ap
     public static function InitTable() {
         
     }
-    
-    
+
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
 
 }

@@ -28,4 +28,8 @@ class master_card_voice extends Model implements \App\Common\CreateTable, \App\C
         
     }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

@@ -20,4 +20,8 @@ class master_equipment extends Model implements \App\Common\CreateTable , \App\C
     
   }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

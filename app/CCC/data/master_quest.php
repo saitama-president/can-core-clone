@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class master_quest extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
-    public $table = "master_card";
+    public $table = "master_quest";
 
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
@@ -28,6 +28,9 @@ class master_quest extends Model implements \App\Common\CreateTable, \App\Common
     public function profile(){
         return $this->hasOne("App\CCC\data\master_card_spec");        
     }
-    
+
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
 
 }

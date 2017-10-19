@@ -54,9 +54,9 @@ class DebugService {
             "complete_at" => \Carbon\Carbon::now()->addMinute()
         ]));
         
-        
-
         return $ccc_user;
     }
+    
+    
 
 }

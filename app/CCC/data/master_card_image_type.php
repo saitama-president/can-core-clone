@@ -45,4 +45,8 @@ class master_card_image_type extends Model implements \App\Common\CreateTable, \
         ]);
     }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

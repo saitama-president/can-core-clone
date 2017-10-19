@@ -31,4 +31,8 @@ implements \App\Common\CreateTable, \App\Common\MasterTable {
         ]);
     }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

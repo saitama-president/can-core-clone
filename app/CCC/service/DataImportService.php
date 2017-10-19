@@ -9,54 +9,78 @@ use App\User;
  *
  * @author s-yoshihara
  */
-class DebugService {
+class DataImportService {
+    
+    /*
+     * 定義の順番が重要（マスタが他のマスタを参照するため）
+     */
+    const SHEET_LIST = [
+      "master_rare_type"=>"レアリティ定義",
+      "master_card_class"=>"カードクラス定義",
+      "master_card"=>"カード定義",
 
-    public function user_add($name = "test", $email = "test@test.com") {
+      "master_rare_type"=>"レアリティ定義",
+      "master_card_class"=>"カードクラス定義",
+      "master_card"=>"カード定義",
 
+      "master_rare_type"=>"レアリティ定義",
+      "master_card_class"=>"カードクラス定義",
+      "master_card"=>"カード定義",
         
+    ];
 
-        $user = User::where("email", $email)->first();
-        if (!empty($user)) {
-            return $user;
+    public function loadFromExcel($excel) {
+
+        require_once base_path('vendor/phpoffice/phpexcel/Classes/PHPExcel.php');
+        \Illuminate\Support\Facades\DB::transaction(
+            function()
+            use($excel) {
+            /*
+              シートごとに登録を行う
+             *              */
+            $obj_reader = \PHPExcel_IOFactory::createReader('Excel2007');
+            $book = $obj_reader->load(resource_path($excel));
+            
+            foreach(self::SHEET_LIST as $table=>$sheet_name){
+                
+                $sheet = $book->getSheetByName($sheet_name);
+                $data=$this->sheet2array($sheet);
+                $class_name='\App\CCC\data\\'.$table;
+                
+                foreach($data as $row){
+                    $class_name::RegistMasterRow($row);
+                }
+                //var_dump($class_name::All()->toJson());
+                echo "$class_name 登録完了\n";
+                
+                
+                
+            }     
         }
-
-        $user = new User();
-        $user->name = $name;
-        $user->email = $email;
-        $user->password = bcrypt("test");
-        $user->save();
-
-        $ccc_user = new \App\CCC\data\user();
-        $ccc_user->id = $user->id;
-        $ccc_user->name = $user->name;
-        $ccc_user->save();
-
-
-        \Event::Fire(new \App\Events\UserRegistedEvent($ccc_user));
-
-
-        //いろいろ突っ込む
-        /* 製造 */
-        $ccc_user->creates()->save(
-            new \App\CCC\data\user_create([
-            "line_id" => 1,
-            "master_card_id" => 1,
-            "created_at" => \Carbon\Carbon::now(),
-            "complete_at" => \Carbon\Carbon::now()->addMinute()
-            ])
         );
-        /* カード */
-        $ccc_user->cards()->save(
-            new \App\CCC\data\user_card([
-            "line_id" => 1,
-            "master_card_id" => 1,
-            "created_at" => \Carbon\Carbon::now(),
-            "complete_at" => \Carbon\Carbon::now()->addMinute()
-        ]));
-        
-        
+    }
 
-        return $ccc_user;
+    private function sheet2array(\PHPExcel_Worksheet $sheet) {
+        $result=[];
+        $header=[];
+        foreach($sheet->getRowIterator(1,1) as $head){
+            foreach ($head->getCellIterator() as $k=>$cell) {
+                $header[$k]=$cell->getValue();
+            }            
+        }
+        
+        foreach ($sheet->getRowIterator(2) as $line) {
+            $row=[];
+            foreach ($line->getCellIterator() as $key=>$cell) {
+                
+                $row[$header[$key]]=$cell->getValue();
+                // セルの値取得
+            }
+
+            $result[]=$row;
+        }
+        
+        return (object)$result;
     }
 
 }

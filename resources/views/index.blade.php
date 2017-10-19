@@ -13,6 +13,7 @@
     <a href="{{url('register')}}">新規登録</a>
 @if(config("app.debug")) 
     <a href="{{url('/debug/login')}}">強制ログイン</a>
+    <a href="{{url('/debug/status')}}">デバッグステータス</a>
 @endif
   </body>
 </html>

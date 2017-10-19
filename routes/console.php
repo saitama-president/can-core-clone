@@ -46,7 +46,6 @@ Artisan::command("user_status {id=1}", function($id) {
         $this->info("{$a->asset_id}:{$a->value()}");
     }
 
-
     foreach ($user->cards()->get() as $c) {
         $this->info($c->id);
     }
@@ -57,38 +56,17 @@ Artisan::command("user_status {id=1}", function($id) {
     $this->comment("Done");
 });
 
-Artisan::command("master_load", function() {
-    require_once base_path('vendor/phpoffice/phpexcel/Classes/PHPExcel.php');
+Artisan::command("master:load {file=master.xlsx}", function($file) {
 
-
-    try {
-        \Illuminate\Support\Facades\DB::transaction(
-            function()
-            {
-            /*
-                シートごとに登録を行う
-             *              */
-            $obj_reader = PHPExcel_IOFactory::createReader('Excel2007');
-            $book   = $obj_reader->load(resource_path("master.xlsx"));
-            $book->getSheetByName("シート名");
-            $sheet = $book->getSheetByName("シート名");
-            foreach ($sheet->getRowIterator() as $row) {
-                $tmp = array();
-                // 列イテレータ取得
-                foreach ($row->getCellIterator() as $cell) {
-                    // セルの値取得
-                    $this->comment($cell->getValue());
-                }
-                $this->comment("NEXT...");
-            }
-        }
-        );
-    } catch (\Exception $e) {
-
+    try{
+        $importer=new App\CCC\service\DataImportService();
+        
+        $importer->loadFromExcel($file);
+    }
+    catch (\Exception $e){
         $this->error($e->getMessage());
         $this->info("マスタ登録処理は中断されました");
+
     }
-
-
     $this->comment("Done");
-});
+})->describe("Excelファイルからマスタをロードします");

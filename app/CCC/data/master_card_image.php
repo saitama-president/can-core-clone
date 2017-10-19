@@ -26,4 +26,8 @@ class master_card_image extends Model implements \App\Common\CreateTable, \App\C
         
     }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }

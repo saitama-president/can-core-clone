@@ -21,8 +21,9 @@ class master_map extends Model implements \App\Common\CreateTable, \App\Common\M
         
         
     }
-    
 
-    
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
 
 }

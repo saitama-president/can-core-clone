@@ -50,4 +50,8 @@ class master_card_profile extends Model implements \App\Common\CreateTable, \App
         
     }
 
+    public static function RegistMasterRow(array $data = array()) {
+        
+    }
+
 }
