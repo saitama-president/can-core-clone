@@ -52,7 +52,6 @@ Artisan::command("user_status {id=1}", function($id) {
 
 
 
-
     $this->comment("Done");
 });
 

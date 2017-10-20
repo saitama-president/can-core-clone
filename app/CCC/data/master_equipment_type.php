@@ -4,10 +4,12 @@ namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 装備クラス定義
+ */
+class master_equipment_type extends Model implements \App\Common\CreateTable , \App\Common\MasterTable{
 
-class master_equipment extends Model implements \App\Common\CreateTable , \App\Common\MasterTable{
-
-  public $table="master_equipment";
+  public $table="master_equipment_type";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');

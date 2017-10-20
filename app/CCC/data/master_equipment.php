@@ -4,7 +4,9 @@ namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
 
-
+/**
+ * 装備定義
+ */
 class master_equipment extends Model implements \App\Common\CreateTable , \App\Common\MasterTable{
 
   public $table="master_equipment";

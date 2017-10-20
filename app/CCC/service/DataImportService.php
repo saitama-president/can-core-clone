@@ -19,7 +19,7 @@ class DataImportService {
       "master_card_class"=>"カードクラス定義",
       "master_card"=>"カード定義",
 
-      "master_rare_type"=>"レアリティ定義",
+      "master_assets"=>"素材定義",
       "master_card_class"=>"カードクラス定義",
       "master_card"=>"カード定義",
 

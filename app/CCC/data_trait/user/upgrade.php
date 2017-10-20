@@ -18,4 +18,9 @@ trait upgrade {
     public function upgrades() {
         return $this->hasMany("App\CCC\data\user_card_upgrade");
     }
+    
+    public function upgrade(){
+        return new \App\CCC\service\UserUpgradeService($this);
+    }
+    
 }

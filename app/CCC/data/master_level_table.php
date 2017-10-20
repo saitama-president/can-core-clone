@@ -4,9 +4,9 @@ namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
 
-class master_rare_type extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
+class master_level_table extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
-    public $table = "master_rare_type";
+    public $table = "master_level_table";
     public $fillable = [
         "level",
         "name"
@@ -16,7 +16,7 @@ class master_rare_type extends Model implements \App\Common\CreateTable, \App\Co
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
         $b->integer("level");
-        $b->unique(["level"], "uniq_master_rare_type");
+        $b->unique(["level"], "uniq_master_level_table");
         $b->string('name', 50);
         $b->timestamps();
     }

@@ -29,11 +29,8 @@ class CreateController extends Controller {
             "B" => request("B"),
             "C" => request("C"),
             "D" => request("D"),
-        ];
-        
+        ];      
         $line=1;
-        
-
 
         $user = request()->user;
 
@@ -68,11 +65,6 @@ class CreateController extends Controller {
         \Log::debug("CREATEする");
         \Log::debug(get_class($user));
         
-        $creates= DB::Select("SELECT * FROM user_create ");
-        
-        foreach($creates as $create){
-            \Log::debug("$create->user_id ");
-        }
 
         /* そして増やす */
         return "OK";
