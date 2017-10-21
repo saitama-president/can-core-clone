@@ -13,7 +13,7 @@ class DebugService {
 
     public function user_add($name = "test", $email = "test@test.com") {
 
-        
+        \Log::Debug("ユーザ追加デバッグ");
 
         $user = User::where("email", $email)->first();
         if (!empty($user)) {
@@ -53,6 +53,7 @@ class DebugService {
             "created_at" => \Carbon\Carbon::now(),
             "complete_at" => \Carbon\Carbon::now()->addMinute()
         ]));
+        \Log::debug("ユーザは作成できた？");
         
         return $ccc_user;
     }
