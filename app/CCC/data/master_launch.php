@@ -5,7 +5,7 @@ namespace App\CCC\data;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 戦場的な
+ * 戦場的なもの。
  */
 class master_launch extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
