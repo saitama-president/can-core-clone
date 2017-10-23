@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * 戦場的なもの。
  */
-class master_launch extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
+class master_sailing extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
     public $table="master_launch";
   

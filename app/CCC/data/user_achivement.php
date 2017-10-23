@@ -7,18 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * 現在受けているミッション
  */
-class user_mission extends Model implements \App\Common\CreateTable {
+class user_achivement extends Model implements \App\Common\CreateTable {
 
-    public $table="user_mission";
+    public $table="user_achivement";
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
         $b->integer('user_id');
-        $b->integer('mission_id');
-        $b->integer('progress')->default(0);
-        $b->integer('max_progress')->default(100);
-        
-        $b->unique(["user_id","mission_id"],"user_uniq_mission");
+        $b->integer('achivement_id');        
+        $b->unique(["user_id","achivement_id"],"user_uniq_achivement");
         $b->timestamps();
     }
     
@@ -26,7 +23,7 @@ class user_mission extends Model implements \App\Common\CreateTable {
         return $this->belongsTo('App\CCC\data\user');
     }
     public function master(){
-        return $this->belongsTo('App\CCC\data\master_mission');
+        return $this->belongsTo('App\CCC\data\master_item_achivement');
     }
 
 }

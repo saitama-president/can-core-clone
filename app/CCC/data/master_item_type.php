@@ -13,6 +13,7 @@ implements \App\Common\CreateTable, \App\Common\MasterTable {
     const TYPE_STOCK=1;
     const TYPE_UNIQUE=2;
     const TYPE_ACHIVE=3;
+    const TYPE_CARD=4;
 
 
     //
@@ -28,6 +29,7 @@ implements \App\Common\CreateTable, \App\Common\MasterTable {
             ["id"=>self::TYPE_STOCK,"name"=>"個数管理","description"=>"消費系のアイテムです"],
             ["id"=>self::TYPE_UNIQUE,"name"=>"ユニーク管理","description"=>"装備品などのユニーク管理系アイテムです"],
             ["id"=> self::TYPE_ACHIVE,"name"=>"アチーブメント","description"=>"実績解放系のアイテムです"],
+            ["id"=> self::TYPE_CARD,"name"=>"カード","description"=>"カード系のアイテムです"],
         ]);
     }
 

@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class master_item_achive extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
-    public $table="master_item_achive";
+    public $table="master_item_archive";
   
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
-        $b->tinyInteger('item_type')->default(1);
-        $b->string('name',20);
-        $b->string('key',10);
+        $b->integer('item_id');
+        
+        $b->unique(["item_id"],"uniq_master_item_archive");
         $b->text('description')->default('');        
         $b->timestamps();
     }

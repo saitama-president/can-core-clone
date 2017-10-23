@@ -13,7 +13,7 @@ namespace App\CCC\service;
  *
  * @author s-yoshihara
  */
-class UserRepairService {
+class UserUpgradeService {
     
     private $user;
 

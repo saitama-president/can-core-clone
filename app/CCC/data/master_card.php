@@ -11,14 +11,15 @@ class master_card extends Model implements \App\Common\CreateTable, \App\Common\
     public $fillable=[
         "name",
         "rare",
-        "class_id"        
+        "class_id"     
     ];
 
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
+        $b->integer('item_id');
         $b->string('name',50);
-        $b->integer('rare')->default(1);
+        $b->integer('rare')->default(1);        
         $b->integer('class_id')->default(1);
         
         $b->timestamps();

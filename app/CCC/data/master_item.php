@@ -20,18 +20,12 @@ class master_item extends Model implements \App\Common\CreateTable, \App\Common\
 
 
     public static function InitTable() {
-        master_item::insert([
-            ["name"=>"製造資材","key"=>"MK"],
-            
-            ["name"=>"高速修理","key"=>"IR"],
-            ["name"=>"高速製造","key"=>"IC"],
-
-            ["name"=>"魔法石","key"=>"SP"],
-        ]);
     }
 
     public static function RegistMasterRow(array $data = array()) {
-        
+        //var_dump($data["種別ID"]);
+        //var_dump($data["ID"]);
+        //var_dump($data["種類"]);
     }
 
 }

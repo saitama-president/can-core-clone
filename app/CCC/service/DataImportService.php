@@ -3,6 +3,9 @@
 namespace App\CCC\service;
 
 use App\User;
+use PHPExcel;
+use PHPExcel_IOFactory;
+
 
 /**
  * Description of DebugService
@@ -15,6 +18,9 @@ class DataImportService {
      * 定義の順番が重要（マスタが他のマスタを参照するため）
      */
     const SHEET_LIST = [
+        "master_item"=>"アイテム定義",
+        
+        /*
       "master_rare_type"=>"レアリティ定義",
       "master_card_class"=>"カードクラス定義",
       "master_card"=>"カード定義",
@@ -22,13 +28,14 @@ class DataImportService {
         
       "master_card_class"=>"カードクラス定義",
       "master_card"=>"カード定義",
-
+*/
         
     ];
 
     public function loadFromExcel($excel) {
 
         require_once base_path('vendor/phpoffice/phpexcel/Classes/PHPExcel.php');
+        
         \Illuminate\Support\Facades\DB::transaction(
             function()
             use($excel) {
@@ -66,11 +73,22 @@ class DataImportService {
             }            
         }
         
+        $v=$sheet->getCell("C1")->isFormula();
+        //var_dump($sheet->getCellByColumnAndRow(2,2)->());
+        
         foreach ($sheet->getRowIterator(2) as $line) {
             $row=[];
             foreach ($line->getCellIterator() as $key=>$cell) {
                 
-                $row[$header[$key]]=$cell->getValue();
+                
+                $row[$header[$key]]=
+                    $cell->isFormula()
+                        ?$cell->getOldCalculatedValue()
+                        :$cell->getValue()
+                    ;
+                
+                 //$row[$header[$key]]=$cell->getValue();
+                //$row[$header[$key]]=$cell->Value();
                 // セルの値取得
             }
 
