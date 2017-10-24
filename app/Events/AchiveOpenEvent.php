@@ -10,21 +10,24 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserRegistedEvent implements \App\Common\EventHandler {
-
-    use Dispatchable,
-        InteractsWithSockets,
-        SerializesModels;
-
-    public $u;
+class AchiveOpenEvent implements \App\Common\EventHandler
+{
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+    
+    public $user;
+    public $achive;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\CCC\data\user $u) {
-        $this->u = $u;
+    public function __construct(
+        \App\CCC\data\user $user,
+        \App\CCC\data\master_item_achive $achive)
+    {
+        $this->user=$user;
+        $this->achive=$achive;                
     }
 
     /**
@@ -32,21 +35,13 @@ class UserRegistedEvent implements \App\Common\EventHandler {
      *
      * @return Channel|array
      */
-    public function broadcastOn() {
+    public function broadcastOn()
+    {
         return new PrivateChannel('channel-name');
     }
 
     public function onFire() {
-
-        $assets = \App\CCC\data\master_item_asset::all();
-
-        //資材関連の登録
-        foreach ($assets as $asset) {
-            \Log::Debug("ASSET:{$asset->id}");
-            $this->u->assets()->save(
-                new \App\CCC\data\user_asset(["asset_id" => $asset->id])
-            );
-        }
+        \Log::Debug("実績開放イベント発火");
     }
 
 }

@@ -14,6 +14,8 @@ implements \App\Common\CreateTable, \App\Common\MasterTable {
     const TYPE_UNIQUE=2;
     const TYPE_ACHIVE=3;
     const TYPE_CARD=4;
+    const TYPE_ASSET=5;
+    const TYPE_UNKNOWN=99;
 
 
     //
@@ -30,6 +32,8 @@ implements \App\Common\CreateTable, \App\Common\MasterTable {
             ["id"=>self::TYPE_UNIQUE,"name"=>"ユニーク管理","description"=>"装備品などのユニーク管理系アイテムです"],
             ["id"=> self::TYPE_ACHIVE,"name"=>"アチーブメント","description"=>"実績解放系のアイテムです"],
             ["id"=> self::TYPE_CARD,"name"=>"カード","description"=>"カード系のアイテムです"],
+            ["id"=> self::TYPE_ASSET,"name"=>"資材","description"=>"資材系のアイテムです"],            
+            ["id"=> self::TYPE_UNKNOWN,"name"=>"未定義","description"=>"未定義"],            
         ]);
     }
 

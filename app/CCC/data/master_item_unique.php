@@ -11,14 +11,15 @@ class master_item_unique extends Model implements \App\Common\CreateTable, \App\
 
     public $table="master_item_unique";
   
+    public $fillable= ["id","item_id","max_stock"];
+    
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
-       
-        $b->string('name',20);
-        $b->string('key',10);
-        $b->text('description')->default('');        
+        $b->integer('item_id');
+        $b->unique(["item_id"], "uniq_master_item_unique");       
         $b->timestamps();
+        $b->integer("item_category_id");//種別
     }
 
 

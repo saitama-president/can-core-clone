@@ -43,14 +43,20 @@ class CreateAll extends Migration {
        $implements = class_implements($class_name);
        
       if (in_array('App\Common\MasterTable', $implements)) {
-        \Log::Debug("マスタテーブルを実装している");
         $class_name::InitTable();
       }
     }
     
-    $this->info("マスタ情報読み込み…");
+    var_dump("マスタ読み込み開始");
+    
+    try{
     //excelからマスタを入れる
-    Illuminate\Support\Facades\Artisan::Call("master:load");
+        Illuminate\Support\Facades\Artisan::Call("master:load");
+    }
+    catch(\Exception $e){
+        var_dump($e->getTraceAsString());
+        var_dump($e->getMessage());
+    }
     
   }
 

@@ -22,8 +22,6 @@ class UserRepairService {
         $this->user=$u;
     }
     
-    
-    
-    
+
     //put your code here
 }

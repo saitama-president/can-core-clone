@@ -19,6 +19,11 @@ class DataImportService {
      */
     const SHEET_LIST = [
         "master_item"=>"アイテム定義",
+        "master_item_asset"=>"資源アイテム定義",
+        /*"master_item_stock"=>"消費アイテム定義",
+        "master_item_unique"=>"個別アイテム定義",
+        "master_item_achive"=>"アイテム定義",
+        "master_item"=>"アイテム定義",*/
         
         /*
       "master_rare_type"=>"レアリティ定義",
@@ -33,7 +38,6 @@ class DataImportService {
     ];
 
     public function loadFromExcel($excel) {
-
         require_once base_path('vendor/phpoffice/phpexcel/Classes/PHPExcel.php');
         
         \Illuminate\Support\Facades\DB::transaction(
@@ -73,7 +77,7 @@ class DataImportService {
             }            
         }
         
-        $v=$sheet->getCell("C1")->isFormula();
+        //$v=$sheet->getCell("C1")->;
         //var_dump($sheet->getCellByColumnAndRow(2,2)->());
         
         foreach ($sheet->getRowIterator(2) as $line) {
@@ -83,7 +87,7 @@ class DataImportService {
                 
                 $row[$header[$key]]=
                     $cell->isFormula()
-                        ?$cell->getOldCalculatedValue()
+                        ?($cell->getOldCalculatedValue()=="#N/A"?null:$cell->getOldCalculatedValue())
                         :$cell->getValue()
                     ;
                 

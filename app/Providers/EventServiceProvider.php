@@ -15,8 +15,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'App\Events\Event' => [
-            'App\Listeners\EventListener',
-            App\Listeners\UserEventListener::class
+            'App\Listeners\EventListener'
         ],
     ];
 
@@ -29,6 +28,20 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        //イベント登録
+        Event::listen(\App\Events\UserRegistedEvent::class,function(
+            \App\Events\UserRegistedEvent $event){
+            $event->onFire();
+        });
+        Event::listen(\App\Events\AchiveOpenEvent::class,function(
+            \App\Events\AchiveOpenEvent $event){
+            $event->onFire();
+        });
+
+        
+        
         //
+        
+        
     }
 }
