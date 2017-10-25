@@ -18,8 +18,23 @@ class DataImportService {
      * 定義の順番が重要（マスタが他のマスタを参照するため）
      */
     const SHEET_LIST = [
+        "master_character"=>"キャラクタ定義",
         "master_item"=>"アイテム定義",
         "master_item_asset"=>"資源アイテム定義",
+        "master_item_stock"=>"消費アイテム定義",
+        "master_item_achive"=>"実績定義",
+        
+        "master_rare_type"=>"レアリティ定義",
+        
+        "master_card_voice_category"=>"ボイスカテゴリ定義",
+        "master_card_voice_type"=>"ボイス種別定義",
+        "master_card"=>"カード定義",
+        
+        //"master_card_voice"=>"ボイス定義",
+        
+        
+        
+        
         /*"master_item_stock"=>"消費アイテム定義",
         "master_item_unique"=>"個別アイテム定義",
         "master_item_achive"=>"アイテム定義",

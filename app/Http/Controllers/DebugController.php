@@ -20,7 +20,17 @@ class DebugController extends Controller {
   public function status() {
 
     $user = request()->user;
+    
+    
 
+
+    return view("debug.status", [
+        "user" => $user
+    ]);
+  }
+  
+  public function home(){
+      
     return view("debug.status", [
         "user" => $user
     ]);
@@ -48,6 +58,16 @@ class DebugController extends Controller {
     
 
     return abort(403);
+  }
+  
+  public function master(){
+      
+      
+      return view("debug.master",[
+          "master_character"=> \App\CCC\data\master_character::all(),
+          "master_rare"=> \App\CCC\data\master_rare_type::all(),
+          "voice_type"=> \App\CCC\data\master_card_voice_type::all(),
+      ]);
   }
 
 }

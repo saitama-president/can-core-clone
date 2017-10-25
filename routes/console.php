@@ -64,6 +64,8 @@ Artisan::command("master:load {file=master.xlsx}", function($file) {
     }
     catch (\Exception $e){
         $this->error($e->getMessage());
+        
+        $this->error($e->getTraceAsString());
         $this->info("マスタ登録処理は中断されました");
 
     }

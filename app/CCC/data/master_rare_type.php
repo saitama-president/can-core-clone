@@ -8,8 +8,10 @@ class master_rare_type extends Model implements \App\Common\CreateTable, \App\Co
 
     public $table = "master_rare_type";
     public $fillable = [
+        "id",
         "level",
-        "name"
+        "name",
+        "code"
     ];
 
     //
@@ -17,7 +19,9 @@ class master_rare_type extends Model implements \App\Common\CreateTable, \App\Co
         $b->increments('id');
         $b->integer("level");
         $b->unique(["level"], "uniq_master_rare_type");
-        $b->string('name', 50);
+        $b->string('name', 20);
+        $b->string('code', 4);
+        $b->unique(["code"], "code_rare_type");
         $b->timestamps();
     }
 
@@ -25,25 +29,22 @@ class master_rare_type extends Model implements \App\Common\CreateTable, \App\Co
         
     }
 
-    public function spec() {
-        return $this->hasOne("App\CCC\data\master_card_spec");
-    }
 
-    public function profile() {
-        return $this->hasOne("App\CCC\data\master_card_spec");
-    }
-
-    public function master_class() {
-        return $this->belongsTo("App\CCC\data\master_card_class", "class_id");
-    }
 
     public static function RegistMasterRow(array $row = array()) {
+        
+       if (empty($data["名前"])) {
+            return;
+        }
 
-        $record = new master_rare_type([
-            "level" => $row["ランク"],
-            "name" => $row["定義名"],
-        ]);
-        $record->save();
+        self::updateOrCreate(
+            ["id" => $data["ID"]], [
+            "level" => $data["レア度"],
+            "name" => $data["名前"],
+            "code" => $data["略称"],
+                
+            ]
+        );
     }
 
 }

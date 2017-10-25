@@ -1,6 +1,8 @@
+@extends('layouts.debug')
+<h1>現在のステータス情報</h1>
 {{$user->id}}:{{$user->name}}
 
-<a href="">マスタ情報</a>
+<a href="{{url('debug/master')}}">マスタ情報</a>
 
 <ul>
   <li>
@@ -36,7 +38,10 @@
               master_id:{{$create->master_card_id}}<br>
               complete:{{$create->complete_at}}<br>
               @if($create->complete_at< \Carbon\Carbon::Now())
-              回収
+              回収可能
+              あと{{ $create->left()}} 秒
+              @else
+              あと{{ $create->left()}} 秒
               @endif
             </p>
           </li>

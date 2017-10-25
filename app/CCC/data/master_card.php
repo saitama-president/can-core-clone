@@ -7,51 +7,67 @@ use Illuminate\Database\Eloquent\Model;
 class master_card extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
     public $table = "master_card";
-    
-    public $fillable=[
-        "name",
+    public $fillable = [
+        "id",
+        "item_id",
+        "parent_card_id",
+        "character_id",
         "rare",
-        "class_id"     
-    ];
+        "card_class_id",
+        ];
 
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
         $b->integer('item_id');
-        $b->string('name',50);
-        $b->integer('rare')->default(1);        
-        $b->integer('class_id')->default(1);
-        
+        $b->unique(["item_id"], "uniq_master_card");
         $b->timestamps();
+        //キャラクタID
+        $b->integer('character_id');
+        //レアリティ
+        $b->integer('rare');
+        //カードクラス
+        $b->integer('card_class_id');
+        
     }
 
-    public static function InitTable() {      
-    }
-    
-    public function spec(){
-        return $this->hasOne("App\CCC\data\master_card_spec");        
-    }
-    
-    public function profile(){
-        return $this->hasOne("App\CCC\data\master_card_spec");        
-    }
-    
-    public function master_class(){
-        return $this->belongsTo("App\CCC\data\master_card_class","class_id");
+    public static function InitTable() {
+        
     }
 
-    public static function RegistMasterRow(array $row = array()) {
-        $card=new master_card([
-            "name"=>$row["カード名"],
-            "rare"=>$row["レアリティ"],
-            "class_id"=>
-                master_card_class::where(
-                    "name",$row["クラス名"])
-                ->first()
-                ->id
-                
-            ]);
-        $card->save();
+    public static function RegistMasterRow(array $data = array()) {
+        if (empty($data["名前"])) {
+            return;
+        }
+
+        self::updateOrCreate(
+            ["id" => $data["ID"]], [
+            "item_id" => $data["アイテムID"],
+            "rare" => $data["レアリティID"],
+            "character_id" => $data["キャラクタID"],
+            "card_class_id" => 1,
+            ]
+        );
+    }
+    
+    public function parent(){
+        
+        
+    }
+    public function voices(){
+        
+    }
+    
+    public function spec() {
+        return $this->hasOne("App\CCC\data\master_card_spec");
+    }
+
+    public function character() {
+        return $this->hasOne("App\CCC\data\master_character","");
+    }
+
+    public function master_class() {
+        return $this->belongsTo("App\CCC\data\master_card_class", "class_id");
     }
 
 }

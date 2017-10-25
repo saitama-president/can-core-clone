@@ -25,6 +25,13 @@ class user_create extends Model implements \App\Common\CreateTable {
         $b->index(["user_id"],"idx_user_create");
     }
     
+    /**
+     * 残り時間を取得
+     */
+    public function left(){
+        return -\Carbon\Carbon::now()->diffInSeconds(\Carbon\Carbon::parse($this->complete_at));
+            
+    }
     
     /*完成しているものの取得*/
     public function take(){
