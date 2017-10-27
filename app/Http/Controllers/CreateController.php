@@ -98,14 +98,14 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
 
     public function take($id) {
         $user = request()->user;
-
+        \Log::debug("取得するで");
         $create = $user->creates()->where("id", $id)->first();
 
         if (
             empty($create) || !$create->is_takable
         )
             return abort(403);
-
+        \Log::debug("取得できるはずやで");
         return $create->take() ? "OK" : abort(403);
     }
 
