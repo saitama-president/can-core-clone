@@ -72,6 +72,7 @@ class DataImportService {
                 
                 foreach($data as $row){
                     $class_name::RegistMasterRow($row);
+                    
                 }
                 //var_dump($class_name::All()->toJson());
                 echo "$class_name 登録完了\n";

@@ -31,12 +31,11 @@ class master_rare_type extends Model implements \App\Common\CreateTable, \App\Co
 
 
 
-    public static function RegistMasterRow(array $row = array()) {
-        
+    public static function RegistMasterRow(array $data = array()) {
+       
        if (empty($data["名前"])) {
             return;
         }
-
         self::updateOrCreate(
             ["id" => $data["ID"]], [
             "level" => $data["レア度"],

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
-class LaunchController extends Controller
+class LaunchController extends Controller 
+ implements \App\Common\ControllerRoute
 {
     public $scene_name="launch";
     use Traits\JsSceneTrait;
@@ -58,4 +60,12 @@ class LaunchController extends Controller
         
         return $this->user->launches()->toJson();
     }
+
+    public static function Routes() {
+        Route::get("/js/launch","LaunchController@js_scene");
+        Route::get("/play/launch","LaunchController@index");
+        Route::get("/api/launch/{map_id}/{team_id}","LaunchController@launch");
+        Route::get('/launch',"LaunchController@result");
+    }
+
 }

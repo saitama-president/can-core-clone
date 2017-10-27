@@ -70,7 +70,7 @@ class user_asset extends Model implements \App\Common\CreateTable {
 
 
     public function master(){
-        return $this->hasOne("App\CCC\data\master_assets","id","asset_id")->first();
+        return $this->hasOne("App\CCC\data\master_item_asset","id","asset_id")->first();
     }
 
 

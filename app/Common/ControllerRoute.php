@@ -2,8 +2,8 @@
 namespace App\Common;
 
 
-interface CreateTable{
+interface ControllerRoute{
     
-    public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b);
+    public static function Routes();
     
 }

@@ -15,7 +15,6 @@
 {{-- ログイン状況を調べて表示する --}}
 
 <script type="text/javascript">
-  
     $(document).ready(function(){
         check_login();
     });
@@ -86,8 +85,17 @@
     
 </style>
 
-<div id="LOGIN" >
-  
+@if(config("app.debug"))
+<a href="/debug/status">デバッグ</a>
+@endif
+
+<form action="{{ route('logout') }}" method="POST">
+  {{csrf_field()}}
+  <button>ログアウト</button>
+</form>
+
+
+<div id="LOGIN" class="hide">  
   <form>
     <input type="text" id="email" name="mail" placeholder="メールアドレスを入力"/>
     <input type="password" id="password" name="password" placeholder="パスワードを入力"/>

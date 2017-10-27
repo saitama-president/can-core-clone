@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
-class CreateController extends Controller {
+class CreateController extends Controller implements \App\Common\ControllerRoute {
 
-    public $scene_name="create";
+    public $scene_name = "create";
+
     use Traits\JsSceneTrait;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct() {
+        
     }
 
     /**
@@ -23,14 +27,33 @@ class CreateController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        \Log::Debug("create呼び出し");
+        try {
 
+            $type = request("type");
+
+            switch ($type) {
+                case 1:return $this->create_build();
+                case 2:return $this->create_build();
+                default: return abort(403);
+            }
+        } catch (\Exception $e) {
+            \Log::Debug("エラーでとるで");
+            abort(500);
+        }
+    }
+    
+    
+
+    private function create_build() {
         $items = [
-            "A" => request("A"),
-            "B" => request("B"),
-            "C" => request("C"),
-            "D" => request("D"),
-        ];      
-        $line=1;
+            1=>request("A"),
+            2=>request("B"),
+            3=>request("C"),
+            4=>request("D"),
+        ];
+        
+        $line = request("L");
 
         $user = request()->user;
 
@@ -41,17 +64,20 @@ class CreateController extends Controller {
                 use($items, $user) {
                 //資材を消費
                 foreach ($items as $k => $v) {
-                    if (!$user->spend($k, $v)) {
-                        throw new \Exception("素材足りひん[{$k}]");
+                    \Log::debug($k);
+                    $asset=$user->assets()->where("asset_id",$k)->first();
+                    \Log::debug($asset->id);
+                    if (!$asset->spend($v)) {
+                        throw new \Exception("素材足りひん[{$asset->value()} - $v {$k}]");
                     }
                 }
                 //素材を消費
                 //結果を追加（製造リストに追加）
                 //$user->addCard();
-                $result_id= $user->add_create(
-                    1,
-                    1,
-                    60
+                
+                
+                $result_id = $user->add_create(
+                    1, 1, 60
                 );
                 \Log::Debug("CREATE_ID={$result_id}");
             }
@@ -64,16 +90,36 @@ class CreateController extends Controller {
         }
         \Log::debug("CREATEする");
         \Log::debug(get_class($user));
-        
+
 
         /* そして増やす */
         return "OK";
+    }
+
+    public function take($id) {
+        $user = request()->user;
+
+        $create = $user->creates()->where("id", $id)->first();
+
+        if (
+            empty($create) || !$create->is_takable
+        )
+            return abort(403);
+
+        return $create->take() ? "OK" : abort(403);
     }
 
     public function status() {
         $user = request()->user;
 
         return $user->status();
+    }
+
+    public static function Routes() {
+        Route::get("/js/create", "CreateController@js_scene");
+        Route::POST("/api/create", "CreateController@create");
+        Route::get("/api/create/take/{id}", "CreateController@take");
+        Route::get("/play/create", "CreateController@index");
     }
 
 }

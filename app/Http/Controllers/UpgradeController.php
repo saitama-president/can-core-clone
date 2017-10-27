@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class UpgradeController extends Controller
+ implements \App\Common\ControllerRoute
 {
     public $scene_name="upgrade";
     use Traits\JsSceneTrait;
@@ -37,4 +39,10 @@ class UpgradeController extends Controller
         
         return $user->status();
     }
+
+    public static function Routes() {
+        Route::get("/play/upgrade","UpgradeController@index");
+        Route::get("/js/upgrade","UpgradeController@js_scene");
+    }
+
 }

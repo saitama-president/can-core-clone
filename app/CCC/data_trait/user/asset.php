@@ -9,7 +9,7 @@
 namespace App\CCC\data_trait\user;
 
 use App\CCC\data\user_asset;
-use App\CCC\data\master_assets;
+use App\CCC\data\master_item_asset;
 /**
  * Description of asset
  *
@@ -30,7 +30,8 @@ trait asset {
      */
     public function spend($key, $value = 10) {
         $asset = user_asset::where("user_id", $this->id)
-            ->where("asset_id", master_assets::idByKey($key))
+            ->where("asset_id", 
+                master_item_asset::idByKey($key))
             ->first();
 
         if (empty($asset))
@@ -38,6 +39,7 @@ trait asset {
 
         return $asset->spend($value);
     }
+    
 
     public function status() {
 

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
-class HomeController extends Controller
+class HomeController extends Controller implements \App\Common\ControllerRoute
 {
     public $scene_name="home";
     use Traits\JsSceneTrait;
@@ -40,4 +41,12 @@ class HomeController extends Controller
         
         return $user->status();
     }
+
+    public static function Routes() {
+        Route::get("/js/home","HomeController@js_scene");
+        Route::get("/play/home","HomeController@index");
+        Route::get('/index',"HomeController@index");
+        Route::get("/api/status","HomeController@status");
+    }
+
 }

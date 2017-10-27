@@ -8,6 +8,7 @@ class user_create extends Model implements \App\Common\CreateTable {
 
     public $table="user_create";
     public $fillable=[
+        "user_id",
         "line_id",
         "master_card_id",
         "complete_at",
@@ -25,13 +26,31 @@ class user_create extends Model implements \App\Common\CreateTable {
         $b->index(["user_id"],"idx_user_create");
     }
     
+    
+    /**
+     * 各種getter
+     * @return type
+     */    
+    public function getIsTakableAttribute(){
+        return 
+            empty($this->taked_at) 
+            && $this->complete_at < \Carbon\Carbon::Now()
+            ;
+    }
+    public function getIsTakedAttribute(){
+        return !empty($this->taked_at);
+    }
+    
     /**
      * 残り時間を取得
      */
-    public function left(){
-        return -\Carbon\Carbon::now()->diffInSeconds(\Carbon\Carbon::parse($this->complete_at));
-            
+    
+    public function getLeftAttribute(){
+        return 
+            \Carbon\Carbon::now()->diffInSeconds(\Carbon\Carbon::parse($this->complete_at));
     }
+    
+    
     
     /*完成しているものの取得*/
     public function take(){
@@ -48,16 +67,15 @@ class user_create extends Model implements \App\Common\CreateTable {
         
         //カード追加
         $this->save();
+        
         $card=new user_card([
             "user_id"=>$this->user_id,
             "master_card_id"=> $this->master_card_id,
             "created_at"=> \Carbon\Carbon::now()
         ]);
         
-        $card->save();
-        
-        return true;
-        
+        $card->save();        
+        return true;        
     }
     
     public function user()

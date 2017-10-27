@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 
-class DebugController extends Controller {
+class DebugController extends Controller implements \App\Common\ControllerRoute {
 
   /**
    * Create a new controller instance.
@@ -69,5 +69,10 @@ class DebugController extends Controller {
           "voice_type"=> \App\CCC\data\master_card_voice_type::all(),
       ]);
   }
+
+    public static function Routes() {
+        
+    }
+
 
 }

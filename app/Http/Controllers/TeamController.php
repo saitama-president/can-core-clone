@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class TeamController extends Controller
+ implements \App\Common\ControllerRoute
 {
     public $scene_name="team";
     use Traits\JsSceneTrait;
@@ -38,4 +40,10 @@ class TeamController extends Controller
         $user=request()->user;        
         return $user->status();
     }
+
+    public static function Routes() {
+        Route::get("/js/team","TeamController@js_scene");
+        Route::get("/play/team","TeamController@index");
+    }
+
 }
