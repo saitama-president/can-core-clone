@@ -62,7 +62,7 @@
 @foreach($user->assets()->get() as $asset)
     {{$asset->asset_id}}:{{$asset->value()}}
 @endforeach
-
+<a href="{{url('debug/asset_full')}}">素材フル回復</a>
 
 <a href="{{url('debug/master')}}">マスタ情報</a>
 
@@ -108,6 +108,7 @@
               <a href="/api/create/take/{{$create->id}}">回収</a>
               @elseif(0 < $create->left)              
               あと{{$create->left}} 秒
+              <a href="">時短</a>
               @else
                 取得不能
                 あと{{$create->left}} 秒

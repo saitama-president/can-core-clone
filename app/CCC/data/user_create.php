@@ -68,13 +68,27 @@ class user_create extends Model implements \App\Common\CreateTable {
         //カード追加
         $this->save();
         
+        \Log::debug("
+            user_id=>$this->user_id,
+            master_card_id=> $this->master_card_id,
+          
+        ");
+        
+        $card= user_card::firstOrCreate(
+          [
+            "user_id"=>$this->user_id,
+            "master_card_id"=> $this->master_card_id,
+          ]
+          );
+        $card->save();
+        /*
         $card=new user_card([
             "user_id"=>$this->user_id,
             "master_card_id"=> $this->master_card_id,
             "created_at"=> \Carbon\Carbon::now()
         ]);
-        
-        $card->save();        
+         * 
+         */
         return true;        
     }
     

@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
@@ -34,18 +35,7 @@ Route::group(['middleware' => ['play']], function () {
     App\Http\Controllers\UpgradeController::Routes();    
 
     if(config("app.debug")){        
-        Route::get("/debug/status","DebugController@status");
-        Route::get("/debug/login","DebugController@login");
-        
-        //マスタ一覧画面
-        Route::get("/debug/master","DebugController@master");
-        
-        Route::get("/debug/master_reload",function(){
-            
-            Artisan::call("master:load");
-            
-            return redirect("/debug/master")->with("message","取り込み完了");
-        });
+      App\Http\Controllers\DebugController::Routes();    
     }
     
     

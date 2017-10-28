@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Illuminate\Support\Facades\Route;
 
 class DebugController extends Controller implements \App\Common\ControllerRoute {
 
@@ -60,6 +61,17 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
     return abort(403);
   }
   
+  public function asset_full(\App\CCC\data\user $user){
+    \Log::Debug("素材回復するで{$user->id}");
+    
+    foreach($user->assets()->get() as $asset){
+      \Log::Debug("素材更新{$asset->id}");
+      $asset->last_update= \Carbon\Carbon::now()->addDay(-1);
+      $asset->save();
+    }
+    return redirect("/debug/status");
+  }
+  
   public function master(){
       
       
@@ -71,6 +83,21 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
   }
 
     public static function Routes() {
+        Route::get("/debug/create", "CreateController@js_scene");
+        Route::get("/debug/status","DebugController@status");
+        Route::get("/debug/login","DebugController@login");
+        
+        //マスタ一覧画面
+        Route::get("/debug/master","DebugController@master");
+        
+        Route::get("/debug/master_reload",function(){
+            
+            Artisan::call("master:load");
+            
+            return redirect("/debug/master")->with("message","取り込み完了");
+        });
+        
+        Route::get("/debug/asset_full","DebugController@asset_full");
         
     }
 
