@@ -61,8 +61,11 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
     return abort(403);
   }
   
-  public function asset_full(\App\CCC\data\user $user){
-    \Log::Debug("素材回復するで{$user->id}");
+  public function asset_full(){
+    $user= request()->user;
+    
+    \Log::Debug("素材回復するで{$user->name}");
+    \Log::Debug("素材.".$user->assets()->get());
     
     foreach($user->assets()->get() as $asset){
       \Log::Debug("素材更新{$asset->id}");

@@ -8,7 +8,7 @@ class user_card extends Model implements \App\Common\CreateTable {
 
     public $table = "user_card";
     public $fillable = [
-        "",
+        "user_id",
         "master_card_id"  ,
     ];
 

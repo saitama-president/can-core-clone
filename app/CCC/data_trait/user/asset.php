@@ -21,6 +21,8 @@ trait asset {
     public function assets() {
         return $this->hasMany("App\CCC\data\user_asset");
     }
+    
+    
 
     /**
      * 消費系

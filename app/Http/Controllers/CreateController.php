@@ -116,13 +116,20 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
     }
     
     public function shortcut($id){
+      $user = request()->user;
       
+      $create=$user->creates()->where("id",$id)->first();
+
+      $create->complete_at= \Carbon\Carbon::now()->addSecond(-1);
+      
+      $create->save();
+      return "OK";
     }
 
     public static function Routes() {
         Route::get("/js/create", "CreateController@js_scene");
         Route::POST("/api/create", "CreateController@create");
-        Route::POST("/api/create/shortcut/{id}", "CreateController@shortcut");
+        Route::get("/api/create/shortcut/{id}", "CreateController@shortcut");
         Route::get("/api/create/take/{id}", "CreateController@take");
         Route::get("/play/create", "CreateController@index");
     }

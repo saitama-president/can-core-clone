@@ -16,9 +16,14 @@ use App\CCC\data\user_create;
 trait create {
     //製造とか
     public function creates() {
-        return $this->hasMany("App\CCC\data\user_create");
+        return new \App\CCC\data_collection\assets($this->hasMany("App\CCC\data\user_create"));
+        //return $this->hasMany("App\CCC\data\user_create");
     }
     
+    public function creates_imcomplete(){
+      return $this->creates()->imcompletes();
+        //where("taked_at",null);
+    }
     
     
     public function add_create(
