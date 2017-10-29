@@ -3,40 +3,74 @@
 namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
-
 use App\CCC\data\user_create;
 
 class user extends Model implements \App\Common\CreateTable {
 
-    public $table="ccc_user";
-    //
-    public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
-        $b->increments('id');
-        $b->string('name',20);
-        
-        $b->timestamps();
-    }
-    
-    public static function FromToken($token){        
-         return session_token::where("token",$token)
-             ->first()
-             ->user()
-             ->first();
-    }
+  public $table = "ccc_user";
 
-    use \App\CCC\data_trait\user\payment;
-    use \App\CCC\data_trait\user\present;
-    use \App\CCC\data_trait\user\card;
-    use \App\CCC\data_trait\user\create;
-    use \App\CCC\data_trait\user\asset;
-    use \App\CCC\data_trait\user\charge;
-    use \App\CCC\data_trait\user\house;
-    use \App\CCC\data_trait\user\launch;
-    use \App\CCC\data_trait\user\payment;
-    use \App\CCC\data_trait\user\repair;
-    use \App\CCC\data_trait\user\team;
-    use \App\CCC\data_trait\user\upgrade;
+  //
+  public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
+    $b->increments('id');
+    $b->string('name', 20);
 
+    $b->timestamps();
+  }
 
+  public static function FromToken($token) {
+    return session_token::where("token", $token)
+                    ->first()
+                    ->user()
+                    ->first();
+  }
 
+  public function creates() {
+    return new \App\CCC\data_collection\creates($this->hasMany("App\CCC\data\user_create"));
+  }
+
+  //資材とか
+  public function assets() {
+    return  $this->hasMany("App\CCC\data\user_asset");
+  }
+
+  public function cards() {
+    return new \App\CCC\data_collection\cards($this->hasMany("App\CCC\data\user_card")) ;
+  }
+
+  public function charges() {
+    return $this->hasMany("App\CCC\data\user_card_charge");
+  }
+
+  public function housings() {
+    return $this->hasOne("App\CCC\data\user_housing");
+  }
+
+  public function launches() {
+    return $this->hasMany("App\CCC\data\user_launch");
+  }
+
+  public function payments() {
+    return $this->hasMany("App\CCC\data\user_payment");
+  }
+
+  public function presents() {
+    return $this->hasMany("App\CCC\data\user_present");
+  }
+
+  //入渠とか
+  public function repaires() {
+    return $this->hasMany("App\CCC\data\user_card_repair");
+  }
+
+  //編成とか
+  public function teams() {
+    return $this->hasMany("App\CCC\data\user_team");
+  }
+
+  //改造とか
+  public function upgrades() {
+    return $this->hasMany("App\CCC\data\user_card_upgrade");
+  }
+
+  use \App\CCC\data_trait\user\asset;
 }

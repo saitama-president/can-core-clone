@@ -30,6 +30,9 @@ class DataImportService {
         "master_card_voice_type"=>"ボイス種別定義",
         "master_card"=>"カード定義",
         
+        "master_recipient"=>"レシピテーブル定義",
+        //"master_card"=>"レシピ朱つりょkう定義",
+        
         //"master_card_voice"=>"ボイス定義",
         
         
@@ -67,6 +70,7 @@ class DataImportService {
             foreach(self::SHEET_LIST as $table=>$sheet_name){
                 
                 $sheet = $book->getSheetByName($sheet_name);
+                \Log::Debug("$sheet_name シート読み込み");
                 $data=$this->sheet2array($sheet);
                 $class_name='\App\CCC\data\\'.$table;
                 

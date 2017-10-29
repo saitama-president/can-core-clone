@@ -17,10 +17,7 @@ use App\CCC\data\master_item_asset;
  */
 trait asset {
 
-    //資材とか
-    public function assets() {
-        return $this->hasMany("App\CCC\data\user_asset");
-    }
+
     
     
 

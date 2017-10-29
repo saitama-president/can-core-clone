@@ -16,17 +16,17 @@
   $(document).ready(function () {
     $("#exec_build").click(
             function () {
-              
+
               if (!confirm("製造する"))
                 return false;
-              async("/api/create","POST",{
-                  "_token": "{{ csrf_token() }}",
-                  "type": 1,
-                  "L": $("#CREATE_NEW [name=L]").val(),
-                  "A": $("#CREATE_NEW [name=A]").val(),
-                  "B": $("#CREATE_NEW [name=B]").val(),
-                  "C": $("#CREATE_NEW [name=C]").val(),
-                  "D": $("#CREATE_NEW [name=D]").val()                
+              async("/api/create", "POST", {
+                "_token": "{{ csrf_token() }}",
+                "type": 1,
+                "L": $("#CREATE_NEW [name=L]").val(),
+                "A": $("#CREATE_NEW [name=A]").val(),
+                "B": $("#CREATE_NEW [name=B]").val(),
+                "C": $("#CREATE_NEW [name=C]").val(),
+                "D": $("#CREATE_NEW [name=D]").val()
               });
               return false;
             }
@@ -35,23 +35,34 @@
             function () {
               if (!confirm("開発する"))
                 return false;
+              
+              async("/api/create", "POST", {
+                "_token": "{{ csrf_token() }}",
+                "type": 2,
+                "A": $("#DEVELOP_NEW [name=A]").val(),
+                "B": $("#DEVELOP_NEW [name=B]").val(),
+                "C": $("#DEVELOP_NEW [name=C]").val(),
+                "D": $("#DEVELOP_NEW [name=D]").val()
+              });
+              
+              return false;
             }
     );
 
   });
-  
-  function async($url,$method="GET",$data={}){
+
+  function async($url, $method = "GET", $data = {}){
     $.ajax({
       url: $url,
       method: $method,
-      data:$data,
+      data: $data,
       success: function (data) {
         alert("成功");
         location.reload();
       },
       error: function (err) {
         alert("失敗");
-      }    
+      }
     });
   }
 
@@ -61,6 +72,8 @@
   function take($id) {
     async(`/api/create/take/${$id}`);
   }
+
+
 
 </script>
 
@@ -120,7 +133,7 @@
       </ul>
     </div>
   </li>
-  
+
   <li>
     <div id="DEBUG_CREATES">
 
@@ -168,21 +181,21 @@
         </label>
         <br>
 
-        <label>A<input type="number" name="A" value="30" min="30" class="num3col" /> </label>
-        <label>B<input type="number" name="B" value="30" min="30" class="num3col"/> </label>
-        <label>C<input type="number" name="C" value="30" min="30" class="num3col"/> </label>
-        <label>D<input type="number" name="D" value="30" min="30" class="num3col"/> </label>
+        <label>A<input type="number" name="A" value="30" min="30" max="999" class="num3col" /> </label>
+        <label>B<input type="number" name="B" value="30" min="30" max="999" class="num3col"/> </label>
+        <label>C<input type="number" name="C" value="30" min="30" max="999" class="num3col"/> </label>
+        <label>D<input type="number" name="D" value="30" min="30" max="999" class="num3col"/> </label>
         <button id="exec_build">製造実行</button>
       </form>
 
       <h3>開発</h3>
       <form id="DEVELOP_NEW">              
 
-        <label>A<input type="number" name="A" value="30" min="10" class="num3col" /> </label>
-        <label>B<input type="number" name="B" value="30" min="10" class="num3col"/> </label>
-        <label>C<input type="number" name="C" value="30" min="10" class="num3col"/> </label>
-        <label>D<input type="number" name="D" value="30" min="10" class="num3col"/> </label>
-        <button id="exec_develop">開発実行</button>
+        <label>A<input type="number" name="A" value="10" min="10" max="300" class="num3col" /> </label>
+        <label>B<input type="number" name="B" value="10" min="10" max="300" class="num3col"/> </label>
+        <label>C<input type="number" name="C" value="10" min="10" max="300" class="num3col"/> </label>
+        <label>D<input type="number" name="D" value="10" min="10" max="300" class="num3col"/> </label>
+        <button id="exec_develop" >開発実行</button>
       </form>
     </div>  
   </li>
