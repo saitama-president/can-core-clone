@@ -96,8 +96,8 @@
         @forelse($user->cards()->get() as $card)
         <li>
           <p>
-            {{$card->master()}}
-            :[{{$card->master_card_id}}]
+            
+            マスタ:{{$card->master()->master()}}            
             {{$card}}
           </p>
         </li>

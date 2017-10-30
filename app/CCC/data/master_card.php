@@ -10,7 +10,6 @@ class master_card extends Model implements \App\Common\CreateTable, \App\Common\
     public $fillable = [
         "id",
         "item_id",
-        "parent_card_id",
         "character_id",
         "rare",
         "card_class_id",
@@ -31,8 +30,12 @@ class master_card extends Model implements \App\Common\CreateTable, \App\Common\
         
     }
     
-    public function itemMaster(){
-        
+    public function master(){
+      
+        return $this->hasOne(
+            "App\CCC\data\master_item",
+            "id",
+            "item_id")->first();
     }
 
     public static function InitTable() {
