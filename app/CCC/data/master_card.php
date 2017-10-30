@@ -30,10 +30,16 @@ class master_card extends Model implements \App\Common\CreateTable, \App\Common\
         $b->integer('card_class_id');
         
     }
+    
+    public function itemMaster(){
+        
+    }
 
     public static function InitTable() {
         
     }
+    
+    
 
     public static function RegistMasterRow(array $data = array()) {
         if (empty($data["名前"])) {

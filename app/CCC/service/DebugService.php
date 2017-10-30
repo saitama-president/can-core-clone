@@ -31,10 +31,7 @@ class DebugService {
         $ccc_user->name = $user->name;
         $ccc_user->save();
 
-
         \Event::Fire(new \App\Events\UserRegistedEvent($ccc_user));
-
-
         //いろいろ突っ込む
         /* 製造 */
         $ccc_user->creates()->save(

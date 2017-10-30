@@ -96,7 +96,7 @@
         @forelse($user->cards()->get() as $card)
         <li>
           <p>
-            {{$card->master()->first()->name}}
+            {{$card->master()}}
             :[{{$card->master_card_id}}]
             {{$card}}
           </p>

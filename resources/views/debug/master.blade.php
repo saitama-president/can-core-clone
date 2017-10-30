@@ -39,9 +39,9 @@
       'App\CCC\data\master_character'=>"キャラクタ一覧",
       'App\CCC\data\master_rare_type'=>"レア度",
       'App\CCC\data\master_card_voice_type'=>"ボイス種別",
-      'App\CCC\data\master_card'=>"カード一覧",
-      'App\CCC\data\master_card'=>"カード一覧",
-      'App\CCC\data\master_card'=>"カード一覧",
+      'App\CCC\data\master_item'=>"アイテム全種",
+      'App\CCC\data\master_launch'=>"出撃対象",
+      'App\CCC\data\master_mission'=>"ミッション",
     ] as $class_name=>$label)
      <li>
         <h3 onclick="toggle('{{basename($class_name)}}')">
@@ -52,6 +52,8 @@
             <ul id="{{basename($class_name)}}" class="hide">                
                 @foreach($class_name::all() as $item)
                 <li>
+                    {{$item->id}}:{{$item->name}}
+                    <br>
                     {{$item}}
                 </li>            
                 @endforeach                

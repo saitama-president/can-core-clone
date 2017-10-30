@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class master_sailing extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
-    public $table="master_launch";
+    public $table="master_sailing";
   
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {

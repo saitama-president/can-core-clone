@@ -15,6 +15,8 @@ class user_mission extends Model implements \App\Common\CreateTable {
         $b->increments('id');
         $b->integer('user_id');
         $b->integer('mission_id');
+        
+        $b->integer('open_flg')->default(0);
         $b->integer('progress')->default(0);
         $b->integer('max_progress')->default(100);
         
