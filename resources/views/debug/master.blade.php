@@ -35,82 +35,30 @@
 <h2>マスタ一覧</h2>
 <ul id="master_list">
     @foreach([
-      "master_c"=>"カードマスタ"
-    ] as $id=>$v)
+      'App\CCC\data\master_card'=>"カード一覧",
+      'App\CCC\data\master_character'=>"キャラクタ一覧",
+      'App\CCC\data\master_rare_type'=>"レア度",
+      'App\CCC\data\master_card_voice_type'=>"ボイス種別",
+      'App\CCC\data\master_card'=>"カード一覧",
+      'App\CCC\data\master_card'=>"カード一覧",
+      'App\CCC\data\master_card'=>"カード一覧",
+    ] as $class_name=>$label)
      <li>
-        <h3 onclick="toggle('{{$id}}')">
-          {{$v}}
-          （{{
-            ('App\CCC\data'.'\master_card')::count()}}）
+        <h3 onclick="toggle('{{basename($class_name)}}')">
+          {{$label}}
+          （{{$class_name::count()}}）
         </h3>
         <div>
-            <ul id="{{$id}}" class="hide">
-                @foreach(App\CCC\data\master_card::all() as $item)
+            <ul id="{{basename($class_name)}}" class="hide">                
+                @foreach($class_name::all() as $item)
                 <li>
                     {{$item}}
                 </li>            
-                @endforeach
+                @endforeach                
             </ul>
         </div>
     </li>
     @endforeach
-     <li>
-        <h3 onclick="toggle('master_card')">カード一覧
-          （{{App\CCC\data\master_card::count()}}）
-        </h3>
-        <div>
-            <ul id="master_card" class="hide">
-                @foreach(App\CCC\data\master_card::all() as $item)
-                <li>
-                    {{$item->id}}:{{$item->name}}
-                </li>            
-                @endforeach
-            </ul>
-        </div>
-    </li>
-
-  
-    <li>
-        <h3 onclick="toggle('master_character')">キャラクタ一覧
-          （{{App\CCC\data\master_character::count()}}）
-        </h3>
-        <div>
-            <ul id="master_character" class="hide">
-                @foreach(App\CCC\data\master_character::all() as $item)
-                <li>
-                    {{$item->id}}:{{$item->name}}
-                </li>            
-                @endforeach
-            </ul>
-        </div>
-    </li>
-
-    <li>
-        <h3 onclick="toggle('master_rare')">レア度</h3>
-        <div>
-            <ul id="master_rare" class="hide">
-                @foreach(App\CCC\data\master_rare_type::all() as $item)
-                <li>
-                    {{$item->id}}:{{$item->name}}
-                </li>            
-                @endforeach
-            </ul>
-        </div>
-    </li>
-
-    <li>
-        <h3 onclick="toggle('voice_type')">ボイス種別</h3>
-        <div>
-            <ul id="voice_type" class="hide">
-                @foreach(\App\CCC\data\master_card_voice_type::all() as $item)
-                <li>
-                    {{$item->id}}:{{$item->name}}
-                </li>            
-                @endforeach
-            </ul>
-        </div>
-    </li>
-
 </ul>
 
 @endsection

@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\CCC\data\user_team;
 
 class UserRegistedEvent implements \App\Common\EventHandler {
 
@@ -39,14 +40,21 @@ class UserRegistedEvent implements \App\Common\EventHandler {
     public function onFire() {
 
         $assets = \App\CCC\data\master_item_asset::all();
-
+        $user= $this->u;
         //資材関連の登録
         foreach ($assets as $asset) {
             \Log::Debug("ASSET:{$asset->id}");
-            $this->u->assets()->save(
+            $user->assets()->save(
                 new \App\CCC\data\user_asset(["asset_id" => $asset->id])
             );
         }
+        /*チーム関連の登録*/
+        $team=new user_team([
+            "user_id"=> $user->id,
+            "team_id"=>1
+        ]);
+        $team->save();
+        
     }
 
 }

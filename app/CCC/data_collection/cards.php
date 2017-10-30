@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @author shinp
  */
-class cards extends CollectionBase{  
+class cards extends UserCollection{  
 
 
 

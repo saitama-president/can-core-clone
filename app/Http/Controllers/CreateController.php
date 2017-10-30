@@ -60,14 +60,11 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
         use($user,$items)
         {
         
-        
+        $assets=$user->assets();
         \Log::Debug("開発しようとしてるで");
         foreach ($items as $k => $v) {
-          \Log::debug($k);
-          $asset = $user->assets()->where("asset_id", $k)->first();
-          \Log::debug($asset->id);
-          if (!$asset->spend($v)) {
-            throw new \Exception("素材足りひん[{$asset->value()} - $v {$k}]");
+          if (!$assets->spend($k,$v)) {
+            throw new \Exception("素材足りひん[ - $v {$k}]");
           }
         }
         //素材を消費
@@ -112,6 +109,7 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
     $user = request()->user;
 
     try {
+
       /* 減らす */
       DB::transaction(
               function()
@@ -120,12 +118,10 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
               $line
 
               ) {
+        $assets=$user->assets();
         //資材を消費
         foreach ($items as $k => $v) {
-          \Log::debug($k);
-          $asset = $user->assets()->where("asset_id", $k)->first();
-          \Log::debug($asset->id);
-          if (!$asset->spend($v)) {
+          if (!$assets->spend($k,$v)) {
             throw new \Exception("素材足りひん[{$asset->value()} - $v {$k}]");
           }
         }

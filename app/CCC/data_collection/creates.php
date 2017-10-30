@@ -17,7 +17,7 @@ use App\CCC\data\user_create;
  *
  * @author shinp
  */
-class creates extends CollectionBase {
+class creates extends UserCollection {
 
   public function imcompletes() {
     \Log::Debug("imcompletes!");

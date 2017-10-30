@@ -16,7 +16,6 @@
   $(document).ready(function () {
     $("#exec_build").click(
             function () {
-
               if (!confirm("製造する"))
                 return false;
               async("/api/create", "POST", {
@@ -28,7 +27,6 @@
                 "C": $("#CREATE_NEW [name=C]").val(),
                 "D": $("#CREATE_NEW [name=D]").val()
               });
-              return false;
             }
     );
     $("#exec_develop").click(
@@ -36,7 +34,7 @@
               if (!confirm("開発する"))
                 return false;
               
-              async("/api/create", "POST", {
+              return async("/api/create", "POST", {
                 "_token": "{{ csrf_token() }}",
                 "type": 2,
                 "A": $("#DEVELOP_NEW [name=A]").val(),
@@ -44,8 +42,6 @@
                 "C": $("#DEVELOP_NEW [name=C]").val(),
                 "D": $("#DEVELOP_NEW [name=D]").val()
               });
-              
-              return false;
             }
     );
 
@@ -64,6 +60,7 @@
         alert("失敗");
       }
     });
+    return false;
   }
 
   function shortcut($id) {
@@ -91,11 +88,6 @@
 <a href="{{url('debug/master')}}">マスタ情報</a>
 
 <ul>
-  <li>
-    <div id="">
-
-    </div>
-  </li>
 
   <li>
     <div id="DEBUG_CARDS">
@@ -106,7 +98,7 @@
           <p>
             {{$card->master()->first()->name}}
             :[{{$card->master_card_id}}]
-            {{$card->id}}                
+            {{$card}}
           </p>
         </li>
         @empty
@@ -119,12 +111,10 @@
     <div id="DEBUG_EQUIP">
       <h3>所持装備</h3>
       <ul>
-        @forelse($user->cards()->get() as $card)
+        @forelse($user->equips()->get() as $equip)
         <li>
           <p>
-            {{$card->master()->first()->name}}
-            :[{{$card->master_card_id}}]
-            {{$card->id}}                
+            {{$equips}}                
           </p>
         </li>
         @empty
@@ -199,6 +189,34 @@
       </form>
     </div>  
   </li>
+  <li>
+    <div id="DEBUG_TEAM">
+      <h3>チーム編成</h3>
+      <ul>
+          
+        @forelse($user->teams()->get() as $team)
+        <li>
+            <h4>{{$team->team_id}}:{{$team->name}}</h4>
+            <form id="TEAM_{{$team->team_id}}">
+                @for($i=1;$i<=6;$i++)
+                <select name="{{$i}}">
+                    <option value="">外す</option>
+                    @foreach($user->cards()->get() as $card)
+                    <option>{{$card->name}}</option>
+                    @endforeach
+                </select>
+                @endfor
+                <button onclick="return async(
+                            
+                );">更新</button>
+            </form>            
+        </li>
+        @empty
+        なし
+        @endforelse
+      </ul>
+    </div>
+  </li>  
   <li>
     <div id="DEBUG_LAUNCH">
       <h3>出撃可能地域リスト</h3>

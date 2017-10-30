@@ -25,18 +25,28 @@ class user extends Model implements \App\Common\CreateTable {
   }
 
   public function creates() {
-    return new \App\CCC\data_collection\creates($this->hasMany("App\CCC\data\user_create"));
+    return new \App\CCC\data_collection\creates(
+        $this,
+        $this->hasMany("App\CCC\data\user_create")
+        );
   }
 
   //資材とか
   public function assets() {
-    return  $this->hasMany("App\CCC\data\user_asset");
+    return new \App\CCC\data_collection\assets(
+        $this,
+        $this->hasMany("App\CCC\data\user_asset")
+        );
   }
 
   public function cards() {
-    return new \App\CCC\data_collection\cards($this->hasMany("App\CCC\data\user_card")) ;
+    return new \App\CCC\data_collection\cards(
+        $this,
+        $this->hasMany("App\CCC\data\user_card")
+        );
   }
 
+  /*補充はカードに紐づいてる！*/
   public function charges() {
     return $this->hasMany("App\CCC\data\user_card_charge");
   }
@@ -66,11 +76,14 @@ class user extends Model implements \App\Common\CreateTable {
   public function teams() {
     return $this->hasMany("App\CCC\data\user_team");
   }
+  
+  public function equips(){
+    return $this->hasMany("App\CCC\data\user_equipment");
+  }
 
   //改造とか
   public function upgrades() {
     return $this->hasMany("App\CCC\data\user_card_upgrade");
   }
 
-  use \App\CCC\data_trait\user\asset;
 }

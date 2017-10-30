@@ -29,5 +29,23 @@ class user_card extends Model implements \App\Common\CreateTable {
         return $this->hasOne("App\CCC\data\master_card", "id", "master_card_id")
                 ->first();
     }
+    
+    public static function add(user $user,$master_card_id){
+      $card=new user_card([
+          "user_id"=>$user->id,
+          "master_card_id"=>$master_card_id
+      ]);
+      $card->save();
+      
+      $charge=new user_card_charge([
+        "user_id"=>$user->id,
+        "card_id"=>$card->id
+      ]);
+      $charge->save();
+      
+      
+
+        
+    }
 
 }
