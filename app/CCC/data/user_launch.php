@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class user_launch extends Model implements \App\Common\CreateTable {
 
   public $table="user_launch";
+  public $fillable=["launch_id"];
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');

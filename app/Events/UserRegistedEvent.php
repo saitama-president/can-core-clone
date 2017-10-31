@@ -49,11 +49,14 @@ class UserRegistedEvent implements \App\Common\EventHandler {
             );
         }
         /*チーム関連の登録*/
-        $team=new user_team([
-            "user_id"=> $user->id,
-            "team_id"=>1
-        ]);
-        $team->save();
+        $user->teams()->save(new user_team(["team_id"=>1]));
+        /*出撃関連の登録*/       
+        $user->launches()->save(new \App\CCC\data\user_launch([
+            "launch_id"=>1,
+            
+            ]));
+        
+        
         
     }
 

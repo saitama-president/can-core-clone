@@ -103,8 +103,8 @@
              弾:{{$card->charge->ammo}}
              
              ]<br>
-             {{--[気分:{{$card->tension()->value()}}]--}}
-            {{--{{$card}}--}}
+             [気分:{{$card->tension->value()}}]
+             {{$card->uniq_name}}
           </p>
         </li>
         @empty
@@ -226,6 +226,25 @@
   <li>
     <div id="DEBUG_LAUNCH">
       <h3>出撃可能地域リスト</h3>
+      <ul>
+        @forelse($user->launches()->get() as $launch)
+        あああ
+        @empty
+        なし
+        @endforelse
+      </ul>
+    </div>
+  </li>
+  
+    <li>
+    <div id="DEBUG_MISSION">
+      <h3>ミッション一覧</h3>
+      
+      <h4>受託中</h4>
+      <ul>
+        
+      </ul>
+      <h4>受託可能</h4>
       <ul>
         @forelse($user->launches()->get() as $launch)
         あああ

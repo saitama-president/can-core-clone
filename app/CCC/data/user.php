@@ -58,6 +58,11 @@ class user extends Model implements \App\Common\CreateTable {
   public function launches() {
     return $this->hasMany("App\CCC\data\user_launch");
   }
+  
+  public function missions() {
+    return $this->hasMany("App\CCC\data\user_mission");
+  }
+  
 
   public function payments() {
     return $this->hasMany("App\CCC\data\user_payment");

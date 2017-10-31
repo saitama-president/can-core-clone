@@ -41,22 +41,13 @@ class user_card_tension extends Model implements \App\Common\CreateTable {
      */
     public function value(){
         $now= \Carbon\Carbon::now();
+        \Log::Debug($this->last_update);
         //$master=$this->master();
-        $length= abs($now->diffInSeconds($this->last_update));
+        $duration= abs($now->diffInSeconds(\Carbon\Carbon::parse($this->last_update)));
         
-        $base_value=$this->last_value;
-        $max_value=$this->max_value;
-        $last_update= \Carbon\Carbon::parse($this->last_update);
-        //$cycle=$master->cycle;
-        $cycle=120;
-        $diff_second=$now->diffInSeconds($last_update);
-        $calc_value=$base_value + ceil($diff_second/$cycle);
         
-        return ($max_value<=$base_value)
-        ?$base_value
-        :($max_value<=$calc_value)
-            ?$max_value
-            :$calc_value;
+        
+        return $this->last_value;
 
     }
 
