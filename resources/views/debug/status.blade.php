@@ -95,10 +95,16 @@
       <ul>
         @forelse($user->cards()->get() as $card)
         <li>
-          <p>
-            
-            マスタ:{{$card->master()->master()}}            
-            {{$card}}
+          <p>            
+            マスタ:{{$card->master()}}<br>
+            [
+             H:{{$card->charge->hp}},
+             燃:{{$card->charge->fuel}},
+             弾:{{$card->charge->ammo}}
+             
+             ]<br>
+             {{--[気分:{{$card->tension()->value()}}]--}}
+            {{--{{$card}}--}}
           </p>
         </li>
         @empty
@@ -202,7 +208,7 @@
                 <select name="{{$i}}">
                     <option value="">外す</option>
                     @foreach($user->cards()->get() as $card)
-                    <option>{{$card->name}}</option>
+                    <option>{{$card->uniq_name}}</option>
                     @endforeach
                 </select>
                 @endfor

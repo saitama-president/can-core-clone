@@ -43,13 +43,6 @@ class DebugService {
             ])
         );
         /* カード */
-        $ccc_user->cards()->save(
-            new \App\CCC\data\user_card([
-            "line_id" => 1,
-            "master_card_id" => 1,
-            "created_at" => \Carbon\Carbon::now(),
-            "complete_at" => \Carbon\Carbon::now()->addMinute()
-        ]));
         \Log::debug("ユーザは作成できた？");
         
         return $ccc_user;

@@ -48,14 +48,19 @@ class master_card_spec extends Model implements \App\Common\CreateTable, \App\Co
         
         $b->integer('level_type');//レベルキャップ
 
+        $b->integer('hp');        
+        $b->integer('atk');
+        $b->integer('matk');
         
-        $b->integer('luck');
-        $b->integer('slot');
+        $b->integer('def');
+        $b->integer('mdef');
         $b->integer('speed');
-        $b->integer('range');
+                        
         $b->integer('gus');
         $b->integer('ammo');
-        
+       
+        $b->integer('luck');
+        $b->integer('slot');
         
         $b->unique(['master_card_id'],"uniq_master_card_spec");
         $b->string('name',50);

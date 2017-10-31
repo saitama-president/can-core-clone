@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
     カードの燃料：弾薬を管理します。
  *  体調も管理します
  *  */
-class user_card_charge extends Model implements \App\Common\CreateTable {
+class user_card_status extends Model implements \App\Common\CreateTable {
 
-   public $table="user_card_charge";
+   public $table="user_card_status";
    public $fillable=[
        "user_id",
        "card_id",
@@ -21,9 +21,10 @@ class user_card_charge extends Model implements \App\Common\CreateTable {
         $b->integer("user_id");
         
         $b->timestamps();
-        $b->index(["user_id"],"idx_user_card_charge");
+        $b->index(["user_id"],"idx_card_status");
         $b->bigInteger("card_id");
-        $b->unique(["card_id"],"uniq_user_card_charge");
+        $b->unique(["card_id"]);
+        $b->integer("hp")->default(100);
         $b->integer("fuel")->default(100);
         $b->integer("ammo")->default(100);        
     }
