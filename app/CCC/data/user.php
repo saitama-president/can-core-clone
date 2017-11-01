@@ -16,13 +16,23 @@ class user extends Model implements \App\Common\CreateTable {
 
     $b->timestamps();
   }
-
-  public static function FromToken($token) {
-    return session_token::where("token", $token)
-                    ->first()
-                    ->user()
-                    ->first();
+  
+/*
+  getter ここから
+ *  */    
+  public function getStatusAttribute(){
+    return $this->status()->first();
   }
+  
+  public function status(){
+    return $this->hasOne("App\CCC\data\user_status");
+  }
+  
+  /**
+   * getter ここまで
+   * @return \App\CCC\data_collection\creates
+   */
+
 
   public function creates() {
     return new \App\CCC\data_collection\creates(
@@ -45,6 +55,7 @@ class user extends Model implements \App\Common\CreateTable {
         $this->hasMany("App\CCC\data\user_card")
         );
   }
+  
 
   /*補充はカードに紐づいてる！*/
   public function charges() {
@@ -74,7 +85,7 @@ class user extends Model implements \App\Common\CreateTable {
 
   //入渠とか
   public function repaires() {
-    return $this->hasMany("App\CCC\data\user_card_repair");
+    return $this->hasMany("App\CCC\data\user_repair");
   }
 
   //編成とか

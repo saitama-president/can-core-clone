@@ -56,14 +56,13 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
 
     $user = request()->user;
     try {
-      DB::transaction(function() 
-        use($user,$items)
-        {
-        
-        $assets=$user->assets();
+      DB::transaction(function()
+              use($user, $items) {
+
+        $assets = $user->assets();
         \Log::Debug("開発しようとしてるで");
         foreach ($items as $k => $v) {
-          if (!$assets->spend($k,$v)) {
+          if (!$assets->spend($k, $v)) {
             throw new \Exception("素材足りひん[ - $v {$k}]");
           }
         }
@@ -75,20 +74,19 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
         $master_card_id = 1;
         $complete_time = 120;
         /*
-        $result_id = $user->creates()->add(
-                $user->id, $line, $master_card_id, $complete_time
-        );*/
+          $result_id = $user->creates()->add(
+          $user->id, $line, $master_card_id, $complete_time
+          ); */
         \Log::Debug("CREATE_ID={$result_id}");
-       
       });
     } catch (Exception $ex) {
-        \Log::Debug("例外でとるで");
-        \Log::Debug($e->getMessage());
-        \Log::Debug($e->getTraceAsString());
-      
+      \Log::Debug("例外でとるで");
+      \Log::Debug($e->getMessage());
+      \Log::Debug($e->getTraceAsString());
+
       return abort(403);
     }
-    
+
     return "OK";
   }
 
@@ -118,10 +116,10 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
               $line
 
               ) {
-        $assets=$user->assets();
+        $assets = $user->assets();
         //資材を消費
         foreach ($items as $k => $v) {
-          if (!$assets->spend($k,$v)) {
+          if (!$assets->spend($k, $v)) {
             throw new \Exception("素材足りひん[{$asset->value()} - $v {$k}]");
           }
         }
@@ -172,6 +170,31 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
     return $user->status();
   }
 
+  /**
+   * 分解
+   */
+  public function teardown($id) {
+    $user = request()->user;
+    try {
+      DB::transaction(function() 
+              use($user,$id){
+        $user->cards()->remove($id);
+        
+      });
+    } catch (\Exception $e) {
+      return abort(403);
+    }
+    return "OK";
+  }
+
+  /*
+   * 廃棄
+   */
+
+  public function dispose($id) {
+    
+  }
+
   public function shortcut($id) {
     $user = request()->user;
 
@@ -187,6 +210,7 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
     Route::get("/js/create", "CreateController@js_scene");
     Route::POST("/api/create", "CreateController@create");
     Route::get("/api/create/shortcut/{id}", "CreateController@shortcut");
+    Route::get("/api/create/teardown/{id}", "CreateController@teardown");
     Route::get("/api/create/take/{id}", "CreateController@take");
     Route::get("/play/create", "CreateController@index");
   }

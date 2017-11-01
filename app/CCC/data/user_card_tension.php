@@ -21,7 +21,7 @@ class user_card_tension extends Model implements \App\Common\CreateTable {
         $b->integer("user_id");
         $b->biginteger("card_id");
         $b->tinyInteger("tension_type")->default(1);
-        $b->unique(["user_id","tension_type"]);
+        $b->unique(["user_id","card_id","tension_type"],"uniq_uct");
         
         $b->timestamps();        
         $b->integer('last_value')->default(50);

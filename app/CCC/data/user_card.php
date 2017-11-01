@@ -65,6 +65,7 @@ class user_card extends Model implements \App\Common\CreateTable {
     
     
     public static function add(user $user,$master_card_id){
+      \Log::debug("カードadd呼ばれた");
       $card=new user_card([
           "user_id"=>$user->id,
           "master_card_id"=>$master_card_id
@@ -81,6 +82,7 @@ class user_card extends Model implements \App\Common\CreateTable {
         "user_id"=>$user->id,
         "card_id"=>$card->id
       ]);
+      \Log::Debug("気分２");
       $tension->save();
       
 

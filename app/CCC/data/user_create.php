@@ -69,14 +69,16 @@ class user_create extends Model implements \App\Common\CreateTable {
     
     $card=new user_card(["master_card_id"=>$this->master_card_id]);
     $user->cards()->save($card);
-    \Log::Debug(var_export($card,true));    
+    //\Log::Debug(var_export($card,true));    
     $card->status()->save(new user_card_status([
         "user_id"=>$user->id,
         "hp"=>100
         ]));
-    $card->tension()->save(new user_card_tension(["user_id"=>$user->id]));
+    $tention=new user_card_tension(["user_id"=>$user->id]);
+    $card->tension()->save($tention);
+     \Log::Debug("気分を保存した:{$tention->id}:{$tention->card_id}");
     //$card->status()->save(new user_car)
-    
+  
 
     return true;
   }

@@ -14,7 +14,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @author shinp
  */
 class cards extends UserCollection{  
-
+    public function remove($id){
+      //削除
+      $this->find($id)->delete();
+      
+      return true;
+    }
 
 
 }

@@ -45,10 +45,7 @@ class creates extends UserCollection {
   }
   
   
+  
 
-  public function add_x(
-  ) {
-    
-  }
 
 }
