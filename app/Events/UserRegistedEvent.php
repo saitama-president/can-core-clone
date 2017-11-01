@@ -48,6 +48,8 @@ class UserRegistedEvent implements \App\Common\EventHandler {
                 new \App\CCC\data\user_asset(["asset_id" => $asset->id])
             );
         }
+        
+        
         /*チーム関連の登録*/
         $user->teams()->save(new user_team(["team_id"=>1]));
         /*出撃関連の登録*/       

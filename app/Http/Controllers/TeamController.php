@@ -40,9 +40,32 @@ class TeamController extends Controller
         $user=request()->user;        
         return $user->status();
     }
+    
+    public function edit_commit(){
+        $user= request()->user;
+        
+        $team_id= request("team_id");
+        
+        $members=[
+            
+        ];
+        
+        
+        
+        return "OK";
+    }
+    
+    public function edit_list(){
+        $user= request()->user;
+        $team_id= request("team_id");
+        
+        
+    }
 
     public static function Routes() {
         Route::get("/js/team","TeamController@js_scene");
+        Route::POST("/api/team/edit","TeamController@edit_commit");
+        Route::get("/api/team/edit","TeamController@edit_list");
         Route::get("/play/team","TeamController@index");
     }
 

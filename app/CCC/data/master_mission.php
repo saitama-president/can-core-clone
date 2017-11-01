@@ -29,7 +29,17 @@ class master_mission extends Model implements \App\Common\CreateTable, \App\Comm
             
         }        
     }
-
+    
+    public function isOpenWithUser(user $user){
+        return true;
+    }
+    
+    public function isAcceptableWithUser(user $user){
+        return true;
+    }
+    
+    public function accept(user $user){
+    }
     public static function RegistMasterRow(array $data = array()) {
         
     }
