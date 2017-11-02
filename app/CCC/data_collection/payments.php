@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @author shinp
  */
-class payments extends CollectionBase {
+class payments extends UserCollection {
 
   public function getFreeStone() {
 

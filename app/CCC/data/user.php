@@ -56,6 +56,10 @@ class user extends Model implements \App\Common\CreateTable {
         );
   }
   
+  public function team($team_id){
+      return $this->teams()->where("team_id",$team_id)->first();
+  }
+  
 
   /*補充はカードに紐づいてる！*/
   public function charges() {

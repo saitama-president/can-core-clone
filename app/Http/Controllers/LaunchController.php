@@ -29,17 +29,16 @@ class LaunchController extends Controller
      * 出撃を行う。
      * @return type
      */
-    public function launch(){
+    public function launch($launch_id,$team_id){
         
-        
-        $team_id = request("team_id");
-        $launch_id = request("launch_id");
+        \Log::debug("出撃した");
         
         
         
-        //出撃結果を取得する
+        //出撃結果を出力する
+        //結果
         return [
-            "OK"            
+            "OK"  
         ];
     }
         
@@ -51,20 +50,20 @@ class LaunchController extends Controller
         ]);
     }
     
+    
 
     /**
      * 状況を取得する
      */
     public function status(){
-        
-        
         return $this->user->launches()->toJson();
     }
 
     public static function Routes() {
         Route::get("/js/launch","LaunchController@js_scene");
         Route::get("/play/launch","LaunchController@index");
-        Route::get("/api/launch/{map_id}/{team_id}","LaunchController@launch");
+        
+        Route::get("/api/launch/{launch_id}/{team_id}","LaunchController@launch");
         Route::get('/launch',"LaunchController@result");
     }
 

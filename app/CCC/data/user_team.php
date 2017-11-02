@@ -29,7 +29,7 @@ class user_team extends Model implements \App\Common\CreateTable {
     }
     
     public function members(){
-        return $this->hasMany("App\CCC\data\user_team_member");
+        return $this->hasMany("App\CCC\data\user_team_member","team_id");
     }
 
 }

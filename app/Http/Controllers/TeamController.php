@@ -42,6 +42,8 @@ class TeamController extends Controller
     }
     
     public function edit_commit(){
+        \Log::Debug("チーム編集");
+        
         $user= request()->user;
         
         $team_id= request("team_id");
