@@ -44,12 +44,12 @@
       'App\CCC\data\master_mission'=>"ミッション",
     ] as $class_name=>$label)
      <li>
-        <h3 onclick="toggle('{{basename($class_name)}}')">
+        <h3 onclick="toggle('{{preg_match('#[^\\\]+$#',$class_name,$match)?$match[0]:""}}')">
           {{$label}}
           （{{$class_name::count()}}）
         </h3>
         <div>
-            <ul id="{{basename($class_name)}}" class="hide">                
+            <ul id="{{preg_match('#[^\\\]+$#',$class_name,$match)?$match[0]:""}}" class="hide">                
                 @foreach($class_name::all() as $item)
                 <li>
                     {{$item->id}}:{{$item->name}}
