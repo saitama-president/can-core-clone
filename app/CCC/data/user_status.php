@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class user_status extends Model implements \App\Common\CreateTable {
 
     public $table="user_status";
+    
+    public $fillable=[
+        "user_id"
+    ];
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');

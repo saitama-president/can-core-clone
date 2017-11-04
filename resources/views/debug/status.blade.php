@@ -158,8 +158,6 @@
                     <label>
                         {{$i}}
                         <input name="L" type="radio" value="{{$i}}"
-
-
                                @if($user->creates()
                                ->where("line_id",$i)
                                ->where("taked_at",null)
@@ -220,30 +218,23 @@
     </li>
     <li>
         <div id="DEBUG_TEAM">
-            <h3>チーム編成</h3>
+            <h3>チーム編成({{$user->status->id}})</h3>
             <ul>
-                @for($i=1;$i<=$user->status->team_max;$i++)
+                @foreach($user->teams as $team)
                 <li>
-                    
-                    <?php 
-                    
-                        $team=$user->team($i);
-                    ?>
-                    {{$team}}
-                    
-                    ああああああ
-                    
-                    {{--<h4>{{$team->team_id}}:{{$team->name}}</h4>--}}
-                    
-                    <form id="TEAM_{{-- $team->team_id --}}">
-                        {{--
+                  <h4>{{$team->team_id}}:{{$team->name}}</h4>
+                                        <form id="TEAM_{{-- $team->team_id --}}">
+                        
+                        
                         @foreach([
                         "A","B","C","D","E","F"
                         ] as $k)
                         <select name="{{$k}}">
                             <option value="0">外す</option>
                             @foreach($user->cards()->get() as $card)
-                            <option>{{$card->uniq_name}}</option>
+                            <option>
+                              {{$card->uniq_name}}
+                            </option>
                             @endforeach
                         </select>
                         @endforeach
@@ -261,10 +252,10 @@
                                             'F': $('#TEAM_{{$team->team_id}} [name = F]').val()
                                         }
                                 );">更新</button>
-                        --}}
-                    </form>            
+                        
+                    </form> 
                 </li>
-                @endfor
+                @endforeach
             </ul>
         </div>
     </li>  

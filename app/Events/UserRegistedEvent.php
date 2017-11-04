@@ -9,7 +9,9 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\CCC\data\user_status;
 use App\CCC\data\user_team;
+
 
 class UserRegistedEvent implements \App\Common\EventHandler {
 
@@ -48,8 +50,11 @@ class UserRegistedEvent implements \App\Common\EventHandler {
                 new \App\CCC\data\user_asset(["asset_id" => $asset->id])
             );
         }
-        $user->status()->save(new \App\CCC\data\user_status());
-        $user->teams()->save(new user_team(["team_id"=>1]));
+        \Log::Debug("ステータス登録");
+        $user->status()->save(new user_status());
+        \Log::Debug("チーム登録");
+        $team=new user_team(["team_id"=>1]);
+        $user->teams()->save($team);
         
         /*チーム関連の登録*/
         /*出撃関連の登録*/       

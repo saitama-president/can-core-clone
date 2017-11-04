@@ -30,11 +30,6 @@ class master_recipient extends Model implements \App\Common\CreateTable, \App\Co
     }
 
     public static function InitTable() {
-      master_recipient::insert(
-              [
-                  
-              ]
-              );
     }
 
     public static function RegistMasterRow(array $data = array()) {
