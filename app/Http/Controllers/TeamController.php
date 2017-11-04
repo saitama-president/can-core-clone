@@ -45,7 +45,7 @@ class TeamController extends Controller
         \Log::Debug("チーム編集");
         
         $user= request()->user;
-        
+        \Log::Debug(request()->all());
         $team_id= request("team_id");
         
         $members=[

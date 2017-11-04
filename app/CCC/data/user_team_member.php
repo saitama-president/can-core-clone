@@ -12,6 +12,7 @@ class user_team_member extends Model implements \App\Common\CreateTable {
         $b->increments('id');
         $b->integer('user_id');        
         $b->integer("team_id");
+        $b->integer("position_index");
         $b->timestamps();
         $b->index(["user_id"],"idx_user_team_member");        
         $b->integer("card_id");

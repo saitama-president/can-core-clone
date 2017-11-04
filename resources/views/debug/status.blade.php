@@ -223,16 +223,19 @@
                 @foreach($user->teams as $team)
                 <li>
                   <h4>{{$team->team_id}}:{{$team->name}}</h4>
-                                        <form id="TEAM_{{-- $team->team_id --}}">
-                        
+                        <form id="TEAM_{{-- $team->team_id --}}">
                         
                         @foreach([
                         "A","B","C","D","E","F"
-                        ] as $k)
+                        ] as $index=>$k)
                         <select name="{{$k}}">
                             <option value="0">外す</option>
                             @foreach($user->cards()->get() as $card)
-                            <option>
+                            <option value="{{$card->id}}" 
+                                    @if($team->member($index) &&
+                                      $team->member($index)->card_id == $card->id)
+                                    selected
+                                    @endif>
                               {{$card->uniq_name}}
                             </option>
                             @endforeach
