@@ -32,7 +32,7 @@ class user_team extends Model implements \App\Common\CreateTable {
     }
     
     public function member($index){
-      return $this->members()->where("",$index)->first();
+      return $this->members()->where("position_index",$index)->first();
     }
 
 }

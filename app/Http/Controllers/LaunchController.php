@@ -31,15 +31,20 @@ class LaunchController extends Controller
      */
     public function launch($launch_id,$team_id){
         
-        \Log::debug("出撃した");
+        \Log::debug("出撃した:TEAM={$team_id},LAUNCH={$launch_id}");
+        $user= request()->user;
+        
+        $members=$user->team($team_id)->members();
+        
+        foreach($members->get() as $member){
+          \Log::Debug("memm");
+        }
         
         
         
         //出撃結果を出力する
         //結果
-        return [
-            "OK"  
-        ];
+        return "OK"  ;
     }
         
     /**/

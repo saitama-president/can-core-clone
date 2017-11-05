@@ -39,10 +39,27 @@ class UpgradeController extends Controller
         
         return $user->status();
     }
+    
+    public function rename(){
+      \Log::Debug("リネーム");
+      $user= request()->user;
+      
+      $name=request("name");
+      $card_id=request("card_id");
+      
+      $card= $user->cards()->where("id",$card_id)->first();
+      
+      $card->uniq_name="$name";
+      $card->save();
+      
+      return "OK";
+    }
 
     public static function Routes() {
         Route::get("/play/upgrade","UpgradeController@index");
+        Route::POST("/play/upgrade/rename","UpgradeController@rename");
         Route::get("/js/upgrade","UpgradeController@js_scene");
+        
     }
 
 }

@@ -65,6 +65,7 @@
                 @forelse($user->cards()->get() as $card)
                 <li>
                     <label>
+                        名前：{{$card->uniq_name}}
                         ({{$card->id}})>
                         {{$card->master()}}
                         [
@@ -73,7 +74,7 @@
                         弾:{{$card->charge->ammo}}
                         ]
                         [気分:{{$card->tension->value()}}]
-                        {{$card->uniq_name}}
+                        
 
                         <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">廃棄</button>
                         <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">燃料補給</button>
@@ -82,6 +83,19 @@
 
                         <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">改造</button>
                         <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">装備変更</button>
+                        
+                        
+                        <form action="" >
+                          <input type="text" id="NAME_CHANGE_{{$card->id}}"  placeholder="名称変更" value="{{$card->uniq_name}}"/>
+                          <button onclick="return confirm('名前を変更する') && async(
+                                    '/play/upgrade/rename','POST',{
+                                      '_token':'{{csrf_token()}}',
+                                      'name':$('#NAME_CHANGE_{{$card->id}}').val(),
+                                      'card_id':{{$card->id}}
+                                    }
+                                    );" >名前変更</button>
+                        </form>
+                        
                     </label>
 
 
@@ -223,8 +237,9 @@
                 @foreach($user->teams as $team)
                 <li>
                   <h4>{{$team->team_id}}:{{$team->name}}</h4>
-                        <form id="TEAM_{{-- $team->team_id --}}">
+                        <form id="TEAM_{{$team->team_id}}">
                         
+                          {{-- dd($team->members) --}}
                         @foreach([
                         "A","B","C","D","E","F"
                         ] as $index=>$k)
@@ -232,8 +247,8 @@
                             <option value="0">外す</option>
                             @foreach($user->cards()->get() as $card)
                             <option value="{{$card->id}}" 
-                                    @if($team->member($index) &&
-                                      $team->member($index)->card_id == $card->id)
+                                    @if($team->member($index+1) &&
+                                      $team->member($index+1)->card_id == $card->id)
                                     selected
                                     @endif>
                               {{$card->uniq_name}}
