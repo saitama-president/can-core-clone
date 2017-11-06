@@ -55,7 +55,6 @@ class user_card extends Model implements \App\Common\CreateTable {
         return $this->tension()->first();
     }
     
-    
     public function master_item() {
         return $this->hasOne(
             "App\CCC\data\master_card",

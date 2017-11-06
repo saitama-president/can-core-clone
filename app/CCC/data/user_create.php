@@ -40,6 +40,7 @@ class user_create extends Model implements \App\Common\CreateTable {
   public function getIsTakedAttribute() {
     return !empty($this->taked_at);
   }
+  
 
   /**
    * 残り時間を取得
