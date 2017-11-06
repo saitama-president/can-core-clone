@@ -61,6 +61,19 @@
         </div>
     </li>
     @endforeach
+    <li>
+        <h3>マップ</h3>
+        <div>
+            <a href="{{url('debug/map_add')}}">＋</a>
+            <ul>
+            @foreach('App\CCC\data\master_map'::all() as $item)
+            <li>
+                {{$item->id}}
+            </li>
+            @endforeach
+            </ul>
+        </div>
+    </li>
 </ul>
 
 @endsection

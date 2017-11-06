@@ -94,14 +94,20 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
         //マスタ一覧画面
         Route::get("/debug/master","DebugController@master");
         
-        Route::get("/debug/master_reload",function(){
-            
-            Artisan::call("master:load");
-            
+        Route::get("/debug/master_reload",function(){            
+            Artisan::call("master:load");            
             return redirect("/debug/master")->with("message","取り込み完了");
         });
         
         Route::get("/debug/asset_full","DebugController@asset_full");
+        
+        Route::get("/debug/map_add",function(){
+            
+            
+            
+        });
+        
+        
         
     }
 
