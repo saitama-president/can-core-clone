@@ -23,10 +23,21 @@
     .show{
         display: block;
     }
+    
+    .notify{
+        color: red;
+    }
 </style>
 @endsection
 
 @section('body')
+
+@if(session('message'))
+<div class="notify">
+    {{session('message')}}
+</div>
+@endif
+
 <h1>マスタ情報</h1>
 <a href="{{url('debug/status')}}">ステータス情報</a>
 
@@ -62,13 +73,18 @@
     </li>
     @endforeach
     <li>
-        <h3>マップ</h3>
+        <h3 onclick="toggle('master_map');">
+            マップ
+            （{{App\CCC\data\master_map::count()}}）
+        </h3>
         <div>
-            <a href="{{url('debug/map_add')}}">＋</a>
-            <ul>
-            @foreach('App\CCC\data\master_map'::all() as $item)
-            <li>
-                {{$item->id}}
+            <a href="{{url('master/map/add')}}">＋</a>
+            <ul id="master_map">
+            @foreach(App\CCC\data\master_map::all() as $item)
+            <li>                
+                <label>
+                    {{$item}}<a href="">編集</a>
+                </label> 
             </li>
             @endforeach
             </ul>

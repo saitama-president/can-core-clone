@@ -35,7 +35,8 @@ Route::group(['middleware' => ['play']], function () {
     App\Http\Controllers\UpgradeController::Routes();    
 
     if(config("app.debug")){        
-      App\Http\Controllers\DebugController::Routes();    
+      App\Http\Controllers\DebugController::Routes();
+      App\Http\Controllers\MasterEditController::Routes();
     }
     
     
