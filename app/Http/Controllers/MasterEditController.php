@@ -38,6 +38,12 @@ class MasterEditController extends Controller implements \App\Common\ControllerR
             $item->save();
             return redirect("/debug/master")->with("message","追加:{$item->id}");
         });
+        Route::GET("master/map/edit/{id}",function($id){
+            
+            
+            return view("debug.map_edit",["map_id"=>$id]);
+        });
+        
 
     }
 

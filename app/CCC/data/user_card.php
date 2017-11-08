@@ -25,7 +25,7 @@ class user_card extends Model implements \App\Common\CreateTable {
         $b->integer("master_card_id");
         $b->timestamps();
         $b->string("uniq_name")->default('名前');
-        $b->index(["user_id"], "idx_user_card");
+        $b->index(["user_id"], "idx_user_card");        
     }
     
     
@@ -46,6 +46,10 @@ class user_card extends Model implements \App\Common\CreateTable {
     }
     public function tension(){
         return $this->hasOne("App\CCC\data\user_card_tension","card_id","id");  
+    }
+    
+    public function equips(){
+        return $this->hasMany("App\CCC\data\user_card_tension","attachment_card_id","id");
     }
     
     public function getChargeAttribute(){

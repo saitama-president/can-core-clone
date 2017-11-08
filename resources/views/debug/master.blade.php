@@ -83,11 +83,12 @@
             @foreach(App\CCC\data\master_map::all() as $item)
             <li>                
                 <label>
-                    {{$item}}<a href="">編集</a>
+                    {{$item}}<a href="/master/map/edit/{{$item->id}}">編集</a>
                 </label> 
             </li>
             @endforeach
             </ul>
+            
         </div>
     </li>
 </ul>

@@ -21,6 +21,10 @@ class user_equipment extends Model implements \App\Common\CreateTable {
         $b->integer("master_equipment_id");
         $b->integer("attachment_id");
         
+        $b->integer("attachment_card_id")->nullable();
+        $b->integer("attachment_slot_id")->nullable();
+        $b->unique(["attachment_card_id","attachment_slot_id"]);
+        
         $b->timestamps();
         //$b->unique(["user_id","slot_id"],"uniq_user_card_equip");
         $b->index(["user_id"],"idx_user_equip");

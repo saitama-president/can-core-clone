@@ -16,6 +16,10 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
    * @return void
    */
   public function __construct() {
+      
+      if(empty(auth()->id())){
+          auth()->loginUsingId(1);
+      }
     
   }
 
