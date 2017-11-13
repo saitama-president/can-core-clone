@@ -29,7 +29,7 @@ class user_team_member extends Model implements \App\Common\CreateTable {
 
     public function card() {
         
-        return $this->hasMany("App\CCC\data\user_card");
+        return $this->belongsTo('App\CCC\data\user_card');
     }
     
     

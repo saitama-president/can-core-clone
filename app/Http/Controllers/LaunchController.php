@@ -36,8 +36,28 @@ class LaunchController extends Controller
         
         $members=$user->team($team_id)->members();
         
+        /**
+         * チェック開始
+         */
+        
+        
         foreach($members->get() as $member){
-          \Log::Debug("memm");
+            \Log::Debug("CARD_ID=".$member->card_id);
+          if(!empty($member->card_id)){
+              $card=$member->card()->first();
+              $status=$card->status;
+              
+              $cost=10;
+              
+              $status->useFuel($cost);
+              $status->useAmmo($cost);
+              
+              $status->useHP(mt_rand(0, 100));
+              
+              $status->save();
+              
+          }
+          
         }
         
         

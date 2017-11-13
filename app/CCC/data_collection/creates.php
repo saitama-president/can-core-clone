@@ -20,7 +20,6 @@ use App\CCC\data\user_create;
 class creates extends UserCollection {
 
   public function imcompletes() {
-    \Log::Debug("imcompletes!");
     return $this->where("taked_at", null);
   }
 

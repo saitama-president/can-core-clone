@@ -14,7 +14,19 @@ namespace App\CCC\service;
  * @author s-yoshihara
  */
 class BattleService {
-    public function __construct() {
+    public function __construct(
+    object\battleTeam $teamA,
+    object\battleTeam $teamB
+        ) {
         ;
+    }
+    
+    
+    public function battleStart(){
+        
+        
+    }
+    
+    public function resultCommit(){
     }
 }

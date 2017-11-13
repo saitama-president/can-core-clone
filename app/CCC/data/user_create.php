@@ -63,11 +63,8 @@ class user_create extends Model implements \App\Common\CreateTable {
     $this->taked_at = \Carbon\Carbon::now();    
     $this->save();
     $user=$this->user()->first();;
-    
-    \Log::Debug("カード取れる？:{$user->id}");
-    
     $cards=$user->cards();
-    \Log::Debug("cards?". get_class($cards));
+
     $cards->add($this->master_card_id);
 
 

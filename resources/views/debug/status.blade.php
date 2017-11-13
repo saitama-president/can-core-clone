@@ -299,7 +299,11 @@
                             </select>
                         </label>
                         <button onclick="return confirm('出撃します')
-                            && async('/api/launch/{{$launch->id}}/{{$team->id}}','GET');
+                            && async(
+                                    '/api/launch/{{$launch->id}}/{{$team->id}}',
+                                    'GET',
+                                    {}
+                            );
                             " 
                             >
                             出撃

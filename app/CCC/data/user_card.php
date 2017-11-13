@@ -17,6 +17,17 @@ class user_card extends Model implements \App\Common\CreateTable {
         
     }
     
+    public function getChargeAttribute(){
+        return $this->status()->first();
+    }
+    public function getTensionAttribute(){
+        return $this->tension()->first();
+    }
+    
+    public function getStatusAttribute(){
+        return $this->status()->first();
+    }
+    
 
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
@@ -52,12 +63,7 @@ class user_card extends Model implements \App\Common\CreateTable {
         return $this->hasMany("App\CCC\data\user_card_tension","attachment_card_id","id");
     }
     
-    public function getChargeAttribute(){
-        return $this->status()->first();
-    }
-    public function getTensionAttribute(){
-        return $this->tension()->first();
-    }
+
     
     public function master_item() {
         return $this->hasOne(

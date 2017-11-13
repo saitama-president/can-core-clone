@@ -30,4 +30,8 @@
     
 </canvas>
 
+<div>
+    <p>あいうえおかきくけこ</p>
+</div>
+
 @endsection
