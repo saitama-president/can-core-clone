@@ -195,6 +195,11 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
     
   }
 
+  /**
+   * 時短やで
+   * @param type $id
+   * @return string
+   */
   public function shortcut($id) {
     $user = request()->user;
 
