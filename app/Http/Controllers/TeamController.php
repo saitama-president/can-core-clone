@@ -76,10 +76,22 @@ class TeamController extends Controller implements \App\Common\ControllerRoute {
     $user = request()->user;
     $team_id = request("team_id");
   }
+  
+  public function rename(){
+    $user = request()->user;
+    $team_id = request("team_id");
+    $name = request("name");
+    $team=$user->team($team_id);
+    $team->name=$name;
+    $team->save();
+    
+    return "OK";
+  }
 
   public static function Routes() {
     Route::get("/js/team", "TeamController@js_scene");
     Route::POST("/api/team/edit", "TeamController@edit_commit");
+    Route::POST("/api/team/rename", "TeamController@rename");
     Route::get("/api/team/edit", "TeamController@edit_list");
     Route::get("/play/team", "TeamController@index");
   }

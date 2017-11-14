@@ -31,8 +31,7 @@ class repaires extends UserCollection{
                 $repair=new \App\CCC\data\user_repair([
                     "line_id"=>$i,
                     "card_id"=>$card_id,
-                    "complete_datetime"=>
-                    \Carbon\Carbon::now()->addSeconds(30)
+                    "complete_at"=>\Carbon\Carbon::now()->addSeconds(30)
                 ]);
                 $this->save($repair);
                 \Log::Debug("追加した:{$repair->id}");
@@ -47,7 +46,7 @@ class repaires extends UserCollection{
     public function refresh(){
         
         foreach($this->get() as $repair){
-           if( \Carbon\Carbon::parse($repair->complete_datetime)
+           if( \Carbon\Carbon::parse($repair->complete_at)
                < \Carbon\Carbon::now()){
                \Log::Debug("戦場に復帰");
                $repair->card()->first()->status->repair();

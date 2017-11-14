@@ -81,6 +81,17 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
     return redirect("/debug/status");
   }
   
+  public function team_add(){
+    $user= request()->user;
+    
+  //  \Log::Debug("チーム最大数？".);
+    
+    $user->teams()->save(new \App\CCC\data\user_team(["team_id"=>
+        $user->teams()->max("team_id")+1]));
+    
+    return redirect("/debug/status");
+  }
+  
   public function master(){
       
       
@@ -98,6 +109,7 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
         
         
         Route::get("/debug/asset_full","DebugController@asset_full");
+        Route::get("/debug/team_add","DebugController@team_add");
         
         Route::get("/debug/map_add",function(){
 

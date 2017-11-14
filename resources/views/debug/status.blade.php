@@ -57,11 +57,9 @@
 {{$asset->asset_id}}:{{$asset->value()}}
 @endforeach
 <a href="{{url('debug/asset_full')}}">素材フル回復</a>
-
-<a href="{{url('debug/master')}}">マスタ情報</a>
+<a href="{{url('debug/master')}}" target="_blank">マスタ情報</a>
 
 <ul>
-
     <li>
         <div id="DEBUG_CARDS">
             <h3>所持カード</h3>
@@ -81,11 +79,7 @@
             <h3>所持装備</h3>
             <ul>
                 @forelse($user->equips()->get() as $equip)
-                <li>
-                    <p>
-                        {{$equips}}                
-                    </p>
-                </li>
+                <li>{{$equips}}</li>
                 @empty
                 なし
                 @endforelse
@@ -97,16 +91,14 @@
             <h3>修理中</h3>
             @forelse($user->repaires()->get() as $repair)
             <li>
-                ({{$repair->card()->first()}})<br>
-                 完了予定：{{$repair->complete_datetime}}
-                 あと{{$repair->left}}秒
+                ({{$repair->card()->first()->id}})あと{{$repair->left}}秒
+                 <a href="">時短</a>
                  
             </li>            
             @empty
             なし
             @endforelse
         </div>
-
     </li>
 
     <li>
@@ -115,42 +107,19 @@
             <h3>製造中</h3>
             <ul>
                 @forelse($user->creates()->imcompletes()->get() as $create)
-                <li>
-                    <p>
-                        ID:{{$create->id}},
-                        LINE:{{$create->line_id}},
-                        master_id:{{$create->master_card_id}}
-                        @if($create->is_taked)
-                        取得済み
-                        @elseif($create->is_takable)            
-                        <a href="javascript:take({{$create->id}})">回収</a>
-                        @elseif(0 < $create->left)              
-                        あと{{$create->left}} 秒
-                        <a href="javascript:shortcut({{$create->id}})">時短</a>
-                        @else
-                        取得不能
-                        あと{{$create->left}} 秒
-                        @endif
-                    </p>
-                </li>
-                @empty
-                なし
-                @endforelse
+                <li>@include("debug/parts/create")</li>
+                @empty なし @endforelse
             </ul>
             <h3>製造</h3>
             <form id="CREATE_NEW">
 
                 <label>
                     ライン選択
-                    {{-- ライン最大数を回して、空いているものだけenable --}}
                     @for($i=1;$i<=$user->status->create_dock;$i++)
                     <label>
                         {{$i}}
                         <input name="L" type="radio" value="{{$i}}"
-                               @if($user->creates()
-                               ->where("line_id",$i)
-                               ->where("taked_at",null)
-                               ->exists())
+                               @if($user->creates()->where("line_id",$i)->where("taked_at",null)->exists())
                                disabled 
                                @else
                                checked
@@ -205,47 +174,12 @@
     </li>
     <li>
         <div id="DEBUG_TEAM">
-            <h3>チーム編成({{$user->status->id}})</h3>
-            <ul>
+            <h3>チーム編成({{$user->status->id}})
+              <a href="/debug/team_add">＋</a>
+            </h3>
+            <ul>                
                 @foreach($user->teams as $team)
-                <li>
-                  <h4>{{$team->team_id}}:{{$team->name}}</h4>
-                        <form id="TEAM_{{$team->team_id}}">
-                        
-                          {{-- dd($team->members) --}}
-                        @foreach([
-                        "A","B","C","D","E","F"
-                        ] as $index=>$k)
-                        <select name="{{$k}}">
-                            <option value="0">外す</option>
-                            @foreach($user->cards()->get() as $card)
-                            <option value="{{$card->id}}" 
-                                    @if($team->member($index+1) &&
-                                      $team->member($index+1)->card_id == $card->id)
-                                    selected
-                                    @endif>
-                              {{$card->uniq_name}}
-                            </option>
-                            @endforeach
-                        </select>
-                        @endforeach
-                        <button onclick="return async(
-                                        '/api/team/edit',
-                                        'POST',
-                                        {
-                                            '_token': '{{ csrf_token() }}',
-                                            'team_id': '{{$team->team_id}}',
-                                            'A': $('#TEAM_{{$team->team_id}} [name = A]').val(),
-                                            'B': $('#TEAM_{{$team->team_id}} [name = B]').val(),
-                                            'C': $('#TEAM_{{$team->team_id}} [name = C]').val(),
-                                            'D': $('#TEAM_{{$team->team_id}} [name = D]').val(),
-                                            'E': $('#TEAM_{{$team->team_id}} [name = E]').val(),
-                                            'F': $('#TEAM_{{$team->team_id}} [name = F]').val()
-                                        }
-                                );">更新</button>
-                        
-                    </form> 
-                </li>
+                  @include("debug/parts/team")
                 @endforeach
             </ul>
         </div>
@@ -255,34 +189,7 @@
             <h3>出撃可能先リスト</h3>
             <ul>
                 @forelse($user->launches()->get() as $launch)
-                <li>
-
-                    <form id="LAUNCH_{{$launch->id}}">
-
-
-                        <label>
-                            出撃先名：{{$launch->master()->first()->name}}
-                            ,出撃チーム
-                            <select name="">
-                                @foreach($user->teams()->get() as $team)
-                                <option value="{{$team->id}}">
-                                    {{$team->id}}:{{$team->name}}
-                                </option>
-                                @endforeach
-                            </select>
-                        </label>
-                        <button onclick="return confirm('出撃します')
-                            && async(
-                                    '/api/launch/{{$launch->id}}/{{$team->id}}',
-                                    'GET',
-                                    {}
-                            );
-                            " 
-                            >
-                            出撃
-                        </button>
-                    </form>
-                </li>
+                <li>@include("debug/parts/launch") </li>
                 @empty
                 なし
                 @endforelse

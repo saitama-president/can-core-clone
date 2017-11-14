@@ -9,7 +9,7 @@ class user_repair extends Model implements \App\Common\CreateTable {
      public $table="user_repair";
      public $fillable=[
          "line_id",
-         "complete_datetime",
+         "complete_at",
          "card_id"
          
      ];
@@ -20,7 +20,7 @@ class user_repair extends Model implements \App\Common\CreateTable {
         $b->integer("line_id");
         $b->unique(["user_id","line_id"]);
         $b->integer("card_id");        
-        $b->dateTime("complete_datetime");
+        $b->timestamp("complete_at");
         $b->timestamps();
         $b->index(["user_id"]);
     }
@@ -28,7 +28,7 @@ class user_repair extends Model implements \App\Common\CreateTable {
     public function getLeftAttribute() {
     return
       \Carbon\Carbon::now()->diffInSeconds(
-          \Carbon\Carbon::parse($this->complete_datetime),false);
+          \Carbon\Carbon::parse($this->complete_at),false);
     }
     
     public function card(){
