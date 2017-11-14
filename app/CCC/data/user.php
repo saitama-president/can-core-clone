@@ -27,6 +27,8 @@ class user extends Model implements \App\Common\CreateTable {
     return $this->hasOne("App\CCC\data\user_status");
   }
   
+  
+  
   /**
    * getter ここまで
    * @return \App\CCC\data_collection\creates
@@ -98,7 +100,10 @@ class user extends Model implements \App\Common\CreateTable {
 
   //入渠とか
   public function repaires() {
-    return $this->hasMany("App\CCC\data\user_repair");
+    return new \App\CCC\data_collection\repaires(
+        $this,
+        $this->hasMany("App\CCC\data\user_repair")
+        );
   }
 
   //編成とか

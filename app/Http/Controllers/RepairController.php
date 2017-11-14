@@ -29,17 +29,24 @@ class RepairController extends Controller
     
     public function repair($id){
         $user=request()->user;
+        \Log::Debug("修理やで");
         
         $card=$user->card($id);
         
+        \Log::Debug("{$card->status->hp}->100");
+        if(100==$card->status->hp){
+            \Log::Debug("HPいっぱいやから無理やで");
+        }
+        
+        $user->repaires()->add($card->id);
         
         
-        
+        return "OK";
     }
 
     public static function Routes() {
         Route::get("/js/repair","RepairController@js_scene");
-        Route::get("/api/repair/{id}","RepairController@repair");
+        Route::POST("/api/repair/{id}","RepairController@repair");
         Route::get("/play/repair","RepairController@index");
     }
 

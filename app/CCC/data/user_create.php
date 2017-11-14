@@ -47,7 +47,8 @@ class user_create extends Model implements \App\Common\CreateTable {
    */
   public function getLeftAttribute() {
     return
-      \Carbon\Carbon::now()->diffInSeconds(\Carbon\Carbon::parse($this->complete_at));
+      \Carbon\Carbon::parse($this->complete_at)->diff(
+          \Carbon\Carbon::now());
   }
 
   /* 完成しているものの取得 */

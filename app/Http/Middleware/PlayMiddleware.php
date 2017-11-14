@@ -17,9 +17,7 @@ class PlayMiddleware
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        //ユーザ情報をバインドする
-      
-        \Log::Debug("Play MiddleWare");
+        //ユーザ情報をバインドする     
         $uid=auth()->id();
         if(empty($uid)){
             \Log::Debug("UID={$uid} 取得できない");
@@ -29,7 +27,6 @@ class PlayMiddleware
         
         $user= \App\CCC\data\user::find($uid);
         $request->merge(['user' => $user]);
-        \Log::Debug("PM UID={$user->id}");
         return $next($request);
     }
 }

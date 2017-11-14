@@ -27,6 +27,7 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
 
     $user = request()->user;
     
+    $user->repaires()->refresh();
     
 
 

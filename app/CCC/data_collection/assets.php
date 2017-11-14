@@ -41,7 +41,6 @@ class assets extends UserCollection{
         foreach ($this->assets()->get() as $asset) {
             $results[$asset->key()] = $asset->value();
         }
-        \Log::Debug(var_export($results, true));
 
 
         return $results;

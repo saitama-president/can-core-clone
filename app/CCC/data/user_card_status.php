@@ -25,6 +25,7 @@ class user_card_status extends Model implements \App\Common\CreateTable {
         $b->bigInteger("card_id");
         $b->unique(["card_id"]);
         $b->integer("hp")->default(100);
+        $b->integer("hp_max")->default(100);
         $b->integer("fuel")->default(100);
         $b->integer("ammo")->default(100);        
     }
@@ -99,8 +100,26 @@ class user_card_status extends Model implements \App\Common\CreateTable {
 
 
     public function repair(){
-        
+        \Log::Debug("回復完了");
+        $this->hp=100;
+        $this->save();
+        return true;
     }
+    
+    public function chargeFuel(){
+        \Log::Debug("燃料補給");
+        $this->fuel=100;
+        $this->save();
+        return true;        
+    }
+    
+    public function chargeAmmo(){
+        \Log::Debug("弾薬補給");
+        $this->ammo=100;
+        $this->save();
+        return true;        
+    }
+    
     
     /**
      * 補給（素材は消費できるものとする）

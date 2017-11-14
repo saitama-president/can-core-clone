@@ -41,12 +41,8 @@ class user_card_tension extends Model implements \App\Common\CreateTable {
      */
     public function value(){
         $now= \Carbon\Carbon::now();
-        \Log::Debug($this->last_update);
         //$master=$this->master();
         $duration= abs($now->diffInSeconds(\Carbon\Carbon::parse($this->last_update)));
-        
-        
-        
         return $this->last_value;
 
     }

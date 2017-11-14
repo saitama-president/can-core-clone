@@ -16,7 +16,11 @@
     $(document).ready(function () {
 
     });
-    function async($url, $method = "GET", $data = {}){
+    function async($url, $method = "GET", $data = {
+    }){
+        if(!$data._token){
+            $data._token='{{csrf_token()}}';
+        }
         $.ajax({
             url: $url,
             method: $method,
@@ -64,41 +68,7 @@
             <ul>
                 @forelse($user->cards()->get() as $card)
                 <li>
-                    <label>
-                        名前：{{$card->uniq_name}}
-                        ({{$card->id}})>
-                        {{$card->master()}}
-                        [
-                        H:{{$card->charge->hp}},
-                        燃:{{$card->charge->fuel}},
-                        弾:{{$card->charge->ammo}}
-                        ]
-                        [気分:{{$card->tension->value()}}]
-                        
-
-                        <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">廃棄</button>
-                        <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">燃料補給</button>
-                        <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">弾薬補給</button>
-                        <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">修理</button>
-
-                        <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">改造</button>
-                        <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">装備変更</button>
-                        
-                        
-                        <form action="" >
-                          <input type="text" id="NAME_CHANGE_{{$card->id}}"  placeholder="名称変更" value="{{$card->uniq_name}}"/>
-                          <button onclick="return confirm('名前を変更する') && async(
-                                    '/play/upgrade/rename','POST',{
-                                      '_token':'{{csrf_token()}}',
-                                      'name':$('#NAME_CHANGE_{{$card->id}}').val(),
-                                      'card_id':{{$card->id}}
-                                    }
-                                    );" >名前変更</button>
-                        </form>
-                        
-                    </label>
-
-
+                    @include("debug/parts/card")
                 </li>
                 @empty
                 なし
@@ -126,7 +96,12 @@
         <div>
             <h3>修理中</h3>
             @forelse($user->repaires()->get() as $repair)
-            {{$repair->id}}
+            <li>
+                ({{$repair->card()->first()}})<br>
+                 完了予定：{{$repair->complete_datetime}}
+                 あと{{$repair->left}}秒
+                 
+            </li>            
             @empty
             なし
             @endforelse
@@ -197,7 +172,6 @@
                         return $('#CREATE_NEW [name=L]:checked').val()
                                 && confirm('製造する')
                                 && async('/api/create', 'POST', {
-                                    '_token': '{{ csrf_token() }}',
                                     'type': 1,
                                     'L': $('#CREATE_NEW [name=L]:checked').val(),
                                     'A': $('#CREATE_NEW [name=A]').val(),
@@ -219,7 +193,6 @@
                         return
                         confirm('開発する')
                                 && async('/api/create', 'POST', {
-                                    '_token': '{{ csrf_token() }}',
                                     'type': 2,
                                     'A': $('#DEVELOP_NEW [name=A]').val(),
                                     'B': $('#DEVELOP_NEW [name=B]').val(),

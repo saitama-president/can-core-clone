@@ -29,10 +29,10 @@ class cards extends UserCollection{
     
         $user=$this->user;
         $user->cards()->save($card);
-        //\Log::Debug(var_export($card,true));    
         $card->status()->save(
             new user_card_status([
             "user_id"=>$user->id,
+            //本来はマスタから取得する
             "hp"=>100
         ]));
     

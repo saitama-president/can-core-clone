@@ -144,7 +144,6 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
       return abort(403);
     }
     \Log::debug("CREATEする");
-    \Log::debug(get_class($user));
 
 
     /* そして増やす */
