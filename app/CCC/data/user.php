@@ -55,6 +55,12 @@ class user extends Model implements \App\Common\CreateTable {
         );
   }
   
+  public function card($card_id){
+    return $this->hasMany("App\CCC\data\user_card")
+        ->where("id",$card_id)
+        ->first();
+  }
+  
   public function team($team_id){
       return $this->teams()->where("team_id",$team_id)->first();
   }

@@ -22,13 +22,24 @@ class RepairController extends Controller
 
 
     public function status(){
-        $user=request()->user;
+        
         
         return $user->status();
+    }
+    
+    public function repair($id){
+        $user=request()->user;
+        
+        $card=$user->card($id);
+        
+        
+        
+        
     }
 
     public static function Routes() {
         Route::get("/js/repair","RepairController@js_scene");
+        Route::get("/api/repair/{id}","RepairController@repair");
         Route::get("/play/repair","RepairController@index");
     }
 

@@ -98,6 +98,9 @@ class user_card_status extends Model implements \App\Common\CreateTable {
     }
 
 
+    public function repair(){
+        
+    }
     
     /**
      * 補給（素材は消費できるものとする）
