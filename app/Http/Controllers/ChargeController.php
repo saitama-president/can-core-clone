@@ -48,6 +48,25 @@ class ChargeController extends Controller implements \App\Common\ControllerRoute
     public function charge_cost(){
         
     }
+    
+    public function charge_ammo($card_id){
+        $user= request()->user;
+        
+        //コストを計算する
+        
+        $user->card($card_id)->status->chargeAmmo();
+        
+        
+        return "OK";
+    }
+    
+    public function charge_fuel($card_id){
+        $user= request()->user;
+        
+        $user->card($card_id)->status->chargeFuel();
+        
+        return "OK";
+    }
 
 
     
@@ -60,6 +79,8 @@ class ChargeController extends Controller implements \App\Common\ControllerRoute
         
         
         Route::Post("/api/charge","ChargeController@charge");
+        Route::Post("/api/charge/fuel/{id}","ChargeController@charge_fuel");
+        Route::Post("/api/charge/ammo/{id}","ChargeController@charge_ammo");
         
     }
     
