@@ -104,8 +104,11 @@
         <div id="DEBUG_EQUIP" class="list">
             <h3>所持装備</h3>
             <ul>
-                @forelse($user->equips()->get() as $equip)
-                <li>{{$equips}}</li>
+                @forelse($user
+                ->equips()
+                ->where("attachment_card_id",null)
+                ->get() as $equip)
+                <li>{{$equip}}</li>
                 @empty
                 なし
                 @endforelse

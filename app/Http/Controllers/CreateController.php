@@ -108,8 +108,8 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
         //
         //レシピから検索
 
-        $master_card_id = 1;
-        $complete_time = 120;
+        $master_card_id = mt_rand(1, 3);
+        $complete_time = mt_rand(1, 6)*30;
 
         $result_id = $user->creates()->add(
             $user->id, $line, $master_card_id, $complete_time

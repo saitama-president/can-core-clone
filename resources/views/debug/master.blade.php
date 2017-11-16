@@ -47,6 +47,8 @@
 <ul id="master_list">
     @foreach([
       'App\CCC\data\master_card'=>"カード一覧",
+      'App\CCC\data\master_equipment'=>"装備一覧",
+      'App\CCC\data\master_card_equip'=>"カード装備一覧",
       'App\CCC\data\master_character'=>"キャラクタ一覧",
       'App\CCC\data\master_rare_type'=>"レア度",
       'App\CCC\data\master_card_voice_type'=>"ボイス種別",

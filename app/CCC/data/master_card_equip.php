@@ -52,12 +52,4 @@ class master_card_equip extends Model implements \App\Common\CreateTable, \App\C
 
 
 
-    public function __toString() {
-        $parent = $this->hasOne(
-                "App\CCC\data\master_item", "id", "item_id"
-            )->first();
-
-        return "[ITEM_ID:{$parent->id},NAME:{$parent->name}]";
-    }
-
 }

@@ -11,7 +11,6 @@ function get_unity_path(){
       return config("unity.windows.unity_path");
   }
   
-  
 }
 
 function process_time(){
@@ -21,4 +20,8 @@ function process_time(){
 function is_running(){
     
     
+}
+
+function dice($num=6,$time=1){
+    return mt_rand(1,6)+($time<0?dice($num,$time-1):0);
 }

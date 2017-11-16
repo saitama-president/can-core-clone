@@ -29,6 +29,22 @@ class cards extends UserCollection{
     
         $user=$this->user;
         $user->cards()->save($card);
+        
+        /*装備一覧を取得する*/
+        $equips= \App\CCC\data\master_card_equip::
+            where("master_card_id",$master_card_id)
+            ->get();
+        /*装備品を保存する*/
+        foreach($equips as $equip){
+            $user->equips()->save(new \App\CCC\data\user_equipment([                
+                "master_equip_id"=>$equip->master_equip_id,
+                "attachment_card_id"=>$card->id,
+                "attachment_slot_id"=>$equip->slot_id,                
+            ]));
+        }
+        
+        
+        //$card->equips()->saveMany($equips);
         $card->status()->save(
             new user_card_status([
             "user_id"=>$user->id,
