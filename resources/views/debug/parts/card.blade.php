@@ -42,17 +42,21 @@ H:{{$card->status->hp}},
 
 
 <form action="" >
-    <input 
-        type="text" 
-        id="NAME_CHANGE_{{$card->id}}"  
-        placeholder="名称変更" 
-        size="6"
-        value="{{$card->uniq_name}}"/>
-    <button onclick="return confirm('名前を変更する') && async(
+    <label>
+        個体名
+        <input 
+            type="text" 
+            id="NAME_CHANGE_{{$card->id}}"  
+            placeholder="名称変更" 
+            size="6"
+            value="{{$card->uniq_name}}"
+            onchange="return async(
                 '/play/upgrade/rename', 'POST', {
                 '_token':'{{csrf_token()}}',
                         'name':$('#NAME_CHANGE_{{$card->id}}').val(),
                         'card_id':{{$card->id}}
-                }
-        );" >名前変更</button>
+                });
+            "
+            />        
+    </label>
 </form>

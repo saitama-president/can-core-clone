@@ -19,9 +19,11 @@ class Transaction
     public function handle($request, Closure $next, $guard = null)
     {
         try{
+            \Log::info("トランザクション開始");
             DB::beginTransaction();
             $result=$next($request);            
             DB::commit();
+            \Log::info("トランザクション終了-コミット");
             return $result;
         }
         catch(\Exception $e){            

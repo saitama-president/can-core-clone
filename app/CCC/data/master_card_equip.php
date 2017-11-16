@@ -7,31 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * カードの初期装備
  */
-class master_card_equip 
-    extends Model 
-    implements \App\Common\CreateTable, \App\Common\MasterTable {
+class master_card_equip extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
 
     public $table = "master_card_equip";
     public $fillable = [
         "id",
-        "item_id",
-        "character_id",
-        "rare",
-        "card_class_id",
+        "master_card_id",
+        "slot_id",
+        "master_equip_id",
     ];
 
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
-        $b->integer('item_id');
-        $b->unique(["item_id"]);
+        $b->integer('master_card_id');
+        $b->integer('slot_id');
+        $b->integer('master_equip_id');
+        $b->index("master_card_id");
+        $b->unique(['master_card_id','slot_id']);
         $b->timestamps();
-        //キャラクタID
-        $b->integer('character_id');
-        //レアリティ
-        $b->integer('rare');
-        //カードクラス
-        $b->integer('card_class_id');
     }
 
     public function master() {
@@ -42,51 +36,28 @@ class master_card_equip
 
     public static function InitTable() {
         
-    }
-
-    public static function RegistMasterRow(array $data = array()) {
-        if (empty($data["名前"])) {
-            return;
-        }
-
-        self::updateOrCreate(
-            ["id" => $data["ID"]], [
-            "item_id" => $data["アイテムID"],
-            "rare" => $data["レアリティID"],
-            "character_id" => $data["キャラクタID"],
-            "card_class_id" => 1,
-            ]
-        );
-    }
-
-    public function
-
-    voices() {
+        master_card_equip::insert([
+            ["master_card_id"=>1,"slot_id"=>1,"master_equip_id"=>1],
+            ["master_card_id"=>2,"slot_id"=>1,"master_equip_id"=>2],
+            ["master_card_id"=>2,"slot_id"=>2,"master_equip_id"=>2],
+            
+            ["master_card_id"=>3,"slot_id"=>1,"master_equip_id"=>3],
+            ["master_card_id"=>3,"slot_id"=>2,"master_equip_id"=>4],
+            
+        ]);
         
     }
 
-    public function
+    public static function RegistMasterRow(array $data = array()) {    }
 
-    spec() {
-        return $this->hasOne("App\CCC\data\master_card_spec");
-    }
 
-    public function character() {
-        return $this->hasOne("App\CCC\data\master_character", "");
-    }
-
-    public function master_class() {
-        return $this->belongsTo("App\CCC\data\master_card_class", "class_id");
-    }
 
     public function __toString() {
-        $parent= $this->hasOne(
-            "App\CCC\data\master_item",
-            "id", "item_id"
+        $parent = $this->hasOne(
+                "App\CCC\data\master_item", "id", "item_id"
             )->first();
-        
+
         return "[ITEM_ID:{$parent->id},NAME:{$parent->name}]";
-                
     }
 
 }

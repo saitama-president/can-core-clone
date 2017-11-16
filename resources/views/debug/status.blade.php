@@ -3,18 +3,36 @@
 @section('head')
 
 <style>
-
+    .list > ul{
+        display: none;
+    }
     .num3col{
         width: 3em;
         text-align: right;
     }
+    
+    .collapsed:after{
+        content: "[close]";
+    }
+    .expand:after{
+        content: "[EXPAND]";
+    }
+    
 
+    .show{
+        display: block;
+    }
 </style>
 
 <script>
 
     $(document).ready(function () {
-
+        $(".list h3").click(function(){
+            //$(this).toggleClass("expand");
+            $(this).toggleClass("collapsed");
+            
+            $(this).next("ul").toggleClass("show");
+        });
     });
     function async($url, $method = "GET", $data = {
     }){
@@ -39,10 +57,18 @@
     function shortcut($id) {
         async(`/api/create/shortcut/${$id}`);
     }
+    function repair_shortcut($id) {
+        async(`/api/create/shortcut/${$id}`);
+    }
+    
     function take($id) {
         async(`/api/create/take/${$id}`);
     }
 
+
+    function toggle($id){
+        
+    }
 
 
 </script>
@@ -61,7 +87,7 @@
 
 <ul>
     <li>
-        <div id="DEBUG_CARDS">
+        <div id="DEBUG_CARDS" class="list">
             <h3>所持カード</h3>
             <ul>
                 @forelse($user->cards()->get() as $card)
@@ -75,7 +101,7 @@
         </div>
     </li>
     <li>
-        <div id="DEBUG_EQUIP">
+        <div id="DEBUG_EQUIP" class="list">
             <h3>所持装備</h3>
             <ul>
                 @forelse($user->equips()->get() as $equip)
@@ -87,22 +113,22 @@
         </div>
     </li>
     <li>
-        <div>
+        <div class="list">
             <h3>修理中</h3>
+            <ul>
             @forelse($user->repaires()->get() as $repair)
             <li>
                 ({{$repair->card()->first()->id}})あと{{$repair->left}}秒
-                 <a href="">時短</a>
-                 
+                <a href="javascript:repair_shortcut({{$repair->id}})">時短</a>
+                
             </li>            
-            @empty
-            なし
-            @endforelse
+            @empty なし @endforelse
+            </ul>
         </div>
     </li>
 
     <li>
-        <div id="DEBUG_CREATES">
+        <div id="DEBUG_CREATES" class="list">
 
             <h3>製造中</h3>
             <ul>
@@ -139,7 +165,6 @@
                             return false;
                         }
                         return $('#CREATE_NEW [name=L]:checked').val()
-                                && confirm('製造する')
                                 && async('/api/create', 'POST', {
                                     'type': 1,
                                     'L': $('#CREATE_NEW [name=L]:checked').val(),
@@ -159,9 +184,7 @@
                 <label>C<input type="number" name="C" value="10" min="10" max="300" class="num3col"/> </label>
                 <label>D<input type="number" name="D" value="10" min="10" max="300" class="num3col"/> </label>
                 <button id="exec_develop" onclick="
-                        return
-                        confirm('開発する')
-                                && async('/api/create', 'POST', {
+                        return async('/api/create', 'POST', {
                                     'type': 2,
                                     'A': $('#DEVELOP_NEW [name=A]').val(),
                                     'B': $('#DEVELOP_NEW [name=B]').val(),
@@ -173,19 +196,19 @@
         </div>  
     </li>
     <li>
-        <div id="DEBUG_TEAM">
+        <div id="DEBUG_TEAM" class="list">
             <h3>チーム編成({{$user->status->id}})
               <a href="/debug/team_add">＋</a>
             </h3>
             <ul>                
                 @foreach($user->teams as $team)
-                  @include("debug/parts/team")
+                <li>@include("debug/parts/team")</li>
                 @endforeach
             </ul>
         </div>
     </li>  
     <li>
-        <div id="DEBUG_LAUNCH">
+        <div id="DEBUG_LAUNCH" class="list">
             <h3>出撃可能先リスト</h3>
             <ul>
                 @forelse($user->launches()->get() as $launch)
@@ -196,12 +219,10 @@
             </ul>
         </div>
     </li>
-
     <li>
-        <div id="DEBUG_MISSION">
-            <h3>ミッション一覧</h3>
-
-            <h4>受託中</h4>
+        <h3>ミッション一覧</h3>
+        <div id="DEBUG_MISSION" class="list">
+            <h3>受託中</h3>
             <ul>
                 @forelse($user->missions()->get() as $mission)
                 <li>
@@ -214,7 +235,10 @@
                 なし
                 @endforelse
             </ul>
-            <h4>受託可能</h4>
+        </div>
+        
+        <div class="list">
+            <h3>受託可能</h3>
             <ul>
                 @forelse(App\CCC\data\master_mission::all() as $mission)
                 <li>
