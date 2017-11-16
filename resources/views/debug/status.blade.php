@@ -27,7 +27,7 @@
 <script>
 
     $(document).ready(function () {
-        $(".list h3").click(function(){
+        $(".list h3,.list h4,.list h5").click(function(){
             //$(this).toggleClass("expand");
             $(this).toggleClass("collapsed");
             
@@ -106,7 +106,7 @@
             <ul>
                 @forelse($user
                 ->equips()
-                ->where("attachment_card_id",null)
+                //->where("attachment_card_id",null)
                 ->get() as $equip)
                 <li>{{$equip}}</li>
                 @empty

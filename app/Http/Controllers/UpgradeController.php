@@ -58,6 +58,7 @@ class UpgradeController extends Controller
     public static function Routes() {
         Route::get("/play/upgrade","UpgradeController@index");
         Route::POST("/play/upgrade/rename","UpgradeController@rename");
+        Route::POST("/play/upgrade/rename","UpgradeController@rename");
         Route::get("/js/upgrade","UpgradeController@js_scene");
         
     }

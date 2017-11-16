@@ -44,7 +44,6 @@ class cards extends UserCollection{
         }
         
         
-        //$card->equips()->saveMany($equips);
         $card->status()->save(
             new user_card_status([
             "user_id"=>$user->id,

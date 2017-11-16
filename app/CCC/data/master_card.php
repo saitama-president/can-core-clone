@@ -54,15 +54,10 @@ class master_card extends Model implements \App\Common\CreateTable, \App\Common\
         );
     }
 
-    public function
-
-    voices() {
-        
+    public function voices() {    
     }
 
-    public function
-
-    spec() {
+    public function spec() {
         return $this->hasOne("App\CCC\data\master_card_spec");
     }
 

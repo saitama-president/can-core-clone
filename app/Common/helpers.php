@@ -23,5 +23,5 @@ function is_running(){
 }
 
 function dice($num=6,$time=1){
-    return mt_rand(1,6)+($time<0?dice($num,$time-1):0);
+    return mt_rand(1,$num)+($time<0?dice($num,$time-1):0);
 }

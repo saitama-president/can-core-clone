@@ -107,9 +107,11 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
         //結果を追加（製造リストに追加）
         //
         //レシピから検索
+        $d=dice(3);
+        \Log::Debug("DICE=".$d);
 
-        $master_card_id = mt_rand(1, 3);
-        $complete_time = mt_rand(1, 6)*30;
+        $master_card_id = $d;
+        $complete_time = dice(6,2)*20;
 
         $result_id = $user->creates()->add(
             $user->id, $line, $master_card_id, $complete_time
