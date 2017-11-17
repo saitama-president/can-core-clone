@@ -66,6 +66,10 @@ class user_card extends Model implements \App\Common\CreateTable {
     public function equips() {
         return $this->hasMany("App\CCC\data\user_equipment", "attachment_card_id", "id");
     }
+    
+    public function equip($slot_id){
+        return $this->equips()->where("attachment_slot_id",$slot_id)->first();
+    }
 
     public function team() {
         return $this->hasOne("App\CCC\data\user_team_member", "card_id", "id");

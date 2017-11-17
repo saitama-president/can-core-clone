@@ -37,28 +37,35 @@ H:{{$card->status->hp}},
 
 
 <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">改造</button>
+<div class="list">
+    <h4>装備</h4>
+    <ul>
+        @for($i=0;$i<3;$i++)
+        <li>
+            <select onchange="return alert($(this).val()) && async('/api/upgrade/equip/{{$card->id}}',
+                        'POST',{
+                            'slot_id':$i,
+                            'equip_id':$(this).val()
+                        });
+                    ">
+                <?php 
+                    
+                ?>
+                <option value=0 >
+                
+                </option>                
+                @foreach($user
+                    ->equips()
+                    //->where("attachment_card_id",null)
+                    ->get()->keyBy("id") as $id=>$equip)
+                    <option value='{{$id}}'>{{$id}}</option>
+                @endforeach
+            </select>              
+        </li>
+        @endfor
+    </ul>    
+</div>
 
-<h4>装備</h4>
-<ul>
-    @for($i=0;$i<3;$i++)
-    <li>
-        <select onchange="return async('/api/upgrade/equip/{{$card->id}}',
-                    'POST',{
-                        'slot_id':$i,
-                        'equip_id':$(this).val()
-                    });
-                ">
-            @foreach($user
-                ->equips()
-                //->where("attachment_card_id",null)
-                ->get() as $equip)
-            <option>{{$equip->id}}</option>
-            @endforeach
-        </select>        
-        <a>外す</a>        
-    </li>
-    @endfor
-</ul>
 
 
 <form action="" >
@@ -71,11 +78,11 @@ H:{{$card->status->hp}},
             size="6"
             value="{{$card->uniq_name}}"
             onchange="return async(
-                '/play/upgrade/rename', 'POST', {
+                '/play/upgrade/rename', 'POST',{
                 '_token':'{{csrf_token()}}',
                         'name':$('#NAME_CHANGE_{{$card->id}}').val(),
                         'card_id':{{$card->id}}
-                });
+                },false);
             "
             />        
     </label>

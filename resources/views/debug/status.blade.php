@@ -22,6 +22,13 @@
     .show{
         display: block;
     }
+    
+    .notify{
+        position: fixed;
+        top: 1em;
+        right: 1em;
+        color: red;
+    }
 </style>
 
 <script>
@@ -33,9 +40,13 @@
             
             $(this).next("ul").toggleClass("show");
         });
+        
+        $("input").keypress(function(e){
+           if (e.which == 13 )return false;
+        });
     });
-    function async($url, $method = "GET", $data = {
-    }){
+    function async($url, $method = "GET", $data = {},$reload=true
+    ){
         if(!$data._token){
             $data._token='{{csrf_token()}}';
         }
@@ -44,8 +55,13 @@
             method: $method,
             data: $data,
             success: function (data) {
-                alert("成功");
-                location.reload();
+                
+                //alert("成功");
+                notify();
+                if($reload){
+                    location.reload();
+                }
+                
             },
             error: function (err) {
                 alert("失敗");
@@ -69,6 +85,16 @@
     function toggle($id){
         
     }
+    
+    function notify($message="DONE"){
+        
+        $n=$("<p>").text('更新成功');
+        $("#NOTIFY").append($n);
+        
+        setTimeout(function(){
+            $n.remove();
+        },5000);
+    }
 
 
 </script>
@@ -76,6 +102,8 @@
 @endsection
 
 @section('body')    
+<div class="notify" id="NOTIFY"></div>
+
 <h2>現在のステータス情報</h2>
 {{$user->id}}:{{$user->name}}
 
