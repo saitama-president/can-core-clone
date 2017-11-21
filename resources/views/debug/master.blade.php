@@ -13,6 +13,30 @@
 
         $("#" + $id).toggleClass("show");
     }
+    
+    function async($url, $method = "GET", $data = {},$reload=true
+    ){
+        if(!$data._token){
+            $data._token='{{csrf_token()}}';
+        }
+        $.ajax({
+            url: $url,
+            method: $method,
+            data: $data,
+            success: function (data) {
+                
+                notify();
+                if($reload){
+                    location.reload();
+                }
+                
+            },
+            error: function (err) {
+                alert("失敗");
+            }
+        });
+        return false;
+    }
 
 </script>
 

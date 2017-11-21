@@ -101,9 +101,6 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
         Route::get("/debug/asset_full", "DebugController@asset_full");
         Route::get("/debug/team_add", "DebugController@team_add");
 
-        Route::get("/debug/map_add", function() {
-            
-        });
     }
 
 }

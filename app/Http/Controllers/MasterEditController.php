@@ -39,9 +39,24 @@ class MasterEditController extends Controller implements \App\Common\ControllerR
             return redirect("/debug/master")->with("message","追加:{$item->id}");
         });
         Route::GET("master/map/edit/{id}",function($id){
-            
-            
             return view("debug.map_edit",["map_id"=>$id]);
+        });
+
+        Route::GET("master/map/point_add/{id}",function($map_id){
+            
+            $points_count=\App\CCC\data\master_map_point::where("map_id",$map_id)->count();
+            
+            $key=i2a($points_count+1,"ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+
+            \Log::Debug("MAP_ID={$map_id} COUNT={$points_count} KEY={$key}");
+            
+            $point=new \App\CCC\data\master_map_point([
+                "map_id"=>$map_id,
+                "key"=> $key
+            ]);
+            $point->save();
+            
+            return "OK";
         });
         
 
