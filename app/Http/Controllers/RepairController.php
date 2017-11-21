@@ -50,7 +50,7 @@ class RepairController extends Controller implements \App\Common\ControllerRoute
 
     $repair->complete_at = \Carbon\Carbon::now()->addSecond(-1);
 
-    $create->save();
+    $repair->save();
     return "OK";
   }
 

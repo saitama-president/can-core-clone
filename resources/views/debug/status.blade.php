@@ -74,7 +74,7 @@
         async(`/api/create/shortcut/${$id}`);
     }
     function repair_shortcut($id) {
-        async(`/api/create/shortcut/${$id}`);
+        async(`/api/repair/shortcut/${$id}`,"POST");
     }
     
     function take($id) {
