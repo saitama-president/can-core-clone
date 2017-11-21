@@ -48,10 +48,10 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
      */
     private function create_develop() {
         $items = [
-            1 => request("A"),
-            2 => request("B"),
-            3 => request("C"),
-            4 => request("D"),
+            1 => request("A",10),
+            2 => request("B",10),
+            3 => request("C",10),
+            4 => request("D",10),
         ];
 
         $user = request()->user;
@@ -85,10 +85,10 @@ class CreateController extends Controller implements \App\Common\ControllerRoute
     private function create_build() {
         \Log::Debug("製造");
         $items = [
-            1 => request("A"),
-            2 => request("B"),
-            3 => request("C"),
-            4 => request("D"),
+            1 => request("A",30),
+            2 => request("B",30),
+            3 => request("C",30),
+            4 => request("D",30),
         ];
 
         $line = request("L");

@@ -38,32 +38,58 @@ H:{{$card->status->hp}},
 
 <button onclick="return async('/api/create/teardown/{{$card->id}}', 'GET');">改造</button>
 <div class="list">
-    <h4>装備</h4>
-    <ul>
-        @for($i=0;$i<3;$i++)
-        <li>
-            <select onchange="return alert($(this).val()) && async('/api/upgrade/equip/{{$card->id}}',
-                        'POST',{
-                            'slot_id':$i,
-                            'equip_id':$(this).val()
-                        });
-                    ">
-                <?php 
-                    
-                ?>
-                <option value=0 >
-                
-                </option>                
-                @foreach($user
-                    ->equips()
-                    //->where("attachment_card_id",null)
-                    ->get()->keyBy("id") as $id=>$equip)
-                    <option value='{{$id}}'>{{$id}}</option>
-                @endforeach
-            </select>              
-        </li>
-        @endfor
-    </ul>    
+    <label>改造
+    @for($i=0;$i<5;$i++)
+    <select onchange="">
+        <option value="0">なし</option>
+        @foreach($user->cards()->get() as $id=>$c)
+        <option value="{{$id}}">{{$c->id}}</option>    
+        @endforeach
+    </select>
+    @endfor 
+    
+    <button onclick="return async('/api/upgrade/equip/{{$card->id}}','POST',{
+                        'card_id':{{$card->id}},
+                        'A':1,'B':1,'C':1,'D':1,'E':1
+                     });
+            ">実行</button>
+    </label>   
+</div>
+
+<div class="list">
+    <label>装備
+    <?php 
+        $equips=$card->equips()->get()->keyBy("attachment_slot_id");
+    ?>
+        
+    @for($i=1;$i<=3;$i++)
+    <select onchange="return async('/api/upgrade/equip/{{$card->id}}',
+                'POST',{
+                    'slot_id':{{$i}},
+                    'equip_id':$(this).val()
+                },false);
+            ">
+        
+        
+        <option value='0'>
+            なし
+        </option>
+        {{-- 現在のやつ --}}
+        @if(!empty($equips[$i]))
+        <option value="{{$equips[$i]->id}}" selected>＜{{$equips[$i]->id}}＞</option>
+        @endif
+        
+        @foreach($user
+            ->equips()
+            ->where("attachment_card_id",null)
+            ->get()->keyBy("id") as $id=>$equip)
+            
+            
+            <option value='{{$equip->id}}'>{{$equip->id}}</option>
+        @endforeach
+    </select>
+    @endfor
+    </label>
 </div>
 
 
@@ -79,7 +105,6 @@ H:{{$card->status->hp}},
             value="{{$card->uniq_name}}"
             onchange="return async(
                 '/play/upgrade/rename', 'POST',{
-                '_token':'{{csrf_token()}}',
                         'name':$('#NAME_CHANGE_{{$card->id}}').val(),
                         'card_id':{{$card->id}}
                 },false);

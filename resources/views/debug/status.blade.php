@@ -45,6 +45,7 @@
            if (e.which == 13 )return false;
         });
     });
+    
     function async($url, $method = "GET", $data = {},$reload=true
     ){
         if(!$data._token){
@@ -56,7 +57,6 @@
             data: $data,
             success: function (data) {
                 
-                //alert("成功");
                 notify();
                 if($reload){
                     location.reload();
@@ -80,11 +80,6 @@
     function take($id) {
         async(`/api/create/take/${$id}`);
     }
-
-
-    function toggle($id){
-        
-    }
     
     function notify($message="DONE"){
         
@@ -95,7 +90,6 @@
             $n.remove();
         },5000);
     }
-
 
 </script>
 
@@ -134,7 +128,7 @@
             <ul>
                 @forelse($user
                 ->equips()
-                //->where("attachment_card_id",null)
+                ->where("attachment_card_id",null)
                 ->get() as $equip)
                 <li>{{$equip}}</li>
                 @empty
