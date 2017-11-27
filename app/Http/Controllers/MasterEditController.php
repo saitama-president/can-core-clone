@@ -59,7 +59,14 @@ class MasterEditController extends Controller implements \App\Common\ControllerR
             return "OK";
         });
         
-
+        Route::Post("master/map/name/{id}",function($id){
+            $map=\App\CCC\data\master_map::where("id",$id)->first();
+            $name= request("name");
+            $map->name=$name;
+            $map->save();            
+            return "OK";
+        });
+        
     }
 
 }

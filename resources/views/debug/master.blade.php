@@ -14,6 +14,16 @@
         $("#" + $id).toggleClass("show");
     }
     
+    function notify($message="DONE"){
+        
+        $n=$("<p>").text('更新成功');
+        $("#NOTIFY").append($n);
+        
+        setTimeout(function(){
+            $n.remove();
+        },5000);
+    }
+    
     function async($url, $method = "GET", $data = {},$reload=true
     ){
         if(!$data._token){
@@ -56,11 +66,12 @@
 
 @section('body')
 
-@if(session('message'))
-<div class="notify">
-    {{session('message')}}
+
+
+<div class="notify" id="NOTIFY">
+    @if(session('message')){{session('message')}}@endif
+    
 </div>
-@endif
 
 <h1>マスタ情報</h1>
 <a href="{{url('debug/status')}}">ステータス情報</a>
@@ -109,7 +120,13 @@
             @foreach(App\CCC\data\master_map::all() as $item)
             <li>                
                 <label>
-                    {{$item}}<a href="/master/map/edit/{{$item->id}}">編集</a>
+                    {{$item->id}}:
+                    <input type="text" onchange="async(
+                    '/master/map/name/{{$item->id}}','POST',{
+                        'name':$(this).val()
+                    },false);
+                    " value="{{$item->name}}"/>
+                    <a href="/master/map/edit/{{$item->id}}">編集</a>
                 </label> 
             </li>
             @endforeach
