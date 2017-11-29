@@ -6,8 +6,9 @@
  * and open the template in the editor.
  */
 
-namespace App\CCC\service;
-use App\CCC\data\user\user;
+namespace App\CCC\service\launch;
+use App\CCC\data\user as user;
+use App\CCC\data\master as master;
 /**
  * Description of UserUpgradeService
  *
@@ -18,7 +19,7 @@ class UserLaunchService {
     private $user;
 
 
-    public function __construct(user $u) {
+    public function __construct(user\user $u) {
         $this->user=$u;
     }
     

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\CCC\data\user as user;
+use App\CCC\data\master as master;
 
 class LaunchController extends Controller 
  implements \App\Common\ControllerRoute
@@ -33,34 +35,15 @@ class LaunchController extends Controller
         
         \Log::debug("出撃した:TEAM={$team_id},LAUNCH={$launch_id}");
         $user= request()->user;
+        $map= master\master_map::find($launch_id);
+        $team=user\user_team::find($team_id);
+
+        $launch=new \App\CCC\service\launch\LaunchMapService(
+            $team,
+            $map            
+        );
         
-        $members=$user->team($team_id)->members();
-        
-        /**
-         * チェック開始
-         */
-        
-        
-        foreach($members->get() as $member){
-            \Log::Debug("CARD_ID=".$member->card_id);
-          if(!empty($member->card_id)){
-              $card=$member->card()->first();
-              $status=$card->status;
-              
-              $cost=10;
-              
-              $status->useFuel($cost);
-              $status->useAmmo($cost);
-              
-              $status->useHP(mt_rand(0, 100));
-              
-              $status->save();
-              
-          }
-          
-        }
-        
-        
+        $launch->Start();
         
         //出撃結果を出力する
         //結果
