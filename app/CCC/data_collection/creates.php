@@ -10,7 +10,7 @@ namespace App\CCC\data_collection;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\CCC\data\user_create;
+use App\CCC\data\user\user_create;
 
 /**
  * Description of assets

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\CCC\data\user\user_team_member;
 
 class TeamController extends Controller implements \App\Common\ControllerRoute {
 
@@ -54,7 +55,7 @@ class TeamController extends Controller implements \App\Common\ControllerRoute {
     
     foreach($members as $index=>$card_id){
       
-      $new_member=\App\CCC\data\user_team_member::firstOrNew([
+      $new_member=user_team_member::firstOrNew([
           "user_id"=>$user->id,
           "position_index"=>$index+1,
           "team_id"=>$team_id,

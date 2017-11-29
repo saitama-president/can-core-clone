@@ -81,15 +81,15 @@
 <h2>マスタ一覧</h2>
 <ul id="master_list">
     @foreach([
-      'App\CCC\data\master_card'=>"カード一覧",
-      'App\CCC\data\master_equipment'=>"装備一覧",
-      'App\CCC\data\master_card_equip'=>"カード装備一覧",
-      'App\CCC\data\master_character'=>"キャラクタ一覧",
-      'App\CCC\data\master_rare_type'=>"レア度",
-      'App\CCC\data\master_card_voice_type'=>"ボイス種別",
-      'App\CCC\data\master_item'=>"アイテム全種",
-      'App\CCC\data\master_launch'=>"出撃対象",
-      'App\CCC\data\master_mission'=>"ミッション",
+      'App\CCC\data\master\master_card'=>"カード一覧",
+      'App\CCC\data\master\master_equipment'=>"装備一覧",
+      'App\CCC\data\master\master_card_equip'=>"カード装備一覧",
+      'App\CCC\data\master\master_character'=>"キャラクタ一覧",
+      'App\CCC\data\master\master_rare_type'=>"レア度",
+      'App\CCC\data\master\master_card_voice_type'=>"ボイス種別",
+      'App\CCC\data\master\master_item'=>"アイテム全種",
+      'App\CCC\data\master\master_launch'=>"出撃対象",
+      'App\CCC\data\master\master_mission'=>"ミッション",
     ] as $class_name=>$label)
      <li>
         <h3 onclick="toggle('{{preg_match('#[^\\\]+$#',$class_name,$match)?$match[0]:""}}')">
@@ -112,12 +112,12 @@
     <li>
         <h3 onclick="toggle('master_map');">
             マップ
-            （{{App\CCC\data\master_map::count()}}）
+            （{{App\CCC\data\master\master_map::count()}}）
         </h3>
         <div>
             <a href="{{url('master/map/add')}}">＋</a>
             <ul id="master_map">
-            @foreach(App\CCC\data\master_map::all() as $item)
+            @foreach(App\CCC\data\master\master_map::all() as $item)
             <li>                
                 <label>
                     {{$item->id}}:

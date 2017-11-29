@@ -7,9 +7,10 @@ namespace App\CCC\data_collection;
  */
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\CCC\data\user_card;
-use App\CCC\data\user_card_status;
-use App\CCC\data\user_card_tension;
+use App\CCC\data\user\user_card;
+use App\CCC\data\user\user_card_status;
+use App\CCC\data\user\user_card_tension;
+use App\CCC\data\master\master_card_equip;
 /**
  * Description of assets
  *
@@ -31,12 +32,12 @@ class cards extends UserCollection{
         $user->cards()->save($card);
         
         /*装備一覧を取得する*/
-        $equips= \App\CCC\data\master_card_equip::
+        $equips= master_card_equip::
             where("master_card_id",$master_card_id)
             ->get();
         /*装備品を保存する*/
         foreach($equips as $equip){
-            $user->equips()->save(new \App\CCC\data\user_equipment([                
+            $user->equips()->save(new \App\CCC\data\user\user_equipment([                
                 "master_equip_id"=>$equip->master_equip_id,
                 "attachment_card_id"=>$card->id,
                 "attachment_slot_id"=>$equip->slot_id,                

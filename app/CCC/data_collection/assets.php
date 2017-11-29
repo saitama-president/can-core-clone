@@ -7,8 +7,8 @@ namespace App\CCC\data_collection;
  */
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\CCC\data\user_asset;
-use App\CCC\data\master_item_asset;
+use App\CCC\data\user\user_asset;
+use App\CCC\data\master\master_item_asset;
 /**
  * Description of assets
  *

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\CCC\data\user\user_team;
 
 class DebugController extends Controller implements \App\Common\ControllerRoute {
 
@@ -76,7 +77,7 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
 
         //  \Log::Debug("チーム最大数？".);
 
-        $user->teams()->save(new \App\CCC\data\user_team(["team_id" =>
+        $user->teams()->save(new user_team(["team_id" =>
             $user->teams()->max("team_id") + 1]));
 
         return redirect("/debug/status");
@@ -85,11 +86,7 @@ class DebugController extends Controller implements \App\Common\ControllerRoute 
     public function master() {
 
 
-        return view("debug.master", [
-            "master_character" => \App\CCC\data\master_character::all(),
-            "master_rare" => \App\CCC\data\master_rare_type::all(),
-            "voice_type" => \App\CCC\data\master_card_voice_type::all(),
-        ]);
+        return view("debug.master");
     }
 
     public static function Routes() {

@@ -3,7 +3,7 @@
 namespace App\CCC\service;
 
 use App\User;
-
+use App\CCC\data\user\user_create;
 /**
  * Description of DebugService
  *
@@ -35,7 +35,7 @@ class DebugService {
         //いろいろ突っ込む
         /* 製造 */
         $ccc_user->creates()->save(
-            new \App\CCC\data\user_create([
+            new user_create([
             "line_id" => 1,
             "master_card_id" => 1,
             "created_at" => \Carbon\Carbon::now(),

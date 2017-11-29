@@ -7,7 +7,7 @@
  */
 
 namespace App\CCC\service;
-
+use App\CCC\data\user\user;
 /**
  * Description of UserUpgradeService
  *
@@ -18,7 +18,7 @@ class UserLaunchService {
     private $user;
 
 
-    public function __construct(\App\CCC\data\user $u) {
+    public function __construct(user $u) {
         $this->user=$u;
     }
     

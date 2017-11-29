@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Request;
+use App\CCC\data\user\user;
 
 class RegisterController extends Controller
 {
@@ -71,7 +72,7 @@ class RegisterController extends Controller
  $request, $user)
     {
         \Log::debug("ユーザが登録された");
-        $ccc_user=new \App\CCC\data\user();
+        $ccc_user=new user();
         
         
         
@@ -80,12 +81,7 @@ class RegisterController extends Controller
         $ccc_user->save();
         
         
-        $hash= \App\CCC\data\session_token::RegUniqueToken($user->id);        
         \Event::Fire(new \App\Events\UserRegistedEvent($ccc_user));
         
-        //リダイレクト先にsession_token_idを付ける
-        
-        
-        //$this->redirectTo.="/{$hash}";
   }
 }

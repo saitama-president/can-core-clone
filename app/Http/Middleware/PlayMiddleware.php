@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\CCC\data\user\user;
 
 class PlayMiddleware
 {
@@ -25,7 +26,7 @@ class PlayMiddleware
             return $next($request);
         }
         
-        $user= \App\CCC\data\user::find($uid);
+        $user= user::find($uid);
         $request->merge(['user' => $user]);
         return $next($request);
     }

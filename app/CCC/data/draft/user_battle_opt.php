@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CCC\data;
+namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
 

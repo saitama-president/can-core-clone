@@ -72,7 +72,7 @@ class DataImportService {
                 $sheet = $book->getSheetByName($sheet_name);
                 \Log::Debug("$sheet_name シート読み込み");
                 $data=$this->sheet2array($sheet);
-                $class_name='\App\CCC\data\\'.$table;
+                $class_name='\App\CCC\data\master\\'.$table;
                 
                 foreach($data as $row){
                     $class_name::RegistMasterRow($row);

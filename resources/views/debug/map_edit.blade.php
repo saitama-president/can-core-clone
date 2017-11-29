@@ -128,6 +128,8 @@
                 .css('left',$vx )
                 .css('top',$vy);
         
+        async();
+        
         console.log("終了");
     }
 
@@ -140,7 +142,7 @@
 <div id="canvas_root" dropzone="move">
     <canvas id="canvas" width="1000" height="1000" dropzone="move"></canvas>
     <ul id="canvas_overlay_point" dropzone="move">
-        @foreach(App\CCC\data\master_map_point
+        @foreach(App\CCC\data\master\master_map_point
             ::where("map_id",$map_id)
             ->get() as $item)
             <li style="left:10vmin;top:10vmin;" draggable=true 
@@ -154,19 +156,14 @@
     <button onclick="return async('/master/map/point_add/{{$map_id}}');">＋</button>
     <h3>地点リスト</h3>
     <ul>
-        @foreach(App\CCC\data\master_map_point
+        @foreach(App\CCC\data\master\master_map_point
         ::where("map_id",$map_id)
         ->get() as $item)
         <li id="POINT_{{$item->id}}">
-            <label >
-                {{$item->id}}
+            <label>
+                {{$item->id}}:
                 {{$item}}
             </label>
-            <script>
-                $('#POINT_{{$item->id}}').ready(function (e) {
-                    drawPath(10, 20, 30, 40);
-                });
-            </script>
         </li>
         @endforeach
     </ul>        

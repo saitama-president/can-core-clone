@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\CCC\data\master\master_map;
+use App\CCC\data\master\master_map_point;
 
 class MasterEditController extends Controller implements \App\Common\ControllerRoute {
 
@@ -30,7 +32,7 @@ class MasterEditController extends Controller implements \App\Common\ControllerR
         
         Route::GET("master/map/add",function(){
             
-            $item=new \App\CCC\data\master_map([
+            $item=new master_map([
                 "map_type"=>1,
                 "area_id"=>99,
                 "name"=>"未構築"                
@@ -44,13 +46,13 @@ class MasterEditController extends Controller implements \App\Common\ControllerR
 
         Route::GET("master/map/point_add/{id}",function($map_id){
             
-            $points_count=\App\CCC\data\master_map_point::where("map_id",$map_id)->count();
+            $points_count=master_map_point::where("map_id",$map_id)->count();
             
             $key=i2a($points_count+1,"ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
             \Log::Debug("MAP_ID={$map_id} COUNT={$points_count} KEY={$key}");
             
-            $point=new \App\CCC\data\master_map_point([
+            $point=new master_map_point([
                 "map_id"=>$map_id,
                 "key"=> $key
             ]);
@@ -60,12 +62,22 @@ class MasterEditController extends Controller implements \App\Common\ControllerR
         });
         
         Route::Post("master/map/name/{id}",function($id){
-            $map=\App\CCC\data\master_map::where("id",$id)->first();
+            $map=master_map::where("id",$id)->first();
             $name= request("name");
             $map->name=$name;
             $map->save();            
             return "OK";
         });
+        
+        Route::Post("master/map/point/{id}",function($id){
+            
+            $map=master_map::where("id",$id)->first();
+            $name= request("name");
+            $map->name=$name;
+            $map->save();            
+            return "OK";
+        });
+        
         
     }
 

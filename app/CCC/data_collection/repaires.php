@@ -7,9 +7,10 @@ namespace App\CCC\data_collection;
  */
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\CCC\data\user_card;
-use App\CCC\data\user_card_status;
-use App\CCC\data\user_card_tension;
+use App\CCC\data\user\user_card;
+use App\CCC\data\user\user_card_status;
+use App\CCC\data\user\user_card_tension;
+use App\CCC\data\user\user_repair;
 /**
  * Description of assets
  *
@@ -28,7 +29,7 @@ class repaires extends UserCollection{
             \Log::Debug("検索:{$i}");
             if(!$this->where("line_id",$i)->exists()){
                 //ここに入院
-                $repair=new \App\CCC\data\user_repair([
+                $repair=new user_repair([
                     "line_id"=>$i,
                     "card_id"=>$card_id,
                     "complete_at"=>\Carbon\Carbon::now()->addSeconds(30)

@@ -265,7 +265,7 @@
         <div class="list">
             <h3>受託可能</h3>
             <ul>
-                @forelse(App\CCC\data\master_mission::all() as $mission)
+                @forelse(App\CCC\data\master\master_mission::all() as $mission)
                 <li>
                     <label>
                         {{$mission->id}}

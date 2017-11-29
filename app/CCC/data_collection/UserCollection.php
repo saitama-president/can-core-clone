@@ -8,6 +8,8 @@
 
 namespace App\CCC\data_collection;
 
+
+use App\CCC\data\user\user;
 /**
  * Description of CollectionBase
  *
@@ -18,7 +20,7 @@ class UserCollection extends CollectionBase{
   protected $user;
   
   public function __construct(
-      \App\CCC\data\user $user,
+      user $user,
       \Illuminate\Database\Eloquent\Relations\HasMany $many) {
       
       parent::__construct($many);
