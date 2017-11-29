@@ -3,7 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\CCC\data\master as master;
 /*
  *  時間で回復するテンションを管理
  * 信頼度もこのテーブルで管理する。
@@ -30,9 +30,7 @@ class user_card_tension extends Model implements \App\Common\CreateTable {
 
     }
 
-    public function user() {
-        return $this->belongsTo('App\CCC\data\user');
-    }
+    use \App\CCC\data\traits\belongsToUser;
 
     /**
      * 現在の値を取得

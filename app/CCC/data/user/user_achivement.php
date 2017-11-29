@@ -3,6 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master as master;
 
 /**
  * 現在受けているミッション
@@ -18,12 +19,11 @@ class user_achivement extends Model implements \App\Common\CreateTable {
         $b->unique(["user_id","achivement_id"],"user_uniq_achivement");
         $b->timestamps();
     }
+
+    use \App\CCC\data\traits\belongsToUser;
     
-    public function user(){
-        return $this->belongsTo('App\CCC\data\user');
-    }
     public function master(){
-        return $this->belongsTo('App\CCC\data\master_item_achivement');
+        return $this->belongsTo(master\master_item_achive::class);
     }
 
 }

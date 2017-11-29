@@ -3,6 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master as master;
 
 class user_team extends Model implements \App\Common\CreateTable {
 
@@ -23,9 +24,7 @@ class user_team extends Model implements \App\Common\CreateTable {
     }
 
 
-    public function user() {
-        return $this->belongsTo(user::class);
-    }
+    use \App\CCC\data\traits\belongsToUser;
     
     public function members(){
         return $this->hasMany(user_team_member::class,"team_id");

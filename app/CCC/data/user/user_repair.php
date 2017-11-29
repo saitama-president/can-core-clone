@@ -3,6 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master as master;
 
 class user_repair extends Model implements \App\Common\CreateTable {
 
@@ -32,11 +33,9 @@ class user_repair extends Model implements \App\Common\CreateTable {
     }
     
     public function card(){
-        return $this->belongsTo('App\CCC\data\user_card','card_id','id');
+        return $this->belongsTo(user_card::class,'card_id','id');
     }
 
-    public function user() {
-        return $this->belongsTo('App\CCC\data\user');
-    }
+    use \App\CCC\data\traits\belongsToUser;
 
 }

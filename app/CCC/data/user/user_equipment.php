@@ -3,6 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master as master;
 
 /**
  * 浮いてる装備品

@@ -30,9 +30,7 @@ class session extends Model implements \App\Common\CreateTable{
     
     
     
-    public function A(){
-        return $this->hasMany("App\CCC\data\user_present");
-    }
+
     
 
     

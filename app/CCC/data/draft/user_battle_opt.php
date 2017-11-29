@@ -3,6 +3,8 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master\master_card;
+
 
 class user_battle_opt extends Model implements \App\Common\CreateTable {
 
@@ -18,11 +20,11 @@ class user_battle_opt extends Model implements \App\Common\CreateTable {
     }
 
     public function user() {
-        return $this->belongsTo('App\CCC\data\user');
+        return $this->belongsTo(user::class);
     }
     
     public function master(){
-        return $this->hasOne("App\CCC\data\master_card","id","master_card_id")
+        return $this->hasOne(master_card::class,"id","master_card_id")
             ->first();  
     }
 

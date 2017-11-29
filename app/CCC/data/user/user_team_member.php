@@ -29,13 +29,11 @@ class user_team_member extends Model implements \App\Common\CreateTable {
 
     public function card() {
         
-        return $this->belongsTo('App\CCC\data\user_card');
+        return $this->belongsTo(user_card::class);
     }
     
     
 
-    public function user() {
-        return $this->belongsTo('App\CCC\data\user');
-    }
+    use \App\CCC\data\traits\belongsToUser;
 
 }

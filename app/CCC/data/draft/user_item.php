@@ -3,6 +3,7 @@
 namespace App\CCC\data;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master as master;
 
 /**
  * 個数管理される系のアイテム
@@ -22,11 +23,11 @@ class user_item extends Model implements \App\Common\CreateTable {
     }
 
     public function user() {
-        return $this->belongsTo('App\CCC\data\user');
+        return $this->belongsTo(user::class);
     }
     
     public function master(){
-        return $this->hasOne("App\CCC\data\master_item","id","item_id")
+        return $this->hasOne(master\master_item::class,"id","item_id")
             ->first();
     }
 

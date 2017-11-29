@@ -3,6 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master as master;
 
 class user_status extends Model implements \App\Common\CreateTable {
 
@@ -36,9 +37,7 @@ class user_status extends Model implements \App\Common\CreateTable {
         $b->timestamps();
     }
 
-    public function user() {
-        return $this->belongsTo('App\CCC\data\user');
-    }
+    use \App\CCC\data\traits\belongsToUser;
 
     /**
      * 

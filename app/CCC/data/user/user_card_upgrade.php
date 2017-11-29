@@ -3,6 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master as master;
 
 class user_card_upgrade extends Model implements \App\Common\CreateTable {
 
@@ -15,10 +16,7 @@ class user_card_upgrade extends Model implements \App\Common\CreateTable {
         $b->index(["user_id"],"idx_user_card_upgrade");
     }
     
-    public function user()
-    {
-        return $this->belongsTo('App\CCC\data\user');
-    }
+    use \App\CCC\data\traits\belongsToUser;
     
     /*持つ機能は
      * 

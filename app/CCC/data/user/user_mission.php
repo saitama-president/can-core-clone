@@ -3,6 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master as master;
 
 /**
  * 現在受けているミッション
@@ -24,11 +25,9 @@ class user_mission extends Model implements \App\Common\CreateTable {
         $b->timestamps();
     }
     
-    public function user(){
-        return $this->belongsTo('App\CCC\data\user');
-    }
+    use \App\CCC\data\traits\belongsToUser;
     public function master(){
-        return $this->belongsTo('App\CCC\data\master_mission');
+        return $this->belongsTo(master\master_mission::class);
     }
 
 }

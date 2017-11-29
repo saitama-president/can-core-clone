@@ -3,7 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
-use App\CCC\data\master\master_launch;
+use App\CCC\data\master as master;
 
 class user_launch extends Model implements \App\Common\CreateTable {
 
@@ -19,12 +19,10 @@ class user_launch extends Model implements \App\Common\CreateTable {
         $b->index(["user_id"],"idx_user_launch");
     }
 
-    public function user() {
-        return $this->belongsTo(user::class);
-    }
+    use \App\CCC\data\traits\belongsToUser;
     
     public function master(){
-        return $this->hasOne(master_launch::class,"id","launch_id")
+        return $this->hasOne(master\master_launch::class,"id","launch_id")
             ->first();
     }
 

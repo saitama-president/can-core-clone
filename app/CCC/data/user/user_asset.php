@@ -3,7 +3,8 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
-use App\CCC\data\master\master_item_asset;
+use App\CCC\data\master as master;
+
 
 class user_asset extends Model implements \App\Common\CreateTable {
 
@@ -46,6 +47,7 @@ class user_asset extends Model implements \App\Common\CreateTable {
 
     }
     
+    use \App\CCC\data\traits\belongsToUser;
     public function key(){
         return $this->master()->key;
     }
@@ -71,7 +73,7 @@ class user_asset extends Model implements \App\Common\CreateTable {
 
 
     public function master(){
-        return $this->hasOne(master_item_asset::class,"id","asset_id")->first();
+        return $this->hasOne(master\master_item_asset::class,"id","asset_id")->first();
     }
 
 

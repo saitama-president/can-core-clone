@@ -3,7 +3,8 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
-use App\CCC\data\master\master_card;
+
+use App\CCC\data\master as master;
 
 class user_card extends Model implements \App\Common\CreateTable {
 
@@ -12,6 +13,8 @@ class user_card extends Model implements \App\Common\CreateTable {
         "user_id",
         "master_card_id",
     ];
+    
+    use \App\CCC\data\traits\belongsToUser;
 
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
@@ -47,12 +50,10 @@ class user_card extends Model implements \App\Common\CreateTable {
     }
     
 
-    public function user() {
-        return $this->belongsTo('App\CCC\data\user');
-    }
+    
 
     public function master() {
-        return $this->hasOne(master_card::class, "id", "master_card_id")->first();
+        return $this->hasOne(master\master_card::class, "id", "master_card_id")->first();
     }
 
     public function status() {
@@ -91,7 +92,7 @@ class user_card extends Model implements \App\Common\CreateTable {
     
 
     public function master_item() {
-        return $this->hasOne(master_card::class, "id", "master_card_id")->first()->master()->first();
+        return $this->hasOne(master\master_card::class, "id", "master_card_id")->first()->master()->first();
     }
 
 

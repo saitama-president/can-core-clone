@@ -3,7 +3,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\CCC\data\master as master;
 /*
     カードの燃料：弾薬を管理します。
  *  体調も管理します
@@ -30,16 +30,14 @@ class user_card_status extends Model implements \App\Common\CreateTable {
         $b->integer("ammo")->default(100);        
     }
 
-    public function user() {
-        return $this->belongsTo('App\CCC\data\user');
-    }
+    use \App\CCC\data\traits\belongsToUser;
     
     /**
      * 補給に必要なコストを取得
      * @return type
      */
     public function getRequireChargeCost(){
-        $this->belongsTo('App\CCC\data\user_card','card_id')->first();
+        $this->belongsTo(user_card::class,'card_id')->first();
         
         
         return (Object)[

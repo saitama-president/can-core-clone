@@ -19,7 +19,7 @@ class user_housing extends Model implements \App\Common\CreateTable {
     
     public function user()
     {
-        return $this->belongsTo('App\CCC\data\user');
+        return $this->belongsTo(user::class);
     }
 
 

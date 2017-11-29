@@ -2,6 +2,7 @@
 namespace App\CCC\data\user;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CCC\data\master as master;
 
 class user extends Model implements \App\Common\CreateTable {
 
