@@ -5,12 +5,11 @@ namespace App\Events;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\CCC\data\user_status;
 use App\CCC\data\user_team;
+use App\CCC\data\user as user;
 
 
 class UserRegistedEvent implements \App\Common\EventHandler {
@@ -26,7 +25,7 @@ class UserRegistedEvent implements \App\Common\EventHandler {
      *
      * @return void
      */
-    public function __construct(\App\CCC\data\user $u) {
+    public function __construct(user\user $u) {
         $this->u = $u;
     }
 

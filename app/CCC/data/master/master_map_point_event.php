@@ -18,14 +18,11 @@ implements \App\Common\CreateTable,
     //
     public static function CreateTable(\Illuminate\Database\Schema\Blueprint $b) {
         $b->increments('id');
-        $b->integer('map_id');
-        $b->string('key',2);
-        
-        $b->float('X')->default(1);
-        $b->float('Y')->default(2);
-        $b->float('Z')->default(0);
-        $b->unique(["map_id","key"],
-            "uniq_map_point");
+        $b->integer('point_id');
+        $b->tinyInteger("event_type");//イベント種別。便宜的
+        $b->tinyInteger("event_index");
+        $b->string("name")->default('無名');
+        $b->unique(["point_id","event_index"]);
         $b->timestamps();
     }    
 

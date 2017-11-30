@@ -2,8 +2,10 @@
 
 namespace App\CCC\service;
 
-use App\User;
-use App\CCC\data\user\user_create;
+
+use App\CCC\data\user as user;
+use App\CCC\data\master as master;
+
 /**
  * Description of DebugService
  *
@@ -15,18 +17,18 @@ class DebugService {
 
         \Log::Debug("ユーザ追加デバッグ");
 
-        $user = User::where("email", $email)->first();
+        $user = \App\User::where("email", $email)->first();
         if (!empty($user)) {
             return $user;
         }
 
-        $user = new User();
+        $user = new \App\User();
         $user->name = $name;
         $user->email = $email;
         $user->password = bcrypt("test");
         $user->save();
 
-        $ccc_user = new \App\CCC\data\user();
+        $ccc_user = new user\user();
         $ccc_user->id = $user->id;
         $ccc_user->name = $user->name;
         $ccc_user->save();

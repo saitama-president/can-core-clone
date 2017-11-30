@@ -6,11 +6,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateAll extends Migration {
 
-  private $name_space = "\\App\\CCC\\data";
+  private $data_name_space = "\\App\\CCC\\data\\user";
 
   private function data_files() {
-
-    return \File::files(app_path("CCC/data"));
+    return \File::files(app_path("CCC/data/user"));
+  }
+  
+  private function master_files(){
+      return \File::files(app_path("CCC/data/master"));
   }
 
   /**
@@ -25,8 +28,8 @@ class CreateAll extends Migration {
     foreach ($this->data_files() as $data) {
       //var_dump(\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class);
       $base_name = basename($data, '.php');
-
-      $class_name = "$this->name_space\\$base_name";
+      
+      $class_name = "$this->data_name_space\\$base_name";
       $table = new $class_name();
       $table_name = $table->table;
       var_dump("$base_name:$table_name 作成");
@@ -69,7 +72,7 @@ class CreateAll extends Migration {
     foreach ($this->data_files() as $data) {
       //var_dump(\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class);
       $base_name = basename($data, '.php');
-      $class_name = "$this->name_space\\$base_name";
+      $class_name = "$this->data_name_space\\$base_name";
       $table = new $class_name();
       $table_name = $table->table;
       var_dump($table_name . "作成");
