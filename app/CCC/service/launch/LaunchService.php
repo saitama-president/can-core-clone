@@ -17,7 +17,7 @@ use App\CCC\data\master as master;
 class LaunchService {
     
     private $team;
-
+    
 
     public function __construct(user\user_team $team) {
         $this->team=$u;

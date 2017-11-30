@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\CCC\service;
+namespace App\CCC\service\battle;
 
 /**
  * Description of BattleService

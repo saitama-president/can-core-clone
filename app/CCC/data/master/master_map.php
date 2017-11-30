@@ -28,6 +28,10 @@ class master_map extends Model implements \App\Common\CreateTable, \App\Common\M
     public static function InitTable() {
         
     }
+    
+    public function map_points(){
+        return $this->hasMany(master_map_point::class,"map_id");
+    }
 
     public static function RegistMasterRow(array $data = array()) {
         

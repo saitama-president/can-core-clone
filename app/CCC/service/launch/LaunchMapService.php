@@ -17,31 +17,31 @@ use App\CCC\data\master as master;
  * @author s-yoshihara
  */
 class LaunchMapService {
-
-    private $team;
-    private $map;
-
-    public function __construct(
+    
+    public static function Exec(
         user\user_team $team,
-        master\master_map $map) {
-        $this->team = $team;
-        $this->map = $map;
-    }
-
-    public function Start() {
+        master\master_map $map,
+        $progress   =   1
+        ){
         
-        \Log::Debug("map start");
+        $members = $team->members()->get();
+        $points=$map->map_points();
+        
+        foreach($points->get() as $point){
+            \Log::Debug("P=".$point);
+        }
+        
+        $continue=true;
 
-        $team = $this->team;
-        $members = $team->members();
-        $map = $this->map;
-
-
-
-        /**
-         * チェック開始
-         */
-        foreach ($members->get() as $member) {
+        while($continue){
+            
+            
+            
+            $continue=false;
+        }
+        
+        
+        foreach ($members as $member) {
             \Log::Debug("CARD_ID=" . $member->card_id);
             if (!empty($member->card_id)) {
                 $card = $member->card()->first();
@@ -57,6 +57,10 @@ class LaunchMapService {
                 $status->save();
             }
         }
+        
+        
+        
+        \Log::Debug("出撃終了");
     }
 
 }

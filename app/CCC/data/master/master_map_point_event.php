@@ -4,9 +4,11 @@ namespace App\CCC\data\master;
 
 use Illuminate\Database\Eloquent\Model;
 
-class master_map_point extends Model implements \App\Common\CreateTable, \App\Common\MasterTable {
+class master_map_point_event extends Model 
+implements \App\Common\CreateTable,
+    \App\Common\MasterTable {
 
-    public $table = "master_map_point";
+    public $table = "master_map_point_event";
     public $fillable=[
         "map_id",
         "key",
@@ -44,14 +46,13 @@ class master_map_point extends Model implements \App\Common\CreateTable, \App\Co
         
     }
     
-    
     /**
      * その地点に到達すると発生するイベント
      * @return type
      */
     public function Event(){
         
-        return $this->hasMany(master_map_point_event::class,"");
+        return $this->hasMany($related);
     }
 
     public static function RegistMasterRow(array $data = array()) {

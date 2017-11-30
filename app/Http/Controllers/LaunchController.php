@@ -33,21 +33,24 @@ class LaunchController extends Controller
      */
     public function launch($launch_id,$team_id){
         
-        \Log::debug("出撃した:TEAM={$team_id},LAUNCH={$launch_id}");
+        \Log::debug("出撃した:TEAM={$team_id},
+            LAUNCH={$launch_id}");
         $user= request()->user;
         $map= master\master_map::find($launch_id);
         $team=user\user_team::find($team_id);
-
-        $launch=new \App\CCC\service\launch\LaunchMapService(
-            $team,
-            $map            
-        );
         
-        $launch->Start();
+        \DB::transaction(function()
+            use($map,$team,$user)
+            {
+            \App\CCC\service\launch\LaunchMapService::Exec(
+                $team,
+                $map                
+                );
+        });
         
         //出撃結果を出力する
         //結果
-        return "OK"  ;
+        return "OK";
     }
         
     /**/

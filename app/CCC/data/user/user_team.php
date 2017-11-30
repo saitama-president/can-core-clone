@@ -30,8 +30,24 @@ class user_team extends Model implements \App\Common\CreateTable {
         return $this->hasMany(user_team_member::class,"team_id");
     }
     
+    
+    
     public function member($index){
       return $this->members()->where("position_index",$index)->first();
+    }
+    
+    /**
+     * チームメンバーが一人でも修理中の場合は出撃不可能
+     */
+    public function isLanchable(){
+        
+        $members=$this->members()->whereNotNull("card_id")->get();
+        
+        if(count($members)==0)return false;
+        
+        //燃料チェック
+        
+        return true;
     }
 
 }
