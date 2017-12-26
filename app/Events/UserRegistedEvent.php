@@ -60,9 +60,6 @@ class UserRegistedEvent implements \App\Common\EventHandler {
         $user->launches()->save(new \App\CCC\data\user_launch([
             "launch_id"=>1,            
             ]));
-        
-        
-        
     }
 
 }
